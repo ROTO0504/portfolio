@@ -4,14 +4,11 @@ import { mdiPost } from "@mdi/js";
 
 <template>
   <VApp>
-    <VAppBar color="primary">
+    <VAppBar class="blur" color="rgb(1,1,1,0.4)">
       <template #prepend>
-        <VAppBarNavIcon
-          color="on-primary"
-          :icon="mdiPost"
-        />
+        <VAppBarNavIcon color="on-primary" :icon="mdiPost" />
       </template>
-      <v-app-bar-title>tpl-nuxt</v-app-bar-title>
+      <v-app-bar-title>ROTO</v-app-bar-title>
     </VAppBar>
     <VMain class="v-main">
       <NuxtPage />
@@ -21,6 +18,8 @@ import { mdiPost } from "@mdi/js";
 
 <style scoped lang="scss">
 .v-main {
-  margin-top: -20px;
+}
+.blur {
+  backdrop-filter: blur(10px);
 }
 </style>
