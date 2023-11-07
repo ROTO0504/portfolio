@@ -17,9 +17,19 @@ import { mdiPost } from "@mdi/js";
 </template>
 
 <style scoped lang="scss">
+html {
+  font-family: "M PLUS 1p", sans-serif;
+}
+
 .v-main {
 }
 .blur {
   backdrop-filter: blur(10px);
+}
+
+.v-app-bar-title {
+  font-family: "M PLUS 1p", sans-serif;
+  font-style: normal;
+  font-weight: 700;
 }
 </style>
