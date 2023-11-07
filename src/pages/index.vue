@@ -7,14 +7,7 @@ onMounted(() => (isLoading.value = false));
 <template>
   <div class="margin">
     <div class="wide-title">
-      A Vue3 project template with<br />
-      Nuxt3 & Vuetify3
-      <div>
-        <img
-          src="https://pbs.twimg.com/media/F90iq8XbgAA9BlZ?format=jpg&name=large"
-          width="100%"
-        />
-      </div>
+      <main-movie></main-movie>
     </div>
   </div>
 </template>
