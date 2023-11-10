@@ -10,6 +10,9 @@ import { mdiPost } from "@mdi/js";
       </template>
       <v-app-bar-title>ROTO</v-app-bar-title>
     </VAppBar>
+    <v-navigation-drawer
+      ><v-list-item title="My Application" subtitle="Vuetify"> </v-list-item
+    ></v-navigation-drawer>
     <VMain class="v-main">
       <NuxtPage />
     </VMain>

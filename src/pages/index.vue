@@ -7,7 +7,7 @@ onMounted(() => (isLoading.value = false));
 <template>
   <div class="margin">
     <div class="wide-title">
-      <main-movie></main-movie>
+      <main-movie class="margin-top"></main-movie>
     </div>
   </div>
 </template>
@@ -29,5 +29,9 @@ main {
 
 .margin {
   margin-top: -64px;
+}
+
+.margin-top {
+  margin-top: 24px;
 }
 </style>
