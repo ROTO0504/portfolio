@@ -8,8 +8,10 @@
   </div>
 </template>
 
-<style scoped lang="scss">
-.blur {
-  backdrop-filter: blur(10px);
+<style scoped>
+.main-movie {
+  width: 100%;
+  height: 100vh;
+  position: relative;
 }
 </style>
