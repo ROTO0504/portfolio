@@ -46,7 +46,7 @@ main {
 }
 
 .red-canvas {
-  background-color: #000000;
+  background-color: #303030;
   width: 100%;
   height: 100%;
 

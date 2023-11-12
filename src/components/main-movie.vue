@@ -15,6 +15,7 @@
 .background-movie {
   width: 100%;
   height: 100%;
+  min-height: 300px;
   padding: 56.25% 0 0 0;
   position: relative;
   background-color: black;
@@ -40,26 +41,6 @@
 }
 
 @keyframes fadeInAnime {
-  from {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.fadeUp {
-  animation-name: fadeUpAnime;
-  animation-duration: 3s;
-  animation-fill-mode: forwards;
-  opacity: 0;
-  filter: blur(5px);
-}
-
-@keyframes fadeUpAnime {
   from {
     opacity: 0;
     transform: translateY(100px);
