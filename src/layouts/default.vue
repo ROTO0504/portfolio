@@ -2,7 +2,7 @@
 
 <template>
   <VApp>
-    <VAppBar class="app-bar">
+    <v-app-bar class="app-bar rounded-b-xl" elevation="8">
       <v-container class="pa-0 ma-0">
         <v-row class="pa-0 ma-0">
           <v-col class="pa-0 ma-0">
@@ -10,7 +10,7 @@
           </v-col>
         </v-row>
       </v-container>
-    </VAppBar>
+    </v-app-bar>
     <VMain class="v-main">
       <NuxtPage />
     </VMain>
@@ -24,7 +24,7 @@ html {
 
 .v-main {
   animation-name: fadeUpAnime;
-  animation-duration: 3s;
+  animation-duration: 2s;
   animation-fill-mode: forwards;
   opacity: 0;
   filter: blur(5px);
@@ -48,16 +48,16 @@ html {
   transition: all 2s ease-in-out;
   animation-name: menu-close;
   animation-duration: 2s;
-  animation-fill-mode: forwards;
+  animation-fill-mode: none;
   opacity: 1;
 }
 @keyframes menu-close {
   from {
-    height: 150px;
+    height: 300px;
   }
 
   to {
-    height: 60px;
+    height: 64px;
   }
 }
 .app-bar-name {
@@ -93,7 +93,7 @@ html {
   }
 
   to {
-    height: 150px;
+    height: 300px;
   }
 }
 
