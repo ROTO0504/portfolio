@@ -1,17 +1,15 @@
-<script setup lang="ts">
-import { mdiPost } from "@mdi/js";
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <VApp>
     <VAppBar class="app-bar" height="150">
-      <template #prepend>
-        <VAppBarNavIcon color="on-primary" :icon="mdiPost" />
-      </template>
-      <v-app-bar-title class="app-bar-title name app-bar-text-filter">
-        ROTO
-      </v-app-bar-title>
-      <v-container class="pa-0 app-bar-text-filter"> </v-container>
+      <v-container class="pa-0 ma-0">
+        <v-row class="pa-0 ma-0">
+          <v-col class="pa-0 ma-0">
+            <p class="app-bar-name">ROTO</p>
+          </v-col>
+        </v-row>
+      </v-container>
     </VAppBar>
     <VMain class="v-main">
       <NuxtPage />
@@ -29,14 +27,16 @@ html {
 .app-bar {
   background-color: rgba(255, 255, 255, 1);
   mix-blend-mode: difference;
-  backdrop-filter: blur(0px);
-  filter: grayscale(70%) contrast(10);
+  backdrop-filter: grayscale(1) blur(10px);
 }
 
-.app-bar-title {
+.app-bar-name {
   font-family: "M PLUS 1p", sans-serif;
-  font-style: normal;
-  font-weight: 700;
+  font-style: bold;
+  font-weight: 800;
+  font-size: 40px;
+  margin-left: 3vw;
+  filter: contrast(1) grayscale(1);
 }
 
 .name {
