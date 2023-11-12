@@ -4,15 +4,15 @@ import { mdiPost } from "@mdi/js";
 
 <template>
   <VApp>
-    <VAppBar class="blur" color="rgb(1,1,1,0.4)">
+    <VAppBar class="app-bar" height="150">
       <template #prepend>
         <VAppBarNavIcon color="on-primary" :icon="mdiPost" />
       </template>
-      <v-app-bar-title>ROTO</v-app-bar-title>
+      <v-app-bar-title class="app-bar-title name app-bar-text-filter">
+        ROTO
+      </v-app-bar-title>
+      <v-container class="pa-0 app-bar-text-filter"> </v-container>
     </VAppBar>
-    <v-navigation-drawer
-      ><v-list-item title="My Application" subtitle="Vuetify"> </v-list-item
-    ></v-navigation-drawer>
     <VMain class="v-main">
       <NuxtPage />
     </VMain>
@@ -26,13 +26,27 @@ html {
 
 .v-main {
 }
-.blur {
-  backdrop-filter: blur(10px);
+.app-bar {
+  background-color: rgba(255, 255, 255, 1);
+  mix-blend-mode: difference;
+  backdrop-filter: blur(0px);
+  filter: grayscale(70%) contrast(10);
 }
 
-.v-app-bar-title {
+.app-bar-title {
   font-family: "M PLUS 1p", sans-serif;
   font-style: normal;
   font-weight: 700;
+}
+
+.name {
+  font-size: 2vh;
+  min-width: 100px;
+  color: #ffffff;
+}
+
+.app-bar-text-filter {
+  mix-blend-mode: difference;
+  filter: grayscale(100%) contrast(100);
 }
 </style>

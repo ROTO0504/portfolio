@@ -4,7 +4,7 @@ export const MAIN_THEME = "mainTheme";
 export const mainTheme: ThemeDefinition = {
   dark: false,
   colors: {
-    primary: "#b22d00",
+    primary: "#1a1a1a",
     "on-primary": "#ffffff",
     "primary-container": "#ffdacf",
     "on-primary-container": "#3c0800",
@@ -38,7 +38,7 @@ export const MAIN_DARK_THEME = "mainDarkTheme";
 export const mainDarkTheme: ThemeDefinition = {
   dark: true,
   colors: {
-    primary: "#ffb49d",
+    primary: "#1a1a1a",
     "on-primary": "#601400",
     "primary-container": "#882000",
     "on-primary-container": "#ffdacf",
@@ -54,7 +54,7 @@ export const mainDarkTheme: ThemeDefinition = {
     "on-error": "#680003",
     "error-container": "#930006",
     "on-error-container": "#ffb4a9",
-    background: "#442a26",
+    background: "#1a1a1a",
     "on-background": "#ede0dd",
     surface: "#201a18",
     "on-surface": "#ede0dd",

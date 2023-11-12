@@ -10,11 +10,12 @@ onMounted(() => (isLoading.value = false));
       <main-movie class="margin-top"></main-movie>
     </div>
   </div>
+  <canvas class="white-canvas" height="1000"></canvas>
+  <canvas class="red-canvas" height="1000"></canvas>
 </template>
 
 <style scoped lang="scss">
 main {
-  padding: 0 100px;
   max-width: 1600px;
   margin: 0 auto;
 
@@ -24,14 +25,32 @@ main {
 }
 .wide-title {
   color: rgb(32, 32, 32);
-  background-color: white;
+  background-color: #1a1a1a;
 }
 
 .margin {
-  margin-top: -64px;
+  margin-top: -150px;
 }
 
 .margin-top {
-  margin-top: 24px;
+  margin-top: 0px;
+}
+
+.white-canvas {
+  background-color: white;
+  width: 100%;
+  height: 100%;
+
+  top: 0;
+  left: 0;
+}
+
+.red-canvas {
+  background-color: #000000;
+  width: 100%;
+  height: 100%;
+
+  top: 0;
+  left: 0;
 }
 </style>
