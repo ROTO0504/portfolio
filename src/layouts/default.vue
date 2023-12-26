@@ -27,7 +27,6 @@ html {
   animation-duration: 2s;
   animation-fill-mode: forwards;
   opacity: 0;
-  filter: blur(5px);
 }
 
 @keyframes fadeUpAnime {
@@ -51,16 +50,5 @@ html {
   font-size: 40px;
   margin-left: 3vw;
   color: #0f0f0f;
-}
-
-.name {
-  font-size: 2vh;
-  min-width: 100px;
-  color: #ffffff;
-}
-
-.app-bar-text-filter {
-  mix-blend-mode: difference;
-  filter: grayscale(100%) contrast(100);
 }
 </style>

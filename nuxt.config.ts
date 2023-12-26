@@ -1,6 +1,12 @@
 import { defineNuxtConfig } from "nuxt/config";
 import vuetify from "vite-plugin-vuetify";
+
 export default defineNuxtConfig({
+  modules: ["nuxt-microcms-module"],
+  microCMS: {
+    serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN,
+    apiKey: process.env.MICROCMS_API_KEY,
+  },
   devtools: { enabled: true },
   build: {
     transpile: ["vuetify"],
@@ -19,6 +25,5 @@ export default defineNuxtConfig({
     },
   },
   css: ["@/assets/main.scss"],
-
   rootDir: "./src",
 });

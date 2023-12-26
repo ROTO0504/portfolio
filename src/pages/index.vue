@@ -10,9 +10,6 @@ onMounted(() => (isLoading.value = false));
       <main-movie class="margin-top"></main-movie>
     </div>
   </div>
-  <spline></spline>
-  <canvas class="white-canvas" height="1000"></canvas>
-  <canvas class="red-canvas" height="1000"></canvas>
 </template>
 
 <style scoped lang="scss">
@@ -25,12 +22,9 @@ main {
   }
 }
 .wide-title {
+  margin-top: 150px;
   color: rgb(32, 32, 32);
   background-color: #1a1a1a;
-}
-
-.margin {
-  margin-top: -150px;
 }
 
 .margin-top {
