@@ -3,9 +3,9 @@
 <template>
   <VApp>
     <v-app-bar class="app-bar rounded-b-xl" elevation="8">
-      <v-container class="pa-0 ma-0">
-        <v-row class="pa-0 ma-0">
-          <v-col class="pa-0 ma-0">
+      <v-container>
+        <v-row>
+          <v-col>
             <p class="app-bar-name">ROTO</p>
           </v-col>
         </v-row>
@@ -43,68 +43,14 @@ html {
 }
 .app-bar {
   background-color: rgba(255, 255, 255);
-  backdrop-filter: blur(10px);
-  mix-blend-mode: none;
-  transition: all 2s ease-in-out;
-  animation-name: menu-close;
-  animation-duration: 2s;
-  animation-fill-mode: none;
-  opacity: 1;
 }
-@keyframes menu-close {
-  from {
-    height: 300px;
-  }
-
-  to {
-    height: 64px;
-  }
-}
-.app-bar-name {
-  animation-name: fadeLeftAnime;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
-  opacity: 0;
-}
-@keyframes fadeLeftAnime {
-  from {
-    opacity: 0;
-    transform: translateX(-100px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.app-bar:hover {
-  background-color: rgba(255, 255, 255, 0);
-  mix-blend-mode: difference;
-  filter: grayscale(100%) contrast(100);
-  animation-name: menu-open;
-  animation-duration: 2s;
-  animation-fill-mode: forwards;
-  opacity: 1;
-}
-@keyframes menu-open {
-  from {
-    height: 60px;
-  }
-
-  to {
-    height: 300px;
-  }
-}
-
 .app-bar-name {
   font-family: "M PLUS 1p", sans-serif;
   font-style: bold;
   font-weight: 800;
   font-size: 40px;
   margin-left: 3vw;
-  color: #ffffff;
-  mix-blend-mode: difference;
+  color: #0f0f0f;
 }
 
 .name {

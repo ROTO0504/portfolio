@@ -10,6 +10,7 @@ onMounted(() => (isLoading.value = false));
       <main-movie class="margin-top"></main-movie>
     </div>
   </div>
+  <spline></spline>
   <canvas class="white-canvas" height="1000"></canvas>
   <canvas class="red-canvas" height="1000"></canvas>
 </template>
