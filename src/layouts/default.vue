@@ -22,24 +22,6 @@ html {
   font-family: "M PLUS 1p", sans-serif;
 }
 
-.v-main {
-  animation-name: fadeUpAnime;
-  animation-duration: 2s;
-  animation-fill-mode: forwards;
-  opacity: 0;
-}
-
-@keyframes fadeUpAnime {
-  from {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 .app-bar {
   background-color: rgba(255, 255, 255);
 }

@@ -5,11 +5,13 @@ onMounted(() => (isLoading.value = false));
 </script>
 
 <template>
-  <div class="margin">
-    <div class="wide-title">
-      <main-movie class="margin-top"></main-movie>
-    </div>
-  </div>
+  <v-container>
+    <v-row align="center" justify="center">
+      <div height="500" align="center" justify="center">
+        <main-carousel></main-carousel>
+        <test-carousel></test-carousel>
+      </div> </v-row
+  ></v-container>
 </template>
 
 <style scoped lang="scss">
@@ -20,32 +22,5 @@ main {
   @media screen and (max-width: 860px) {
     padding: 0 20px;
   }
-}
-.wide-title {
-  margin-top: 150px;
-  color: rgb(32, 32, 32);
-  background-color: #1a1a1a;
-}
-
-.margin-top {
-  margin-top: 0px;
-}
-
-.white-canvas {
-  background-color: white;
-  width: 100%;
-  height: 100%;
-
-  top: 0;
-  left: 0;
-}
-
-.red-canvas {
-  background-color: #303030;
-  width: 100%;
-  height: 100%;
-
-  top: 0;
-  left: 0;
 }
 </style>

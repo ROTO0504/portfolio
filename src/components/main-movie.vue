@@ -32,23 +32,4 @@
 .filter {
   opacity: 0.8;
 }
-.fadeIn {
-  animation-name: fadeInAnime;
-  animation-duration: 6s;
-  animation-fill-mode: forwards;
-  opacity: 0;
-  filter: blur(5px);
-}
-
-@keyframes fadeInAnime {
-  from {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 </style>
