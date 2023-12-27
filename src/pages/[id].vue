@@ -17,7 +17,6 @@
         {{ data.publishedAt ?? data.createdAt }}
       </div>
     </div>
-    <div v-html="data.content"></div>
   </template>
 </template>
 
@@ -30,5 +29,4 @@ const { data } = await useMicroCMSGetListDetail<Blog>({
   endpoint: "blogs",
   contentId: Array.isArray(params.id) ? params.id[0] : params.id,
 });
-console.log(data);
 </script>

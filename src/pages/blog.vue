@@ -31,5 +31,4 @@ import type { Blog } from "~~/types/blog";
 const { data } = await useMicroCMSGetList<Blog>({
   endpoint: "blogs",
 });
-console.log(data);
 </script>
