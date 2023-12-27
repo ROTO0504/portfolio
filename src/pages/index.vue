@@ -7,10 +7,7 @@ onMounted(() => (isLoading.value = false));
 <template>
   <v-container>
     <v-row align="center" justify="center">
-      <div height="500" align="center" justify="center">
-        <main-carousel></main-carousel>
-        <test-carousel></test-carousel>
-      </div> </v-row
+      <main-carousel></main-carousel> </v-row
   ></v-container>
 </template>
 

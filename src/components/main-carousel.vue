@@ -12,16 +12,21 @@ const { data } = await useMicroCMSGetList<Blog>({
       hide-delimiters
       cycle
       show-arrows="hover"
-      height="100%"
+      height="50vh"
       transition="fade-transition"
+      reverse-transition="fade-transition"
     >
-      <v-carousel-item
+      <NuxtLink
         v-for="blog in data?.contents"
         :key="blog.id"
-        :show-arrows="true"
-        :src="blog.eyecatch?.url"
-        cover
-      ></v-carousel-item>
+        :to="`/${blog.id}`"
+      >
+        <v-carousel-item
+          :show-arrows="true"
+          :src="blog.eyecatch?.url"
+          cover
+        ></v-carousel-item>
+      </NuxtLink>
     </v-carousel>
   </v-col>
 </template>
