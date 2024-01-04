@@ -12,15 +12,30 @@ onMounted(() => (isLoading.value = false));
 <template>
   <v-container>
     <v-row class="pt-16" align="center" justify="center">
-      <v-col v-for="blog in data?.contents" :key="blog.id" cols="6">
-        <v-card class="rounded-lg" elevation="24"
+      <v-col
+        v-for="blog in data?.contents"
+        :key="blog.id"
+        cols="12"
+        xl="4"
+        lg="6"
+        md="12"
+      >
+        <v-card class="rounded-lg hover fadeIn" elevation="24"
           ><NuxtLink :to="`/${blog.id}`">
-            <v-carousel class="pa-4" hide-delimiters cycle show-arrows="hover">
+            <v-carousel
+              class="pa-4"
+              hide-delimiters
+              cycle
+              show-arrows="hover"
+              height="100%"
+              width="100%"
+            >
               <v-carousel-item
                 class="rounded-lg"
-                :show-arrows="true"
+                :show-arrows="false"
                 :src="blog.eyecatch?.url"
-                cover
+                height="100%"
+                width="100%"
               ></v-carousel-item>
             </v-carousel>
             <v-list two-line>
@@ -78,6 +93,21 @@ main {
 
   100% {
     transform: translateY(0px);
+  }
+}
+
+.hover {
+  transition: 0.3s;
+  &:hover {
+    transform: translateY(-10px);
+    backdrop-filter: blur(3px);
+  }
+}
+
+.hover_title {
+  transition: 0.3s;
+  &:hover {
+    color: #ff4081;
   }
 }
 </style>

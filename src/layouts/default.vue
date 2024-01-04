@@ -3,10 +3,20 @@
 <template>
   <VApp>
     <v-app-bar class="app-bar rounded-b-xl" elevation="8">
-      <v-container>
+      <v-container class="pa-0 ma-0">
         <v-row>
-          <v-col>
+          <v-col cols="9">
             <p class="app-bar-name">ROTO</p>
+          </v-col>
+          <v-col cols="3" class="right">
+            <v-breadcrumbs
+              class="app-bar-link"
+              :items="[
+                { title: 'HOME', to: '/', exact: true },
+                { title: 'Projects', to: '/blog', exact: true },
+                { title: 'Contact', to: '/contact', exact: true },
+              ]"
+            ></v-breadcrumbs>
           </v-col>
         </v-row>
       </v-container>
@@ -32,5 +42,21 @@ html {
   font-size: 40px;
   margin-left: 3vw;
   color: #0f0f0f;
+}
+
+.app-bar-link {
+  font-family: "M PLUS 1p", sans-serif;
+  font-style: bold;
+  font-weight: 800;
+  font-size: 2vh;
+
+  color: #0f0f0f;
+}
+
+.hover_title {
+  transition: 0.3s;
+  &:hover {
+    color: #ff4081;
+  }
 }
 </style>
