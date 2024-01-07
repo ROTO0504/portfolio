@@ -2,7 +2,12 @@
   <v-app>
     <section v-if="show" class="container">
       <div>
-        <lottie :options="defaultOptions" v-on:animCreated="handleAnimation" />
+        <h2 class="pb-10 center">工事中</h2>
+        <lottie
+          class="drop-shadow"
+          :options="defaultOptions"
+          v-on:animCreated="handleAnimation"
+        />
       </div>
     </section>
   </v-app>
@@ -32,3 +37,17 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.drop-shadow {
+  filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.884));
+}
+
+.center {
+  text-align: center;
+  font-family: "M PLUS 1p", sans-serif;
+  font-style: bold;
+  font-weight: 800;
+  font-size: 60px;
+}
+</style>
