@@ -5,18 +5,27 @@
     <v-app-bar class="app-bar rounded-b-xl" elevation="8">
       <v-container class="pa-0 ma-0">
         <v-row>
-          <v-col cols="9">
-            <p class="app-bar-name">ROTO</p>
+          <v-col>
+            <a class="URL" href="/">
+              <p class="app-bar-name">ROTO</p>
+            </a>
           </v-col>
-          <v-col cols="3" class="right">
-            <v-breadcrumbs
-              class="app-bar-link"
-              :items="[
-                { title: 'HOME', to: '/', exact: true },
-                { title: 'Projects', to: '/blog', exact: true },
-                { title: 'Contact', to: '/contact', exact: true },
-              ]"
-            ></v-breadcrumbs>
+          <v-col>
+            <v-row class="right">
+              <v-col>
+                <v-btn class="app-bar-link hover_title" to="/">Home</v-btn>
+              </v-col>
+              <v-col>
+                <v-btn class="app-bar-link hover_title" to="/projects"
+                  >Projects</v-btn
+                >
+              </v-col>
+              <v-col>
+                <v-btn class="app-bar-link hover_title" to="/contact"
+                  >Contact</v-btn
+                >
+              </v-col>
+            </v-row>
           </v-col>
         </v-row>
       </v-container>
@@ -58,5 +67,14 @@ html {
   &:hover {
     color: #ff4081;
   }
+}
+
+.right {
+  text-align: right;
+  margin: 0 0 0 auto;
+}
+
+.URL {
+  text-decoration: none;
 }
 </style>
