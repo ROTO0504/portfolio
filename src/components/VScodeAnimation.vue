@@ -2,11 +2,13 @@
   <v-app>
     <section v-if="show" class="container">
       <div>
-        <h2 class="pb-10 center">工事中</h2>
+        <h2 class="pa-10 center">工事中</h2>
         <lottie
           class="drop-shadow"
           :options="defaultOptions"
           v-on:animCreated="handleAnimation"
+          width="300"
+          height="300"
         />
       </div>
     </section>
@@ -28,6 +30,8 @@ export default {
       },
       animationSpeed: 1,
       show: true,
+      width: 30,
+      height: 30,
     };
   },
   methods: {
