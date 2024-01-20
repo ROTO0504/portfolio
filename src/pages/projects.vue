@@ -18,8 +18,7 @@ onMounted(() => (isLoading.value = false));
         :key="blog.id"
         cols="12"
         xl="4"
-        lg="6"
-        md="12"
+        sm="6"
       >
         <transition
           name="fade-up"
@@ -33,8 +32,6 @@ onMounted(() => (isLoading.value = false));
             :key="blog.id"
             class="rounded-lg hover"
             elevation="4"
-            min-height="400"
-            max-height="30vh"
           >
             <NuxtLink :to="`/${blog.id}`" class="link">
               <v-img :src="blog.eyecatch?.url" width="100%" height="100%" />

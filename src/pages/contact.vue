@@ -2,27 +2,23 @@
   <v-app>
     <v-container>
       <v-row justify="center" align-content="center">
-        <v-card elevation="10" class="my-card rounded-lg">
-          <v-card-subtitle class="subtitle pa-5">Contact</v-card-subtitle>
-          <v-row class="pa-1 ma-1">
-            <v-col cols="3" class="pa-0 ma-0">
-              <img
-                src="../assets/img/icon.png"
-                class="rounded-circle my-icon"
-              />
-            </v-col>
-            <v-col cols="9" class="pa-0 ma-0">
+        <v-card elevation="20" class="my-card rounded-lg">
+          <v-card-subtitle class="subtitle pt-5 pl-5">Contact</v-card-subtitle>
+          <v-row class="pa-0 ma-0">
+            <img src="../assets/img/icon.png" class="rounded-circle my-icon" />
+
+            <v-col class="pa-0 ma-0">
               <v-list class="list">
                 <v-list-item>
                   <v-row class="pa-0 ma-0">
                     <twitter class="icon mr-3"></twitter>
-                    <v-list-item-title class="text">Twitter</v-list-item-title>
+                    <p class="text">Twitter</p>
                   </v-row>
                 </v-list-item>
                 <v-list-item>
                   <v-row class="pa-0 ma-0">
                     <mail class="icon mr-3" />
-                    <v-list-item-title class="text">Mail</v-list-item-title>
+                    <p class="text">Mail</p>
                   </v-row>
                 </v-list-item>
               </v-list>
@@ -37,35 +33,43 @@
 <style scoped>
 .my-card {
   max-width: 60%;
+  min-width: 25%;
+  width: 60%;
   background-color: rgba(255, 255, 255, 0.192);
   backdrop-filter: blur(10px);
 }
-
 .text {
   font-family: "M PLUS 1p", sans-serif;
   font-style: bold;
   font-weight: 800;
-  font-size: 1.5vw;
+  font-size: 2vh;
+  text-align: left;
+  line-height: 2vh;
+  display: grid;
+  place-items: center;
 }
-
 .subtitle {
   font-family: "M PLUS 1p", sans-serif;
   font-style: bold;
   font-weight: 800;
-  font-size: 30px;
+  font-size: 2vw;
+  padding: 1%;
 }
 .icon {
-  max-width: 30px;
-  font-size: 5vw;
+  font-size: 2vh;
 }
-
 .list {
   background-color: rgba(255, 255, 255, 0);
+  display: grid;
+  place-items: left;
 }
-
 .my-icon {
-  max-width: 100%;
-  margin: 10px;
-  min-width: 1vw;
+  width: 15vw;
+  height: 15vw;
+  min-width: 100px;
+  min-height: 100px;
+  max-width: 200px;
+  max-height: 200px;
+  padding: 2vw;
 }
 </style>

@@ -11,21 +11,21 @@ const drawer = ref(false);
         app
         parmament
         temporary
-        right
+        location="right"
       >
         <v-list>
           <v-list-item to="/">
-            <v-list-item-title class="app-bar-link"
+            <v-list-item-title class="nav-bar-link"
               >HOME</v-list-item-title
             ></v-list-item
           >
           <v-list-item to="/projects">
-            <v-list-item-title class="app-bar-link"
+            <v-list-item-title class="nav-bar-link"
               >Projects</v-list-item-title
             ></v-list-item
           >
           <v-list-item to="/contact">
-            <v-list-item-title class="app-bar-link"
+            <v-list-item-title class="nav-bar-link"
               >Contact</v-list-item-title
             ></v-list-item
           >
@@ -51,7 +51,6 @@ const drawer = ref(false);
           </section>
         </template>
       </v-app-bar>
-
       <VMain class="v-main">
         <NuxtPage />
       </VMain>
@@ -72,8 +71,7 @@ html {
   font-family: "M PLUS 1p", sans-serif;
   font-style: bold;
   font-weight: 800;
-  font-size: 2em;
-  min-width: 1vw;
+  font-size: 1.9em;
   margin-left: 3vw;
   color: #000000;
   text-decoration: none;
@@ -84,6 +82,14 @@ html {
   font-style: bold;
   font-weight: 800;
   font-size: 1em;
+  color: #0f0f0f;
+}
+
+.nav-bar-link {
+  font-family: "M PLUS 1p", sans-serif;
+  font-style: bold;
+  font-weight: 800;
+  font-size: 0.9em;
   color: #0f0f0f;
 }
 
