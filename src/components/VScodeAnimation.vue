@@ -7,8 +7,8 @@
           class="drop-shadow"
           :options="defaultOptions"
           v-on:animCreated="handleAnimation"
-          width="300"
-          height="300"
+          width="200"
+          height="200"
         />
       </div>
     </section>

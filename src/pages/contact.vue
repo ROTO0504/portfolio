@@ -5,13 +5,13 @@
         <v-card elevation="10" class="my-card rounded-lg">
           <v-card-subtitle class="subtitle pa-5">Contact</v-card-subtitle>
           <v-row class="pa-1 ma-1">
-            <v-col cols="3" class="pa-10 ma-0">
+            <v-col cols="3" class="pa-0 ma-0">
               <img
                 src="../assets/img/icon.png"
                 class="rounded-circle my-icon"
               />
             </v-col>
-            <v-col cols="9" class="pa-15 ma-0">
+            <v-col cols="9" class="pa-0 ma-0">
               <v-list class="list">
                 <v-list-item>
                   <v-row class="pa-0 ma-0">
@@ -45,7 +45,7 @@
   font-family: "M PLUS 1p", sans-serif;
   font-style: bold;
   font-weight: 800;
-  font-size: 20px;
+  font-size: 1.5vw;
 }
 
 .subtitle {
@@ -55,7 +55,8 @@
   font-size: 30px;
 }
 .icon {
-  font-size: 30px;
+  max-width: 30px;
+  font-size: 5vw;
 }
 
 .list {
@@ -63,7 +64,8 @@
 }
 
 .my-icon {
-  width: 100%;
-  min-width: 100px;
+  max-width: 100%;
+  margin: 10px;
+  min-width: 1vw;
 }
 </style>

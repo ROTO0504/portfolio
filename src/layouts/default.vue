@@ -1,8 +1,36 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const drawer = ref(false);
+</script>
 
 <template>
   <div>
     <VApp>
+      <v-navigation-drawer
+        v-model="drawer"
+        class=".d-block .d-sm-none .d-md-none .d-lg-none"
+        app
+        parmament
+        temporary
+        right
+      >
+        <v-list>
+          <v-list-item to="/">
+            <v-list-item-title class="app-bar-link"
+              >HOME</v-list-item-title
+            ></v-list-item
+          >
+          <v-list-item to="/projects">
+            <v-list-item-title class="app-bar-link"
+              >Projects</v-list-item-title
+            ></v-list-item
+          >
+          <v-list-item to="/contact">
+            <v-list-item-title class="app-bar-link"
+              >Contact</v-list-item-title
+            ></v-list-item
+          >
+        </v-list>
+      </v-navigation-drawer>
       <v-app-bar class="app-bar rounded-b-xl">
         <template #prepend>
           <v-toolbar-title>
@@ -10,11 +38,20 @@
           </v-toolbar-title>
         </template>
         <template #append>
-          <v-tab class="app-bar-link" to="/">HOME</v-tab>
-          <v-tab class="app-bar-link" to="/projects">Projects</v-tab>
-          <v-tab class="app-bar-link" to="/contact">Contact</v-tab>
+          <section class="d-none d-sm-block">
+            <v-tab class="app-bar-link" to="/">HOME</v-tab>
+            <v-tab class="app-bar-link" to="/projects">Projects</v-tab>
+            <v-tab class="app-bar-link" to="/contact">Contact</v-tab>
+          </section>
+          <section>
+            <v-app-bar-nav-icon
+              class="d-sm-none nav-icon"
+              @click="drawer = !drawer"
+            />
+          </section>
         </template>
       </v-app-bar>
+
       <VMain class="v-main">
         <NuxtPage />
       </VMain>
@@ -35,7 +72,8 @@ html {
   font-family: "M PLUS 1p", sans-serif;
   font-style: bold;
   font-weight: 800;
-  font-size: 4vh;
+  font-size: 2em;
+  min-width: 1vw;
   margin-left: 3vw;
   color: #000000;
   text-decoration: none;
@@ -45,19 +83,11 @@ html {
   font-family: "M PLUS 1p", sans-serif;
   font-style: bold;
   font-weight: 800;
-  font-size: 2vh;
+  font-size: 1em;
   color: #0f0f0f;
-  ::before {
-    background-color: red;
-  }
 }
 
-.right {
-  text-align: right;
-  margin: 0 0 0 auto;
-}
-
-.URL {
-  text-decoration: none;
+.nav-icon {
+  font-size: 1.5em;
 }
 </style>
