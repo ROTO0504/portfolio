@@ -1,55 +1,11 @@
 <script setup lang="ts">
-import type { Blog } from "~~/types/blog";
-
-const { data } = await useMicroCMSGetList<Blog>({
-  endpoint: "blogs",
-});
 const isLoading = ref(true);
-const cardTransitionDelay = 200;
 
 onMounted(() => (isLoading.value = false));
 </script>
 
 <template>
-  <v-container>
-    <v-row class="pt-16" align="center" justify="center">
-      <v-col
-        v-for="(blog, index) in data?.contents"
-        :key="blog.id"
-        cols="12"
-        xl="4"
-        sm="6"
-      >
-        <transition
-          name="fade-up"
-          appear
-          mode="out-in"
-          :duration="{ enter: 800, leave: 0 }"
-          :delay="index * cardTransitionDelay"
-        >
-          <v-card
-            v-if="index === 0 || (data && index === data.contents.length - 1)"
-            :key="blog.id"
-            class="rounded-lg hover"
-            elevation="4"
-          >
-            <NuxtLink :to="`/${blog.id}`" class="link">
-              <v-img :src="blog.eyecatch?.url" width="100%" height="100%" />
-
-              <v-list two-line>
-                <v-list-item>
-                  <v-list-item-title>{{ blog.title }}</v-list-item-title>
-                  <v-list-item-subtitle>{{
-                    blog.category?.name
-                  }}</v-list-item-subtitle>
-                </v-list-item>
-              </v-list>
-            </NuxtLink>
-          </v-card>
-        </transition>
-      </v-col>
-    </v-row>
-  </v-container>
+  <card></card>
 </template>
 
 <style scoped lang="scss">
@@ -72,5 +28,29 @@ main {
 
 .link {
   text-decoration: none;
+}
+
+.list-enter-active {
+  transition: all 1s ease-out;
+}
+
+.list-enter-to {
+  opacity: 10s;
+  transform: translateY(0px);
+}
+
+.list-enter-from {
+  opacity: 0;
+  transform: translateY(300px);
+}
+
+.thumbnail {
+  :hover {
+    transition: all 2s ease-in-out;
+    &:hover {
+      transform: scale(1.1);
+      filter: blur(5px);
+    }
+  }
 }
 </style>

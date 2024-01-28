@@ -1,33 +1,30 @@
 <template>
-  <v-app>
-    <v-container>
-      <v-row justify="center" align-content="center">
-        <v-card elevation="20" class="my-card rounded-lg">
-          <v-card-subtitle class="subtitle pt-5 pl-5">Contact</v-card-subtitle>
-          <v-row class="pa-0 ma-0">
-            <img src="../assets/img/icon.png" class="rounded-circle my-icon" />
-
-            <v-col class="pa-0 ma-0">
-              <v-list class="list">
-                <v-list-item>
-                  <v-row class="pa-0 ma-0">
-                    <twitter class="icon mr-3"></twitter>
-                    <p class="text">Twitter</p>
-                  </v-row>
-                </v-list-item>
-                <v-list-item>
-                  <v-row class="pa-0 ma-0">
-                    <mail class="icon mr-3" />
-                    <p class="text">Mail</p>
-                  </v-row>
-                </v-list-item>
-              </v-list>
-            </v-col>
-          </v-row>
-        </v-card>
-      </v-row>
-    </v-container>
-  </v-app>
+  <v-container>
+    <v-row justify="center" align-content="center">
+      <v-card elevation="20" class="my-card rounded-lg">
+        <v-card-subtitle class="subtitle pt-5 pl-5">Contact</v-card-subtitle>
+        <v-row class="pa-0 ma-0">
+          <img src="../assets/img/icon.png" class="rounded-circle my-icon" />
+          <v-col class="pa-0 ma-0">
+            <v-list class="list">
+              <v-list-item href="https://x.com/roto_works?s=20">
+                <v-row class="pa-0 ma-0">
+                  <twitter class="icon mr-3"></twitter>
+                  <p class="text">Twitter: @roto_works</p>
+                </v-row>
+              </v-list-item>
+              <v-list-item href="">
+                <v-row class="pa-0 ma-0">
+                  <mail class="icon mr-3" />
+                  <p class="text">Mail</p>
+                </v-row>
+              </v-list-item>
+            </v-list>
+          </v-col>
+        </v-row>
+      </v-card>
+    </v-row>
+  </v-container>
 </template>
 
 <style scoped>

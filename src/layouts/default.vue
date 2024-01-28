@@ -1,4 +1,9 @@
 <script setup lang="ts">
+const data = ref([
+  { text: "HOME", to: "/", icon: "mdiHome" },
+  { text: "PROJECTS", to: "/projects", icon: "mdi-file-tree" },
+  { text: "CONTACT", to: "/contact", icon: "mdi-email" },
+]);
 const drawer = ref(false);
 </script>
 
@@ -14,21 +19,14 @@ const drawer = ref(false);
         location="right"
       >
         <v-list>
-          <v-list-item to="/">
-            <v-list-item-title class="nav-bar-link"
-              >HOME</v-list-item-title
-            ></v-list-item
-          >
-          <v-list-item to="/projects">
-            <v-list-item-title class="nav-bar-link"
-              >Projects</v-list-item-title
-            ></v-list-item
-          >
-          <v-list-item to="/contact">
-            <v-list-item-title class="nav-bar-link"
-              >Contact</v-list-item-title
-            ></v-list-item
-          >
+          <v-list-item v-for="item in data" :key="item.text" :to="item.to">
+            <template #prepend>
+              <v-icon :icon="item.icon"></v-icon>
+            </template>
+            <v-list-item-title class="nav-bar-link">{{
+              item.text
+            }}</v-list-item-title>
+          </v-list-item>
         </v-list>
       </v-navigation-drawer>
       <v-app-bar class="app-bar rounded-b-xl">
@@ -40,8 +38,8 @@ const drawer = ref(false);
         <template #append>
           <section class="d-none d-sm-block">
             <v-tab class="app-bar-link" to="/">HOME</v-tab>
-            <v-tab class="app-bar-link" to="/projects">Projects</v-tab>
-            <v-tab class="app-bar-link" to="/contact">Contact</v-tab>
+            <v-tab class="app-bar-link" to="/projects">PROJECTS</v-tab>
+            <v-tab class="app-bar-link" to="/contact">CONTACT</v-tab>
           </section>
           <section>
             <v-app-bar-nav-icon
