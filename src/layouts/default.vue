@@ -12,14 +12,23 @@ const drawer = ref(false);
     <VApp>
       <v-navigation-drawer
         v-model="drawer"
-        class=".d-block .d-sm-none .d-md-none .d-lg-none"
+        class=".d-block .d-sm-none .d-md-none .d-lg-none rounded-s-xl"
         app
         parmament
         temporary
         location="right"
+        color="rt_white"
+        r
       >
         <v-list>
-          <v-list-item v-for="item in data" :key="item.text" :to="item.to">
+          <v-list-item
+            v-for="item in data"
+            :key="item.text"
+            :to="item.to"
+            class="nav-bar-list"
+            color="rt_black"
+            base-color="rt_red"
+          >
             <template #prepend>
               <v-icon :icon="item.icon"></v-icon>
             </template>
@@ -28,18 +37,31 @@ const drawer = ref(false);
             }}</v-list-item-title>
           </v-list-item>
         </v-list>
+        <template #append>
+          <div class="pa-2">
+            <v-btn class="mb-16" color="rt_black" href="/contact" block>
+              CONTACT
+            </v-btn>
+          </div>
+        </template>
       </v-navigation-drawer>
-      <v-app-bar class="app-bar rounded-b-xl">
+      <v-app-bar app class="app-bar" shrink-on-scroll>
         <template #prepend>
           <v-toolbar-title>
-            <nuxt-link class="app-bar-name" to="/" tag="div">ROTO</nuxt-link>
+            <nuxt-link class="app-bar-name" to="/" tag="p">ROTO</nuxt-link>
           </v-toolbar-title>
         </template>
         <template #append>
           <section class="d-none d-sm-block">
-            <v-tab class="app-bar-link" to="/">HOME</v-tab>
-            <v-tab class="app-bar-link" to="/projects">PROJECTS</v-tab>
-            <v-tab class="app-bar-link" to="/contact">CONTACT</v-tab>
+            <v-tabs color="rt_white">
+              <v-tab class="app-bar-link" to="/" color="rt_black">HOME</v-tab>
+              <v-tab class="app-bar-link" to="/projects" color="rt_black"
+                >PROJECTS</v-tab
+              >
+              <v-tab class="app-bar-link" to="/contact" color="rt_black"
+                >CONTACT</v-tab
+              >
+            </v-tabs>
           </section>
           <section>
             <v-app-bar-nav-icon
@@ -57,38 +79,33 @@ const drawer = ref(false);
 </template>
 
 <style scoped lang="scss">
-html {
-  font-family: "M PLUS 1p", sans-serif;
-}
-
 .app-bar {
-  background-color: rgba(255, 255, 255, 0.247);
-  backdrop-filter: blur(3px);
+  background-color: #ffffff;
+  backdrop-filter: blur(30px);
 }
 .app-bar-name {
-  font-family: "M PLUS 1p", sans-serif;
-  font-style: bold;
-  font-weight: 800;
-  font-size: 1.9em;
+  font-size: 1.6em;
   margin-left: 3vw;
-  color: #000000;
+  color: var(--v-theme-rt_red);
   text-decoration: none;
 }
 
 .app-bar-link {
-  font-family: "M PLUS 1p", sans-serif;
-  font-style: bold;
-  font-weight: 800;
   font-size: 1em;
-  color: #0f0f0f;
+  color: red;
+  :hover {
+    color: var(rt_red);
+  }
 }
 
+.nav-bar-list {
+  font-size: 1.2em;
+  color: var(--v-theme-rt_red);
+  height: 10vh;
+}
 .nav-bar-link {
-  font-family: "M PLUS 1p", sans-serif;
-  font-style: bold;
-  font-weight: 800;
   font-size: 0.9em;
-  color: #0f0f0f;
+  color: var(--v-theme-rt_red);
 }
 
 .nav-icon {

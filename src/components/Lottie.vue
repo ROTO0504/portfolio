@@ -10,8 +10,8 @@ export default {
       type: Object,
       required: true,
     },
-    height: Number,
-    width: Number,
+    height: String,
+    width: String,
   },
 
   data() {

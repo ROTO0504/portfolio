@@ -1,18 +1,13 @@
 <template>
-  <v-app>
-    <section v-if="show" class="container">
-      <div>
-        <h2 class="pa-10 center">工事中</h2>
-        <lottie
-          class="drop-shadow"
-          :options="defaultOptions"
-          v-on:animCreated="handleAnimation"
-          width="200"
-          height="200"
-        />
-      </div>
-    </section>
-  </v-app>
+  <section v-if="show" class="container">
+    <lottie
+      class="drop-shadow"
+      :options="defaultOptions"
+      v-on:animCreated="handleAnimation"
+      width="200"
+      height="200"
+    />
+  </section>
 </template>
 
 <script>

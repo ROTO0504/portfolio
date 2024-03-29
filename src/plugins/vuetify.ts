@@ -3,7 +3,7 @@ import * as appAll from "vuetify/components";
 import { aliases, mdi } from "vuetify/iconsets/mdi-svg";
 
 import { defaults } from "@/helpers/defaults";
-import { MAIN_THEME, mainDarkTheme, mainTheme } from "@/helpers/themes";
+import { MAIN_THEME, mainTheme } from "@/helpers/themes";
 
 export default defineNuxtPlugin((nuxtApp) => {
   const vuetify = createVuetify({
@@ -26,12 +26,6 @@ export default defineNuxtPlugin((nuxtApp) => {
       defaultTheme: MAIN_THEME,
       themes: {
         mainTheme,
-        mainDarkTheme,
-      },
-      variations: {
-        colors: ["primary", "secondary", "accent"],
-        lighten: 9,
-        darken: 9,
       },
     },
   });
