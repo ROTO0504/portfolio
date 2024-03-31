@@ -25,13 +25,10 @@ const drawer = ref(false);
             v-for="item in data"
             :key="item.text"
             :to="item.to"
-            class="nav-bar-list"
+            class="nav-bar-list rounded-s-xl"
             color="rt_black"
             base-color="rt_red"
           >
-            <template #prepend>
-              <v-icon :icon="item.icon"></v-icon>
-            </template>
             <v-list-item-title class="nav-bar-link">{{
               item.text
             }}</v-list-item-title>
@@ -45,7 +42,7 @@ const drawer = ref(false);
           </div>
         </template>
       </v-navigation-drawer>
-      <v-app-bar app class="app-bar" shrink-on-scroll>
+      <v-app-bar app class="app-bar" shrink-on-scroll color="rt_white">
         <template #prepend>
           <v-toolbar-title>
             <nuxt-link class="app-bar-name" to="/" tag="p">ROTO</nuxt-link>
@@ -80,14 +77,28 @@ const drawer = ref(false);
 
 <style scoped lang="scss">
 .app-bar {
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0);
   backdrop-filter: blur(30px);
+}
+
+@keyframes fadeInText {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 .app-bar-name {
   font-size: 1.6em;
   margin-left: 3vw;
-  color: var(--v-theme-rt_red);
+  color: #05091e;
   text-decoration: none;
+  transition: 0.3s;
+}
+:hover {
+  color: #da2128;
 }
 
 .app-bar-link {
@@ -103,9 +114,11 @@ const drawer = ref(false);
   color: var(--v-theme-rt_red);
   height: 10vh;
 }
+
 .nav-bar-link {
   font-size: 0.9em;
   color: var(--v-theme-rt_red);
+  text-align: center;
 }
 
 .nav-icon {

@@ -2,6 +2,9 @@
 const isLoading = ref(true);
 
 onMounted(() => (isLoading.value = false));
+useHead({
+  title: "ROTO_Works - Projects - ",
+});
 </script>
 
 <template>

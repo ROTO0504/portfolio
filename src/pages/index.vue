@@ -1,21 +1,35 @@
 <script setup>
 import TitleBar from "../components/TitleBar.vue";
+
+useHead({
+  title: "ROTO_Works - Top - ",
+});
 </script>
 
 <template>
   <div>
-    <h2 class="pa-10 center">工事中</h2>
+    <Top />
+
+    <v-parallax
+      class="parallax-img"
+      height="90vh"
+      src="https://i.vimeocdn.com/video/1825184909-2bad0acdeb92c7b0ecd2b4a04750cdcea52bd0c71816efd11258c3537326b96c-d_1920x1080?r=pad"
+    ></v-parallax>
+    <MainMovie url="https://www.youtube.com/embed/ffD5NTvhjTE" />
+    <h2 class="mt-16 center">工事中</h2>
     <VScodeAnimation class="VScode"></VScodeAnimation>
   </div>
   <TitleBar title-bar="ROTO" />
+  <Gradation />
 </template>
 
 <style scoped>
+.main-movie {
+  margin-top: -64px;
+}
 .center {
   text-align: center;
-  font-family: "M PLUS 1p", sans-serif;
   font-style: bold;
-  font-weight: 800;
   font-size: 60px;
   color: #f4f4f4;
 }
@@ -26,5 +40,9 @@ import TitleBar from "../components/TitleBar.vue";
   min-height: 300;
   position: relative;
   padding-top: 3%;
+}
+
+.parallax-img:hover {
+  filter: blur(2px);
 }
 </style>

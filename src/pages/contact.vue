@@ -1,3 +1,9 @@
+<script setup lang="ts">
+useHead({
+  title: "ROTO_Works - Contact - ",
+});
+</script>
+
 <template>
   <v-container>
     <v-row justify="center" align-content="center">
@@ -7,7 +13,7 @@
           <img src="../assets/img/icon.png" class="rounded-circle my-icon" />
           <v-col class="pa-0 ma-0">
             <v-list class="list">
-              <v-list-item href="https://x.com/roto_works?s=20">
+              <v-list-item href="https://x.com/roto_works">
                 <v-row class="pa-0 ma-0">
                   <twitter class="icon mr-3"></twitter>
                   <p class="text">Twitter: @roto_works</p>

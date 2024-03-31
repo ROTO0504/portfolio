@@ -60,7 +60,7 @@ onMounted(() => (isLoading.value = false));
 }
 
 .hover {
-  transition: 0.3s;
+  transition: 1s;
   &:hover {
     transform: translateY(-10px);
     backdrop-filter: blur(3px);
