@@ -13,9 +13,11 @@ defineProps({
       <div class="filter">
         <iframe
           class="max-size"
-          :src="url + '?controls=0&autoplay=1&loop=1&mute=1'"
+          :src="url + '?controls=0&autoplay=1&loop=1&mute=1&rel=0'"
           frameborder="0"
           controls="false"
+          loop="1"
+          autoplay="1"
         >
         </iframe>
       </div>
