@@ -1,78 +1,14 @@
 <script setup lang="ts"></script>
 <template>
-  <svg
-    width="100%"
-    height="100%"
-    id="svg"
-    viewBox="0 0 1440 390"
-    xmlns="http://www.w3.org/2000/svg"
-    class="transition duration-300 ease-in-out delay-150"
-  >
-    <defs>
-      <linearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%">
-        <stop offset="5%" stop-color="#da2128"></stop>
-        <stop offset="95%" stop-color="#552f7f"></stop>
-      </linearGradient>
-    </defs>
-    <path
-      d="M 0,400 L 0,60 C 140,63.46666666666667 280,66.93333333333334 453,60 C 626,53.06666666666667 832,35.733333333333334 1002,34 C 1172,32.266666666666666 1306,46.13333333333333 1440,60 L 1440,400 L 0,400 Z"
-      stroke="none"
-      stroke-width="0"
-      fill="url(#gradient)"
-      fill-opacity="0.265"
-      class="transition-all duration-300 ease-in-out delay-150 path-0"
-    ></path>
-    <defs>
-      <linearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%">
-        <stop offset="5%" stop-color="#da2128"></stop>
-        <stop offset="95%" stop-color="#552f7f"></stop>
-      </linearGradient>
-    </defs>
-    <path
-      d="M 0,400 L 0,140 C 178.13333333333333,149.06666666666666 356.26666666666665,158.13333333333335 525,151 C 693.7333333333333,143.86666666666665 853.0666666666668,120.53333333333332 1004,116 C 1154.9333333333332,111.46666666666668 1297.4666666666667,125.73333333333335 1440,140 L 1440,400 L 0,400 Z"
-      stroke="none"
-      stroke-width="0"
-      fill="url(#gradient)"
-      fill-opacity="0.4"
-      class="transition-all duration-300 ease-in-out delay-150 path-1"
-    ></path>
-    <defs>
-      <linearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%">
-        <stop offset="5%" stop-color="#da2128"></stop>
-        <stop offset="95%" stop-color="#552f7f"></stop>
-      </linearGradient>
-    </defs>
-    <path
-      d="M 0,400 L 0,220 C 136.93333333333334,232.66666666666666 273.8666666666667,245.33333333333331 416,244 C 558.1333333333333,242.66666666666669 705.4666666666667,227.33333333333334 877,221 C 1048.5333333333333,214.66666666666666 1244.2666666666667,217.33333333333331 1440,220 L 1440,400 L 0,400 Z"
-      stroke="none"
-      stroke-width="0"
-      fill="url(#gradient)"
-      fill-opacity="0.53"
-      class="transition-all duration-300 ease-in-out delay-150 path-2"
-    ></path>
-    <defs>
-      <linearGradient id="gradient" x1="0%" y1="50%" x2="100%" y2="50%">
-        <stop offset="5%" stop-color="#da2128"></stop>
-        <stop offset="95%" stop-color="#552f7f"></stop>
-      </linearGradient>
-    </defs>
-    <path
-      d="M 0,400 L 0,300 C 198.8,294.93333333333334 397.6,289.8666666666667 554,288 C 710.4,286.1333333333333 824.4000000000001,287.46666666666664 965,290 C 1105.6,292.53333333333336 1272.8,296.26666666666665 1440,300 L 1440,400 L 0,400 Z"
-      stroke="none"
-      stroke-width="0"
-      fill="url(#gradient)"
-      fill-opacity="1"
-      class="transition-all duration-300 ease-in-out delay-150 path-3"
-    ></path>
-  </svg>
-  <div class="name">
-    <a class="name-hover" href="/projects">
-      <p class="fadeUp-1 no-br va-m">R</p>
-      <p class="fadeUp-2 no-br va-m">O</p>
-      <p class="fadeUp-3 no-br va-m">T</p>
-      <p class="fadeUp-4 no-br va-m">O</p>
-      <p class="fadeUp-5 no-br va-m">→</p>
-    </a>
+  <div class="background">
+    <div class="name">
+      <a class="name-hover" href="/projects">
+        <p class="fadeUp-1 no-br va-m">R</p>
+        <p class="fadeUp-2 no-br va-m">O</p>
+        <p class="fadeUp-3 no-br va-m">T</p>
+        <p class="fadeUp-4 no-br va-m">O</p>
+      </a>
+    </div>
   </div>
 </template>
 
@@ -141,7 +77,7 @@
   opacity: 0;
   font-size: 5vh;
   text-align: center;
-  margin-left: 10%;
+  margin-left: 7%;
   vertical-align: middle;
 }
 
@@ -154,12 +90,13 @@
     filter: blur(10px);
     opacity: 0;
     transform: translateY(70px);
+    tranceform: translateX(-40px);
   }
 
   to {
     opacity: 1;
     transform: translateY(0px);
-    transform: translateX(40px);
+    transform: translateX(0px);
   }
 }
 
@@ -177,13 +114,17 @@
 }
 
 .name {
-  padding-top: 32vh;
+  padding-top: 28vh;
   height: 85vh;
-  font-size: 10vh;
+  font-size: 10vw;
   text-align: center;
 
   transition: all 2s ease-in-out;
   color: #05091e;
   background: #f4f4f4;
+  background-repeat: no-repeat;
+  background-position-y: bottom;
+  background-size: auto auto;
+  background-image: url("data:image/svg+xml;base64,PHN2ZwogICAgICB3aWR0aD0iMTAwJSIKICAgICAgaGVpZ2h0PSIxMDAlIgogICAgICBpZD0ic3ZnIgogICAgICB2aWV3Qm94PSIwIDAgMTQ0MCAzOTAiCiAgICAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgICAgY2xhc3M9InRyYW5zaXRpb24gZHVyYXRpb24tMzAwIGVhc2UtaW4tb3V0IGRlbGF5LTE1MCIKICAgID4KICAgICAgPGRlZnM+CiAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkaWVudCIgeDE9IjAlIiB5MT0iNTAlIiB4Mj0iMTAwJSIgeTI9IjUwJSI+CiAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjUlIiBzdG9wLWNvbG9yPSIjZGEyMTI4Ij48L3N0b3A+CiAgICAgICAgICA8c3RvcCBvZmZzZXQ9Ijk1JSIgc3RvcC1jb2xvcj0iIzU1MmY3ZiI+PC9zdG9wPgogICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgIDwvZGVmcz4KICAgICAgPHBhdGgKICAgICAgICBkPSJNIDAsNDAwIEwgMCw2MCBDIDE0MCw2My40NjY2NjY2NjY2NjY2NyAyODAsNjYuOTMzMzMzMzMzMzMzMzQgNDUzLDYwIEMgNjI2LDUzLjA2NjY2NjY2NjY2NjY3IDgzMiwzNS43MzMzMzMzMzMzMzMzMzQgMTAwMiwzNCBDIDExNzIsMzIuMjY2NjY2NjY2NjY2NjY2IDEzMDYsNDYuMTMzMzMzMzMzMzMzMzMgMTQ0MCw2MCBMIDE0NDAsNDAwIEwgMCw0MDAgWiIKICAgICAgICBzdHJva2U9Im5vbmUiCiAgICAgICAgc3Ryb2tlLXdpZHRoPSIwIgogICAgICAgIGZpbGw9InVybCgjZ3JhZGllbnQpIgogICAgICAgIGZpbGwtb3BhY2l0eT0iMC4yNjUiCiAgICAgICAgY2xhc3M9InRyYW5zaXRpb24tYWxsIGR1cmF0aW9uLTMwMCBlYXNlLWluLW91dCBkZWxheS0xNTAgcGF0aC0wIgogICAgICA+PC9wYXRoPgogICAgICA8ZGVmcz4KICAgICAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWRpZW50IiB4MT0iMCUiIHkxPSI1MCUiIHgyPSIxMDAlIiB5Mj0iNTAlIj4KICAgICAgICAgIDxzdG9wIG9mZnNldD0iNSUiIHN0b3AtY29sb3I9IiNkYTIxMjgiPjwvc3RvcD4KICAgICAgICAgIDxzdG9wIG9mZnNldD0iOTUlIiBzdG9wLWNvbG9yPSIjNTUyZjdmIj48L3N0b3A+CiAgICAgICAgPC9saW5lYXJHcmFkaWVudD4KICAgICAgPC9kZWZzPgogICAgICA8cGF0aAogICAgICAgIGQ9Ik0gMCw0MDAgTCAwLDE0MCBDIDE3OC4xMzMzMzMzMzMzMzMzMywxNDkuMDY2NjY2NjY2NjY2NjYgMzU2LjI2NjY2NjY2NjY2NjY1LDE1OC4xMzMzMzMzMzMzMzMzNSA1MjUsMTUxIEMgNjkzLjczMzMzMzMzMzMzMzMsMTQzLjg2NjY2NjY2NjY2NjY1IDg1My4wNjY2NjY2NjY2NjY4LDEyMC41MzMzMzMzMzMzMzMzMiAxMDA0LDExNiBDIDExNTQuOTMzMzMzMzMzMzMzMiwxMTEuNDY2NjY2NjY2NjY2NjggMTI5Ny40NjY2NjY2NjY2NjY3LDEyNS43MzMzMzMzMzMzMzMzNSAxNDQwLDE0MCBMIDE0NDAsNDAwIEwgMCw0MDAgWiIKICAgICAgICBzdHJva2U9Im5vbmUiCiAgICAgICAgc3Ryb2tlLXdpZHRoPSIwIgogICAgICAgIGZpbGw9InVybCgjZ3JhZGllbnQpIgogICAgICAgIGZpbGwtb3BhY2l0eT0iMC40IgogICAgICAgIGNsYXNzPSJ0cmFuc2l0aW9uLWFsbCBkdXJhdGlvbi0zMDAgZWFzZS1pbi1vdXQgZGVsYXktMTUwIHBhdGgtMSIKICAgICAgPjwvcGF0aD4KICAgICAgPGRlZnM+CiAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkaWVudCIgeDE9IjAlIiB5MT0iNTAlIiB4Mj0iMTAwJSIgeTI9IjUwJSI+CiAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjUlIiBzdG9wLWNvbG9yPSIjZGEyMTI4Ij48L3N0b3A+CiAgICAgICAgICA8c3RvcCBvZmZzZXQ9Ijk1JSIgc3RvcC1jb2xvcj0iIzU1MmY3ZiI+PC9zdG9wPgogICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgIDwvZGVmcz4KICAgICAgPHBhdGgKICAgICAgICBkPSJNIDAsNDAwIEwgMCwyMjAgQyAxMzYuOTMzMzMzMzMzMzMzMzQsMjMyLjY2NjY2NjY2NjY2NjY2IDI3My44NjY2NjY2NjY2NjY3LDI0NS4zMzMzMzMzMzMzMzMzMSA0MTYsMjQ0IEMgNTU4LjEzMzMzMzMzMzMzMzMsMjQyLjY2NjY2NjY2NjY2NjY5IDcwNS40NjY2NjY2NjY2NjY3LDIyNy4zMzMzMzMzMzMzMzMzNCA4NzcsMjIxIEMgMTA0OC41MzMzMzMzMzMzMzMzLDIxNC42NjY2NjY2NjY2NjY2NiAxMjQ0LjI2NjY2NjY2NjY2NjcsMjE3LjMzMzMzMzMzMzMzMzMxIDE0NDAsMjIwIEwgMTQ0MCw0MDAgTCAwLDQwMCBaIgogICAgICAgIHN0cm9rZT0ibm9uZSIKICAgICAgICBzdHJva2Utd2lkdGg9IjAiCiAgICAgICAgZmlsbD0idXJsKCNncmFkaWVudCkiCiAgICAgICAgZmlsbC1vcGFjaXR5PSIwLjUzIgogICAgICAgIGNsYXNzPSJ0cmFuc2l0aW9uLWFsbCBkdXJhdGlvbi0zMDAgZWFzZS1pbi1vdXQgZGVsYXktMTUwIHBhdGgtMiIKICAgICAgPjwvcGF0aD4KICAgICAgPGRlZnM+CiAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkaWVudCIgeDE9IjAlIiB5MT0iNTAlIiB4Mj0iMTAwJSIgeTI9IjUwJSI+CiAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjUlIiBzdG9wLWNvbG9yPSIjZGEyMTI4Ij48L3N0b3A+CiAgICAgICAgICA8c3RvcCBvZmZzZXQ9Ijk1JSIgc3RvcC1jb2xvcj0iIzU1MmY3ZiI+PC9zdG9wPgogICAgICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICAgIDwvZGVmcz4KICAgICAgPHBhdGgKICAgICAgICBkPSJNIDAsNDAwIEwgMCwzMDAgQyAxOTguOCwyOTQuOTMzMzMzMzMzMzMzMzQgMzk3LjYsMjg5Ljg2NjY2NjY2NjY2NjcgNTU0LDI4OCBDIDcxMC40LDI4Ni4xMzMzMzMzMzMzMzMzIDgyNC40MDAwMDAwMDAwMDAxLDI4Ny40NjY2NjY2NjY2NjY2NCA5NjUsMjkwIEMgMTEwNS42LDI5Mi41MzMzMzMzMzMzMzMzNiAxMjcyLjgsMjk2LjI2NjY2NjY2NjY2NjY1IDE0NDAsMzAwIEwgMTQ0MCw0MDAgTCAwLDQwMCBaIgogICAgICAgIHN0cm9rZT0ibm9uZSIKICAgICAgICBzdHJva2Utd2lkdGg9IjAiCiAgICAgICAgZmlsbD0idXJsKCNncmFkaWVudCkiCiAgICAgICAgZmlsbC1vcGFjaXR5PSIxIgogICAgICAgIGNsYXNzPSJ0cmFuc2l0aW9uLWFsbCBkdXJhdGlvbi0zMDAgZWFzZS1pbi1vdXQgZGVsYXktMTUwIHBhdGgtMyIKICAgICAgPjwvcGF0aD4KICAgIDwvc3ZnPg==");
 }
 </style>
