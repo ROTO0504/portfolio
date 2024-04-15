@@ -8,7 +8,9 @@ useHead({
 </script>
 
 <template>
-  <card></card>
+  <div class="pj-bg">
+    <card></card>
+  </div>
 </template>
 
 <style scoped lang="scss">
@@ -48,6 +50,9 @@ main {
 }
 
 .thumbnail {
+  transition: all 2s ease-in-out;
+  transform: scale(1);
+  filter: blur(0px);
   :hover {
     transition: all 2s ease-in-out;
     &:hover {
@@ -55,5 +60,11 @@ main {
       filter: blur(5px);
     }
   }
+}
+
+.pj-bg {
+  background-color: #f4f4f4;
+  padding: 20px;
+  min-height: 100vh;
 }
 </style>

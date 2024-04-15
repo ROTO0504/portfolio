@@ -35,10 +35,12 @@ onMounted(() => (isLoading.value = false));
               />
               <v-list two-line>
                 <v-list-item>
-                  <v-list-item-title>{{ blog.title }}</v-list-item-title>
-                  <v-list-item-subtitle>{{
-                    blog.category?.name
-                  }}</v-list-item-subtitle>
+                  <v-list-item-title class="blog-title">{{
+                    blog.title
+                  }}</v-list-item-title>
+                  <v-list-item-subtitle class="category"
+                    >Category : {{ blog.category?.name }}</v-list-item-subtitle
+                  >
                 </v-list-item>
               </v-list>
             </NuxtLink>
@@ -83,15 +85,24 @@ onMounted(() => (isLoading.value = false));
 .card-enter-from {
   opacity: 0;
   transform: translateY(300px);
+  transition: all 2s ease-in-out;
 }
 
 .thumbnail {
   &:hover {
     transition: all 2s ease-in-out;
     &:hover {
-      transform: scale(1.1);
-      filter: blur(5px);
+      transform: scale(1.05);
     }
   }
+}
+
+.blog-title {
+  font-size: 1.2em;
+  padding-top: 2%;
+}
+.category {
+  font-size: 0.7em;
+  color: #da2128;
 }
 </style>
