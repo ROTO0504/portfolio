@@ -10,12 +10,9 @@ const { data } = await useMicroCMSGetListDetail<Blog>({
 </script>
 
 <template>
-  <v-parallax
-    class="main-img"
-    :src="data?.eyecatch?.url"
-    height="15%"
-  ></v-parallax>
   <div class="bg">
+    <v-parallax class="main-img" :src="data?.eyecatch?.url" height="100px" />
+
     <template v-if="data">
       <h1 class="title pt-5">
         {{ data.title }}
@@ -26,11 +23,16 @@ const { data } = await useMicroCMSGetListDetail<Blog>({
       <div class="center">
         <img class="sub-img" :src="data.eyecatch?.url" alt="" />
       </div>
+      <!-- eslint-disable-next-line vue/no-v-html -->
+      <div class="content" v-html="data.content"></div>
     </template>
   </div>
 </template>
 
 <style scoped>
+img {
+  width: 80%;
+}
 .title {
   font-size: 3rem;
   margin-left: 10vw;
@@ -49,15 +51,7 @@ const { data } = await useMicroCMSGetListDetail<Blog>({
 }
 
 .main-img {
-  width: 100%;
-  object-fit: fill;
-  object-position: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   filter: grayscale(0.7);
-  transition: 0.3s;
-  &:hover {
-    backdrop-filter: blur(3px);
-  }
 }
 
 .category {
@@ -76,5 +70,16 @@ const { data } = await useMicroCMSGetListDetail<Blog>({
   margin-bottom: 5%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   background-color: #f4f4f4;
+}
+
+.content {
+  margin-left: 10vw;
+  margin-right: 10vw;
+  margin-bottom: 10vh;
+  font-size: 0.7rem;
+  line-height: 2.5rem;
+  font-weight: 1;
+  text-align: left;
+  color: #05091e;
 }
 </style>

@@ -3,11 +3,12 @@ const isLoading = ref(true);
 
 onMounted(() => (isLoading.value = false));
 useHead({
-  title: "ROTO_Works - Projects - ",
+  title: "ROTO_Works - Works - ",
 });
 </script>
 
 <template>
+  <div class="title">- Works -</div>
   <div class="pj-bg">
     <card></card>
   </div>
@@ -66,5 +67,14 @@ main {
   background-color: #f4f4f4;
   padding: 20px;
   min-height: 100vh;
+}
+
+.title {
+  font-size: 3rem;
+  padding-top: 9%;
+  font-weight: bold;
+  color: #da2128;
+  background-color: #f4f4f4;
+  text-align: center;
 }
 </style>

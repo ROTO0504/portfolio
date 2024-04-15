@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const data = ref([
   { text: "HOME", to: "/", icon: "mdiHome" },
-  { text: "PROJECTS", to: "/projects", icon: "mdi-file-tree" },
+  { text: "WORKS", to: "/works", icon: "mdi-file-tree" },
   { text: "CONTACT", to: "/contact", icon: "mdi-email" },
 ]);
 const drawer = ref(false);
@@ -52,8 +52,8 @@ const drawer = ref(false);
           <section class="d-none d-sm-block">
             <v-tabs color="rt_white">
               <v-tab class="app-bar-link" to="/" color="rt_black">HOME</v-tab>
-              <v-tab class="app-bar-link" to="/projects" color="rt_black"
-                >PROJECTS</v-tab
+              <v-tab class="app-bar-link" to="/works" color="rt_black"
+                >WORKS</v-tab
               >
               <v-tab class="app-bar-link" to="/contact" color="rt_black"
                 >CONTACT</v-tab
