@@ -31,7 +31,6 @@ useHead({
     <h2 class="mt-16 center">工事中</h2>
     <VScodeAnimation class="VScode"></VScodeAnimation>
   </div>
-  <TitleBar title-bar="ROTO" />
   <Gradation />
 </template>
 
