@@ -1,6 +1,4 @@
 <script setup>
-import TitleBar from "../components/TitleBar.vue";
-
 useHead({
   title: "ROTO_Works - Top - ",
 });
