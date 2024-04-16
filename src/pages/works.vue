@@ -8,7 +8,7 @@ useHead({
 </script>
 
 <template>
-  <div class="title">- Works -</div>
+  <center-title title="- Works -" />
   <div class="pj-bg">
     <card></card>
   </div>

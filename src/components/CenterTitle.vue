@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 defineProps({
-  titleBar: {
+  title: {
     type: String,
     required: true,
   },
@@ -8,18 +8,18 @@ defineProps({
 </script>
 
 <template>
-  <div>
-    <h2 class="title">
-      {{ titleBar }}
-    </h2>
+  <div class="title">
+    {{ title }}
   </div>
 </template>
 
 <style scoped>
 .title {
-  color: #05091e;
-  min-width: 10vw;
-  font-size: 10vh;
+  font-size: 3rem;
+  padding-top: 9%;
+  font-weight: bold;
+  color: #da2128;
+  background-color: #f4f4f4;
   text-align: center;
 }
 </style>

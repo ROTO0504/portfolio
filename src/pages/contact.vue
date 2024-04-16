@@ -6,9 +6,7 @@ useHead({
 
 <template>
   <div class="bg">
-    <v-container>
-      <v-row justify="center" align-content="center"> </v-row>
-    </v-container>
+    <center-title title="- Contact -" />
   </div>
 </template>
 

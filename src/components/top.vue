@@ -2,7 +2,7 @@
 <template>
   <div class="background">
     <div class="name">
-      <a class="name-hover" href="/projects">
+      <a class="name-hover" href="/works">
         <p class="fadeUp-1 no-br va-m">R</p>
         <p class="fadeUp-2 no-br va-m">O</p>
         <p class="fadeUp-3 no-br va-m">T</p>
