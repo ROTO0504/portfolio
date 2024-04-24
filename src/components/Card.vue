@@ -4,9 +4,10 @@ import type { Blog } from "~~/types/blog";
 const { data } = await useMicroCMSGetList<Blog>({
   endpoint: "blogs",
 });
-const isLoading = ref(true);
 
-onMounted(() => (isLoading.value = false));
+const loading = ref(true);
+
+onMounted(() => (loading.value = false));
 </script>
 
 <template>
@@ -27,12 +28,14 @@ onMounted(() => (isLoading.value = false));
             elevation="4"
           >
             <NuxtLink :to="`/${blog.id}`" class="link">
-              <v-img
-                class="thumbnail"
-                :src="blog.eyecatch?.url"
-                width="100%"
-                height="100%"
-              />
+              <v-skeleton-loader type="card" :loading="loading">
+                <v-img
+                  class="thumbnail"
+                  :src="blog.eyecatch?.url"
+                  width="100%"
+                  height="100%"
+                />
+              </v-skeleton-loader>
               <v-list two-line>
                 <v-list-item>
                   <v-list-item-title class="blog-title">{{
