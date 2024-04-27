@@ -5,51 +5,59 @@ const { data } = await useMicroCMSGetList<Blog>({
   endpoint: "blogs",
 });
 
-const loading = ref(true);
+const loading = ref(false);
 
-onMounted(() => (loading.value = false));
+onMounted(() => {
+  setTimeout(() => {
+    loading.value = true;
+  }, 2000);
+});
 </script>
 
 <template>
   <v-container>
     <v-row class="pt-16" align="center" justify="center">
-      <transition-group name="card">
-        <v-col
-          v-for="(blog, index) in data?.contents"
+      <v-col
+        v-for="(blog, index) in data?.contents"
+        :key="blog.id"
+        cols="12"
+        xl="4"
+        sm="6"
+      >
+        <v-card
+          v-if="index === 0 || (data && index === data.contents.length - 1)"
           :key="blog.id"
-          cols="12"
-          xl="4"
-          sm="6"
+          class="hover"
+          elevation="4"
         >
-          <v-card
-            v-if="index === 0 || (data && index === data.contents.length - 1)"
-            :key="blog.id"
-            class="rounded-lg hover"
-            elevation="4"
-          >
-            <NuxtLink :to="`/${blog.id}`" class="link">
-              <v-skeleton-loader type="card" :loading="loading">
-                <v-img
-                  class="thumbnail"
-                  :src="blog.eyecatch?.url"
-                  width="100%"
-                  height="100%"
-                />
-              </v-skeleton-loader>
-              <v-list two-line>
-                <v-list-item>
-                  <v-list-item-title class="blog-title">{{
-                    blog.title
-                  }}</v-list-item-title>
-                  <v-list-item-subtitle class="category"
-                    >Category : {{ blog.category?.name }}</v-list-item-subtitle
-                  >
-                </v-list-item>
-              </v-list>
-            </NuxtLink>
-          </v-card>
-        </v-col>
-      </transition-group>
+          <NuxtLink :to="`/${blog.id}`" class="link">
+            <v-skeleton-loader
+              :loading="!loading"
+              type="image"
+              height="100%"
+              elevation="12"
+            >
+              <v-img
+                class="thumbnail"
+                :src="blog.eyecatch?.url"
+                width="100%"
+                height="100%"
+              ></v-img>
+            </v-skeleton-loader>
+
+            <v-list two-line>
+              <v-list-item>
+                <v-list-item-title class="blog-title">{{
+                  blog.title
+                }}</v-list-item-title>
+                <v-list-item-subtitle class="category"
+                  >Category : {{ blog.category?.name }}</v-list-item-subtitle
+                >
+              </v-list-item>
+            </v-list>
+          </NuxtLink>
+        </v-card>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -87,8 +95,8 @@ onMounted(() => (loading.value = false));
 
 .card-enter-from {
   opacity: 0;
-  transform: translateY(300px);
-  transition: all 2s ease-in-out;
+  transform: translateY(200px);
+  transition: all 4s ease-in-out;
 }
 
 .thumbnail {

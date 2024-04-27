@@ -38,6 +38,6 @@
     "lottie-web": "^5.12.2",
     "nuxt-microcms-module": "^3.0.2",
     "typescript": "^5.2.2",
-    "vuetify": "^3.4.0-alpha.1"
+    "vuetify": "^3.5.17"
   }
 }
