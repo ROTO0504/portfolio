@@ -77,7 +77,7 @@ const drawer = ref(false);
 
 <style scoped lang="scss">
 .app-bar {
-  background-color: rgba(255, 255, 255, 0);
+  background-color: (255 255 255 / 0);
   backdrop-filter: blur(30px);
 }
 

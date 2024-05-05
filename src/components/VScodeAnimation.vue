@@ -39,7 +39,7 @@ export default {
 
 <style scoped>
 .drop-shadow {
-  filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.884));
+  filter: drop-shadow(0 10px 10px rgb(0 0 0/0.884));
 }
 
 .center {

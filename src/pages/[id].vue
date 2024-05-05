@@ -68,7 +68,7 @@ img {
   object-position: center;
   margin-top: 5%;
   margin-bottom: 5%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgb(0 0 0 / 0.2);
   background-color: #f4f4f4;
 }
 
