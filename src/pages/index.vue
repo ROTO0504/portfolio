@@ -14,7 +14,7 @@ useHead({
       src="https://i.vimeocdn.com/video/1825184909-2bad0acdeb92c7b0ecd2b4a04750cdcea52bd0c71816efd11258c3537326b96c-d_1920x1080?r=pad"
       ><v-btn
         rounded="0"
-        elevation="0"
+        elevation="4"
         class="reel_btn"
         height="50"
         width="300"
@@ -29,7 +29,6 @@ useHead({
     <h2 class="mt-16 center">工事中</h2>
     <VScodeAnimation class="VScode"></VScodeAnimation>
   </div>
-  <Gradation />
 </template>
 
 <style scoped>

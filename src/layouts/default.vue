@@ -71,6 +71,13 @@ const drawer = ref(false);
       <VMain class="v-main">
         <NuxtPage />
       </VMain>
+      <v-footer>
+        <v-col class="text-center mt-4 footer" cols="12">
+          <NuxtLink class="footer-link" :to="'/'" tag="div">
+            {{ new Date().getFullYear() }} — <strong>ROTO Works</strong>
+          </NuxtLink>
+        </v-col>
+      </v-footer>
     </VApp>
   </div>
 </template>
@@ -123,5 +130,11 @@ const drawer = ref(false);
 
 .nav-icon {
   font-size: 1.5em;
+}
+
+.footer-link {
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--v-theme-rt_red);
 }
 </style>
