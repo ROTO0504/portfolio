@@ -115,9 +115,9 @@
 
 .name {
   padding-top: 28vh;
-  padding-left: 3vw;
+  padding-left: 5vw;
   height: 85vh;
-  font-size: 5vw;
+  font-size: 5vh;
   text-align: left;
 
   transition: all 2s ease-in-out;

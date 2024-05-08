@@ -6,7 +6,17 @@ useHead({
 
 <template>
   <div>
-    <Top />
+    <v-row>
+      <v-col class="top-background" cols="12" md="6">
+        <Top />
+      </v-col>
+      <v-col
+        class="top-background d-flex flex-row justify-center"
+        cols="12"
+        md="6"
+      >
+      </v-col>
+    </v-row>
 
     <v-parallax
       class="parallax-img"
@@ -15,20 +25,30 @@ useHead({
       ><v-btn
         rounded="0"
         elevation="4"
-        class="reel_btn"
+        class="reel-btn"
         height="50"
         width="300"
         href="https://youtu.be/ffD5NTvhjTE"
         target="_blank"
         rel="noopener noreferrer"
         >REEL 2024
-        <p class="reel_btn_arrow">→</p></v-btn
+        <p class="reel-btn-arrow">→</p></v-btn
       ></v-parallax
     >
   </div>
 </template>
 
 <style scoped>
+.top-background {
+  background-color: #f4f4f4;
+}
+
+.skill-card {
+  background-color: #f4f4f4;
+  height: 10vh;
+  width: 10vh;
+}
+
 .main-movie {
   margin-top: -64px;
 }
@@ -47,7 +67,7 @@ useHead({
   padding-top: 3%;
 }
 
-.reel_btn {
+.reel-btn {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -61,12 +81,12 @@ useHead({
   transition: 1s;
 }
 
-.reel_btn_arrow {
+.reel-btn-arrow {
   transition: 1s;
   margin-left: 10px;
 }
 
-.reel_btn:hover .reel_btn_arrow {
+.reel-btn:hover .reel-btn-arrow {
   transition: 1s;
   margin-left: 30px;
 }

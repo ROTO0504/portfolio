@@ -10,7 +10,7 @@ export const mainTheme: ThemeDefinition = {
     warning: "#ffc107",
     info: "#ff5722",
     success: "#795548",
-    background: "#05091E",
+    background: "#F4F4F4",
     rt_white: "#F4F4F4",
     rt_purple: "#552F7F",
     rt_red: "#DA2128",

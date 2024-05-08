@@ -21,8 +21,8 @@ onMounted(() => {
         v-for="(blog, index) in data?.contents"
         :key="blog.id"
         cols="12"
-        xl="4"
-        sm="6"
+        xl="6"
+        sm="4"
       >
         <v-hover v-slot="{ isHovering, props }" close-delay="200">
           <v-card
@@ -30,8 +30,8 @@ onMounted(() => {
             :key="blog.id"
             class="hover"
             :class="{ 'on-hover': isHovering }"
-            :elevation="isHovering ? 16 : 0"
-            :rounded="isHovering ? 'xl' : 'sm'"
+            :elevation="isHovering ? 16 : 8"
+            :rounded="isHovering ? 'xl' : 'xl'"
             v-bind="props"
           >
             <NuxtLink :to="`/${blog.id}`" class="link">
