@@ -25,9 +25,6 @@ useHead({
         <p class="reel_btn_arrow">→</p></v-btn
       ></v-parallax
     >
-    <MainMovie url="https://www.youtube.com/embed/ffD5NTvhjTE" />
-    <h2 class="mt-16 center">工事中</h2>
-    <VScodeAnimation class="VScode"></VScodeAnimation>
   </div>
 </template>
 
