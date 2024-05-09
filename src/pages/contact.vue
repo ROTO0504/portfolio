@@ -7,22 +7,28 @@ useHead({
 <template>
   <div class="bg">
     <center-title title="- Contact -" />
-    <p class="mail">rotoworks.contanct@gmail.com</p>
+    <v-row class="mail-btn" align="center" justify="center">
+      <v-btn class="mail" href="mailto:rotoworks.contact@gmail.com"
+        >rotoworks.contact@gmail.com</v-btn
+      >
+    </v-row>
   </div>
 </template>
 
 <style scoped>
 .bg {
   background-color: #f4f4f4;
-  height: 90vh;
+  height: 85vh;
+}
+
+.mail-btn {
+  padding-top: 10%;
 }
 
 .mail {
-  text-align: center;
-  padding: 0 0 0 5%;
-  font-size: 5vh;
-  font-weight: bold;
-  color: #da2128;
-  width: 90vw;
+  background-color: #da2128;
+  color: white;
+  font-size: 1.5rem;
+  border-radius: 10px;
 }
 </style>

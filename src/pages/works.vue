@@ -65,7 +65,6 @@ main {
 
 .pj-bg {
   background-color: #f4f4f4;
-  padding: 20px;
   min-height: 100vh;
 }
 

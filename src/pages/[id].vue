@@ -10,7 +10,7 @@ const { data } = await useMicroCMSGetListDetail<Blog>({
 </script>
 
 <template>
-  <div class="bg">
+  <div class="bg fade-in">
     <v-parallax class="main-img" :src="data?.eyecatch?.url" height="100px" />
 
     <template v-if="data">
@@ -81,5 +81,24 @@ img {
   font-weight: 1;
   text-align: left;
   color: #05091e;
+}
+
+.fade-in {
+  animation-name: fadeUpAnime;
+  animation-duration: 2s;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+@keyframes fadeUpAnime {
+  from {
+    filter: blur(10px);
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 </style>
