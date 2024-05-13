@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { mdiEmailOutline } from "@mdi/js";
+
 useHead({
   title: "ROTO_Works - Contact - ",
 });
@@ -8,9 +10,17 @@ useHead({
   <div class="bg">
     <center-title title="- Contact -" />
     <v-row class="mail-btn" align="center" justify="center">
-      <v-btn class="mail" href="mailto:rotoworks.contact@gmail.com"
-        >rotoworks.contact@gmail.com</v-btn
-      >
+      <v-hover v-slot="{ isHovering, props }" close-delay="200">
+        <v-btn
+          class="mail"
+          :prepend-icon="mdiEmailOutline"
+          size="x-large"
+          :elevation="isHovering ? 3 : 0"
+          v-bind="props"
+          href="mailto:rotoworks.contact@gmail.com"
+          >rotoworks.contact@gmail.com</v-btn
+        >
+      </v-hover>
     </v-row>
   </div>
 </template>
@@ -26,8 +36,8 @@ useHead({
 }
 
 .mail {
-  background-color: #da2128;
-  color: white;
+  background-color: #f4f4f4;
+  color: black;
   font-size: 1.5rem;
   border-radius: 10px;
 }

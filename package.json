@@ -34,7 +34,7 @@
     "vite-plugin-vuetify": "^1.0.2"
   },
   "dependencies": {
-    "@mdi/js": "^7.2.96",
+    "@mdi/js": "^7.4.47",
     "lottie-web": "^5.12.2",
     "nuxt-microcms-module": "^3.0.2",
     "typescript": "^5.2.2",
