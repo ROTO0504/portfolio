@@ -2,6 +2,26 @@
 useHead({
   title: "ROTO_Works - Top - ",
 });
+
+useSeoMeta({
+  description: "ROTO_Works",
+  twitterDescription: "Portfolio",
+  twitterImage: "/src/assets/img/icon.png",
+  twitterCard: "summary",
+});
+
+useHead({
+  htmlAttrs: {
+    lang: "ja",
+  },
+  link: [
+    {
+      rel: "icon",
+      type: "image/png",
+      href: "/favicon.png",
+    },
+  ],
+});
 </script>
 
 <template>
