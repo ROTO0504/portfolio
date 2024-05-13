@@ -38,7 +38,9 @@ useHead({
 .mail {
   background-color: #f4f4f4;
   color: black;
-  font-size: 1.5rem;
+  font-size: 2vw;
   border-radius: 10px;
+  padding: 3%;
+  height: 5em;
 }
 </style>
