@@ -1,5 +1,6 @@
 import { defineNuxtConfig } from "nuxt/config";
 import vuetify from "vite-plugin-vuetify";
+import { inject } from "@vercel/analytics";
 
 export default defineNuxtConfig({
   modules: ["nuxt-microcms-module"],
@@ -29,4 +30,5 @@ export default defineNuxtConfig({
   vuetify: {
     customProperties: true,
   },
+  inject: inject(),
 });
