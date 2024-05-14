@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { mdiEmailOutline } from "@mdi/js";
+import { mdiSendVariantOutline } from "@mdi/js";
 
 useHead({
   title: "ROTO_Works - Contact - ",
@@ -13,7 +13,7 @@ useHead({
       <v-hover v-slot="{ isHovering, props }" close-delay="200">
         <v-btn
           class="mail"
-          :prepend-icon="mdiEmailOutline"
+          :append-icon="mdiSendVariantOutline"
           size="x-large"
           :elevation="isHovering ? 3 : 0"
           v-bind="props"
