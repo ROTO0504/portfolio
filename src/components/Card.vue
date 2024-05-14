@@ -21,8 +21,9 @@ onMounted(() => {
         v-for="(blog, index) in data?.contents"
         :key="blog.id"
         cols="12"
-        xl="6"
-        sm="4"
+        xl="4"
+        lg="4"
+        sm="6"
       >
         <v-hover v-slot="{ isHovering, props }" close-delay="200">
           <v-card
