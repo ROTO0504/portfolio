@@ -20,11 +20,15 @@ const { data } = await useMicroCMSGetListDetail<Blog>({
       <div class="category">
         <div>Category : {{ data.category?.name }}</div>
       </div>
+      <div class="year">Year : {{ data.year }}</div>
       <div class="center">
         <img class="sub-img" :src="data.eyecatch?.url" alt="" />
       </div>
+
       <!-- eslint-disable-next-line vue/no-v-html -->
-      <div class="content" v-html="data.content"></div>
+      <v-container class="content">
+        <div v-html="data.content" />
+      </v-container>
     </template>
   </div>
 </template>
@@ -33,6 +37,15 @@ const { data } = await useMicroCMSGetListDetail<Blog>({
 img {
   width: 80%;
 }
+
+.year {
+  text-align: right;
+  color: #da2128;
+  font-size: 3rem;
+  margin-bottom: 10%;
+  padding-left: 10vw;
+}
+
 .title {
   font-size: 3rem;
   margin-left: 10vw;
@@ -51,7 +64,8 @@ img {
 }
 
 .main-img {
-  filter: grayscale(0.7);
+  filter: grayscale(1);
+  object-fit: cover;
 }
 
 .category {
@@ -62,24 +76,24 @@ img {
 }
 
 .sub-img {
+  margin-left: 10vw;
+  margin-right: 10vw;
   width: 80%;
   height: 80%;
   object-fit: cover;
   object-position: center;
   margin-top: 5%;
   margin-bottom: 5%;
-  box-shadow: 0 0 10px rgb(0 0 0 / 0.2);
+  box-shadow: 0px 0px 20px black;
   background-color: #f4f4f4;
 }
 
 .content {
-  margin-left: 10vw;
-  margin-right: 10vw;
+  padding: 10%;
   margin-bottom: 10vh;
-  font-size: 0.7rem;
+  font-size: 1rem;
   line-height: 2.5rem;
   font-weight: 1;
-  text-align: left;
   color: #05091e;
 }
 
