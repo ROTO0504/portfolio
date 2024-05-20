@@ -15,10 +15,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <v-container>
+  <v-container class="works">
     <v-row class="pt-16" align="center" justify="center">
       <v-col
-        v-for="(blog, index) in data?.contents"
+        v-for="blog in data?.contents"
         :key="blog.id"
         cols="12"
         xl="4"
@@ -27,7 +27,6 @@ onMounted(() => {
       >
         <v-hover v-slot="{ isHovering, props }" close-delay="200">
           <v-card
-            v-if="index === 0 || (data && index === data.contents.length - 1)"
             :key="blog.id"
             class="hover"
             :class="{ 'on-hover': isHovering }"
@@ -56,10 +55,8 @@ onMounted(() => {
                     blog.title
                   }}</v-list-item-title>
                   <v-list-item-subtitle class="category">
-                    <v-chip>{{
-                      blog.category?.name
-                    }}</v-chip></v-list-item-subtitle
-                  >
+                    <v-chip>{{ blog.category?.name }}</v-chip>
+                  </v-list-item-subtitle>
                 </v-list-item>
               </v-list>
             </NuxtLink>
@@ -124,5 +121,9 @@ onMounted(() => {
   font-size: 0.7em;
   color: #da2128;
   padding-top: 2%;
+}
+
+.works {
+  height: 2000px;
 }
 </style>
