@@ -18,9 +18,13 @@ const { data } = await useMicroCMSGetListDetail<Blog>({
         {{ data.title }}
       </h1>
       <div class="category">
-        <div>Category : {{ data.category?.name }}</div>
+        <div>
+          <p>Category : {{ data.category?.name }}</p>
+        </div>
       </div>
-      <div class="year">Year : {{ data.year }}</div>
+      <div class="year">
+        <p>Year : {{ data.year }}</p>
+      </div>
       <div class="center">
         <img class="sub-img" :src="data.eyecatch?.url" alt="" />
       </div>
@@ -40,10 +44,10 @@ img {
 
 .year {
   text-align: right;
-  color: #da2128;
-  font-size: 3rem;
+  color: #05091e;
+  font-size: 1rem;
   margin-bottom: 10%;
-  padding-left: 10vw;
+  margin-right: 10vw;
 }
 
 .title {
@@ -89,7 +93,6 @@ img {
 }
 
 .content {
-  padding: 10%;
   margin-bottom: 10vh;
   font-size: 1rem;
   line-height: 2.5rem;

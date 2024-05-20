@@ -56,6 +56,8 @@ useHead({
       ></v-parallax
     >
   </div>
+  <CenterTitle title="Works" />
+  <Card />
 </template>
 
 <style scoped>
