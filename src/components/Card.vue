@@ -15,7 +15,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <v-container class="works">
+  <v-container>
     <v-row class="pt-16" align="center" justify="center">
       <v-col
         v-for="blog in data?.contents"
@@ -121,9 +121,5 @@ onMounted(() => {
   font-size: 0.7em;
   color: #da2128;
   padding-top: 2%;
-}
-
-.works {
-  height: 2000px;
 }
 </style>
