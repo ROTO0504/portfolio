@@ -48,7 +48,6 @@ useHead({
         class="reel-btn"
         height="50"
         width="300"
-        href="https://youtu.be/ffD5NTvhjTE"
         target="_blank"
         rel="noopener noreferrer"
         >REEL 2024
