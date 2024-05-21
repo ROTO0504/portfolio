@@ -83,6 +83,7 @@ main {
   animation-delay: 0.5s;
   animation-fill-mode: forwards;
   opacity: 0;
+  padding-bottom: 5%;
 }
 
 @keyframes fadeUpAnime {
