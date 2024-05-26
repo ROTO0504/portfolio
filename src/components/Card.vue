@@ -54,9 +54,8 @@ onMounted(() => {
                   <v-list-item-title class="blog-title">{{
                     blog.title
                   }}</v-list-item-title>
-                  <v-list-item-subtitle class="category">
-                    <v-chip>{{ blog.category?.name }}</v-chip>
-                  </v-list-item-subtitle>
+                  <v-chip class="category">{{ blog.category?.name }}</v-chip>
+                  <p class="year mb-2">{{ blog.year }}</p>
                 </v-list-item>
               </v-list>
             </NuxtLink>
@@ -117,9 +116,23 @@ onMounted(() => {
   font-size: 1.2em;
   padding-top: 2%;
 }
+
 .category {
-  font-size: 0.7em;
   color: #da2128;
+  font-size: 0.8em;
+}
+
+.year {
+  text-align: right;
+  color: #f4f4f4;
+  font-size: 0.8em;
   padding-top: 2%;
+  display: inline;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  background-color: #05091e;
+
+  padding: 0.1em 1em;
+  line-height: 2.8;
 }
 </style>

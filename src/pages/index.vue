@@ -25,55 +25,42 @@ useHead({
 </script>
 
 <template>
-  <div class="snap-container">
-    <section class="snap-section top">
-      <v-row>
-        <v-col class="top-background" cols="12" md="6">
-          <Top />
-        </v-col>
-        <v-col
-          class="top-background d-flex flex-row justify-center"
-          cols="12"
-          md="6"
-        >
-        </v-col>
-      </v-row>
-      <v-parallax
-        class="parallax-img"
-        height="90vh"
-        src="https://i.vimeocdn.com/video/1825184909-2bad0acdeb92c7b0ecd2b4a04750cdcea52bd0c71816efd11258c3537326b96c-d_1920x1080?r=pad"
-        ><v-btn
-          rounded="0"
-          elevation="4"
-          class="reel-btn"
-          height="50"
-          width="300"
-          target="_blank"
-          rel="noopener noreferrer"
-          >REEL 2024
-          <p class="reel-btn-arrow">→</p></v-btn
-        ></v-parallax
+  <section class="top">
+    <v-row>
+      <v-col class="top-background" cols="12" md="6">
+        <Top />
+      </v-col>
+      <v-col
+        class="top-background d-flex flex-row justify-center"
+        cols="12"
+        md="6"
       >
-    </section>
-    <section class="snap-section works">
-      <CenterTitle title="- Works -" />
-      <Card />
-    </section>
-  </div>
+      </v-col>
+    </v-row>
+    <v-parallax
+      class="parallax-img"
+      height="90vh"
+      src="https://i.vimeocdn.com/video/1825184909-2bad0acdeb92c7b0ecd2b4a04750cdcea52bd0c71816efd11258c3537326b96c-d_1920x1080?r=pad"
+      ><v-btn
+        rounded="0"
+        elevation="4"
+        class="reel-btn"
+        height="50"
+        width="300"
+        target="_blank"
+        rel="noopener noreferrer"
+        >REEL 2024
+        <p class="reel-btn-arrow">→</p></v-btn
+      ></v-parallax
+    >
+  </section>
+  <section class="works">
+    <CenterTitle title="- Works -" />
+    <Card />
+  </section>
 </template>
 
 <style scoped>
-.snap-container {
-  scroll-snap-type: y mandatory;
-  overflow-y: auto;
-  height: 100vh; /* Make sure the container takes full height */
-}
-
-.snap-section {
-  scroll-snap-align: start;
-  min-height: 100vh; /* Ensure sections take full viewport height */
-}
-
 .top-background {
   background-color: #f4f4f4;
 }
