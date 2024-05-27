@@ -25,6 +25,17 @@ const { data } = await useMicroCMSGetListDetail<Blog>({
       <div class="year">
         <p>Year : {{ data.year }}</p>
       </div>
+      <div class="softs">
+        <AfterEffectsIcon
+          v-if="data.soft.includes('After Effects')"
+          class="soft"
+        />
+        <BlenderIcon v-if="data.soft.includes('Blender')" class="soft" />
+        <DaVinciResolveIcon
+          v-if="data.soft.includes('DaVinci Resolve')"
+          class="soft"
+        />
+      </div>
       <div class="center">
         <img class="sub-img" :src="data.eyecatch?.url" alt="" />
       </div>
@@ -46,7 +57,7 @@ img {
   text-align: right;
   color: #05091e;
   font-size: 1rem;
-  margin-bottom: 10%;
+
   margin-right: 10vw;
 }
 
@@ -117,5 +128,16 @@ img {
   to {
     opacity: 1;
   }
+}
+
+.softs {
+  text-align: right;
+  margin-right: 10vw;
+  color: #05091e;
+}
+
+.soft {
+  margin-left: 0.5%;
+  font-size: 1.5rem;
 }
 </style>

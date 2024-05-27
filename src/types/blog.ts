@@ -7,4 +7,5 @@ export type Blog = {
   eyecatch?: MicroCMSImage;
   category: (MicroCMSListContent & Category) | null;
   year: number;
+  soft: string[];
 };
