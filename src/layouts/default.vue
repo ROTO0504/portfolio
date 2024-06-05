@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { mdiHome, mdiFileTree, mdiEmail } from "@mdi/js";
+
 const data = ref([
-  { text: "HOME", to: "/", icon: "mdiHome" },
-  { text: "WORKS", to: "/works", icon: "mdi-file-tree" },
-  { text: "CONTACT", to: "/contact", icon: "mdi-email" },
+  { text: "HOME", to: "/", icon: { mdiHome } },
+  { text: "WORKS", to: "/works", icon: { mdiFileTree } },
+  { text: "ABOUT", to: "/about", icon: { mdiEmail } },
+  { text: "CONTACT", to: "/contact", icon: { mdiEmail } },
 ]);
 const drawer = ref(false);
 </script>
@@ -54,6 +57,9 @@ const drawer = ref(false);
               <v-tab class="app-bar-link" to="/" color="rt_black">HOME</v-tab>
               <v-tab class="app-bar-link" to="/works" color="rt_black"
                 >WORKS</v-tab
+              >
+              <v-tab class="app-bar-link" to="/about" color="rt_black"
+                >ABOUT</v-tab
               >
               <v-tab class="app-bar-link" to="/contact" color="rt_black"
                 >CONTACT</v-tab

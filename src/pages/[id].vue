@@ -11,8 +11,9 @@ const { data } = await useMicroCMSGetListDetail<Blog>({
 
 <template>
   <div class="bg fade-in">
-    <v-parallax class="main-img" :src="data?.eyecatch?.url" height="100px" />
-
+    <div class="main-img-wrap">
+      <v-parallax class="main-img" :src="data?.eyecatch?.url" height="100%" />
+    </div>
     <template v-if="data">
       <h1 class="title pt-5">
         {{ data.title }}
@@ -62,8 +63,8 @@ img {
 }
 
 .title {
-  font-size: 3rem;
   margin-left: 10vw;
+  margin-right: 10vw;
   font-weight: bold;
   text-align: left;
   color: #05091e;
@@ -139,5 +140,12 @@ img {
 .soft {
   margin-left: 0.5%;
   font-size: 1.5rem;
+}
+
+.main-img-wrap {
+  width: 100%;
+  height: 70vh;
+  overflow: hidden;
+  position: relative;
 }
 </style>
