@@ -14,7 +14,7 @@ useHead({
   meta: [
     {
       name: "google-site-verification",
-      content: "KGNFUWZjLont0dAOgJxDCSUoSmdmxeSMhmduXgetHg",
+      content: "gKGNFUWZjLont0dAOgJxDCSUoSmdmxeSMhmduXgetHg",
     },
   ],
   htmlAttrs: {
