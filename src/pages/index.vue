@@ -11,6 +11,12 @@ useSeoMeta({
 });
 
 useHead({
+  meta: [
+    {
+      name: "google-site-verification",
+      content: "KGNFUWZjLont0dAOgJxDCSUoSmdmxeSMhmduXgetHg",
+    },
+  ],
   htmlAttrs: {
     lang: "ja",
   },
