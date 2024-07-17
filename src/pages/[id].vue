@@ -7,6 +7,32 @@ const { data } = await useMicroCMSGetListDetail<Blog>({
   endpoint: "blogs",
   contentId: Array.isArray(params.id) ? params.id[0] : params.id,
 });
+
+useSeoMeta({
+  title: data?.value?.title,
+  description: data?.value?.description,
+  ogTitle: data?.value?.title,
+  ogDescription: data?.value?.description,
+  ogImage: data?.value?.eyecatch?.url,
+  ogUrl: `https://rotoworks.com/blogs/${data?.value?.id}`,
+  twitterTitle: data?.value?.title,
+  twitterDescription: data?.value?.description,
+  twitterImage: data?.value?.eyecatch?.url,
+  twitterCard: "summary_large_image",
+});
+
+useHead({
+  htmlAttrs: {
+    lang: "ja",
+  },
+  link: [
+    {
+      rel: "icon",
+      type: "image/png",
+      href: "/favicon.png",
+    },
+  ],
+});
 </script>
 
 <template>
