@@ -11,8 +11,8 @@ const { data } = await useMicroCMSGetListDetail<Blog>({
 useSeoMeta({
   title: data?.value?.title,
   description: data?.value?.description,
-  ogTitle: data?.value?.title,
-  ogDescription: data?.value?.description,
+  ogTitle: "ROTO Works - Blog - ",
+  ogDescription: data?.value?.title,
   ogImage: data?.value?.eyecatch?.url,
   ogUrl: `https://rotoworks.com/blogs/${data?.value?.id}`,
   twitterTitle: data?.value?.title,
