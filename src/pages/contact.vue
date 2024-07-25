@@ -2,7 +2,7 @@
 import { mdiSendVariantOutline } from "@mdi/js";
 
 useHead({
-  title: "ROTO_Works - Contact - ",
+  title: "ROTO Works - Contact",
 });
 </script>
 
