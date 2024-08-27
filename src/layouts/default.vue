@@ -45,7 +45,7 @@ const drawer = ref(false);
           </div>
         </template>
       </v-navigation-drawer>
-      <v-app-bar app class="app-bar" shrink-on-scroll color="rt_white">
+      <v-app-bar app class="app-bar" shrink-on-scroll>
         <template #prepend>
           <v-toolbar-title>
             <nuxt-link class="app-bar-name" to="/" tag="p">ROTO</nuxt-link>
@@ -90,8 +90,8 @@ const drawer = ref(false);
 
 <style scoped lang="scss">
 .app-bar {
-  background-color: (255 255 255 / 0);
-  backdrop-filter: blur(30px);
+  background-color: #f4f4f43d;
+  backdrop-filter: blur(10px);
 }
 
 @keyframes fadeInText {

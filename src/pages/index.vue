@@ -69,7 +69,7 @@ useHead({
     >
   </section>
   <section class="works">
-    <CenterTitle title="- Works -" />
+    <CenterTitle class="works-title" title="- Works -" />
     <Card />
   </section>
 </template>
@@ -127,5 +127,11 @@ useHead({
 .reel-btn:hover .reel-btn-arrow {
   transition: 1s;
   margin-left: 30px;
+}
+
+.works-title {
+  background-color: #da2128;
+  color: #f4f4f4;
+  padding-bottom: 9%;
 }
 </style>

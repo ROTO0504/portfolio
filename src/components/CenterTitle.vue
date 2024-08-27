@@ -15,7 +15,7 @@ defineProps({
 
 <style scoped>
 .title {
-  font-size: 3rem;
+  font-size: 5rem;
   padding-top: 9%;
   font-weight: bold;
   color: #da2128;

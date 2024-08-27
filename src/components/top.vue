@@ -122,7 +122,7 @@
 
   transition: all 2s ease-in-out;
   color: #05091e;
-  background: #f4f4f4;
+  background: #05091e;
   background-repeat: no-repeat;
   background-position-y: bottom;
   background-size: auto auto;
