@@ -36,9 +36,29 @@ useHead({
     },
   ],
 });
+
+const dialog = ref(false);
+
+onMounted(() => {
+  dialog.value = true;
+});
 </script>
 
 <template>
+  <v-dialog v-model="dialog" width="auto">
+    <v-card
+      class="text-h6"
+      rounded="lg"
+      min-width="400"
+      prepend-icon="mdi-update"
+    >
+      <VScodeAnimation class="py-12" />
+      <p class="text-center">このポートフォリオは鋭意制作中です</p>
+      <template v-slot:actions>
+        <v-btn class="ms-auto" text="Ok" @click="dialog = false"></v-btn>
+      </template>
+    </v-card>
+  </v-dialog>
   <section class="top">
     <v-row>
       <v-col class="top-background" cols="12" md="6">
