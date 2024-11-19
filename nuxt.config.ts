@@ -3,7 +3,7 @@ import vuetify from "vite-plugin-vuetify";
 import { inject } from "@vercel/analytics";
 
 export default defineNuxtConfig({
-y  modules: ["nuxt-microcms-module", "@nuxt/eslint"],
+  modules: ["nuxt-microcms-module"],
   microCMS: {
     serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN,
     apiKey: process.env.MICROCMS_API_KEY,

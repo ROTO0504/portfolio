@@ -1,0 +1,43 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "airbnb-base",
+    "airbnb-typescript/base",
+    "standard-with-typescript",
+    "plugin:vue/vue3-recommended",
+    "@vue/typescript/recommended",
+    "prettier"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 13,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "globals": {
+    "defineNuxtPlugin": false,
+    "defineNuxtConfig": false,
+    "useNuxtApp": false,
+    "computed": false,
+    "toRefs": false,
+    "onMounted": false
+  },
+  "plugins": [],
+  "rules": {
+    "vue/multi-word-component-names": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "import/prefer-default-export": "off",
+    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+    "no-underscore-dangle": "off",
+    "@typescript-eslint/prefer-nullish-coalescing": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "import/extensions": "off",
+    "import/no-unresolved": "off",
+    "import/no-mutable-exports": "off"
+  }
+}
