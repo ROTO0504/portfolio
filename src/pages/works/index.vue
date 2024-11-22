@@ -35,7 +35,7 @@ useSeoMeta({
 <template>
   <div class="pj-bg">
     <center-title title="- Works -" />
-    <card class="fade-in"></card>
+    <card></card>
   </div>
 </template>
 
@@ -100,15 +100,6 @@ main {
   color: #da2128;
   background-color: #f4f4f4;
   text-align: center;
-}
-
-.fade-in {
-  animation-name: fadeUpAnime;
-  animation-duration: 2s;
-  animation-delay: 0.5s;
-  animation-fill-mode: forwards;
-  opacity: 0;
-  padding-bottom: 5%;
 }
 
 @keyframes fadeUpAnime {

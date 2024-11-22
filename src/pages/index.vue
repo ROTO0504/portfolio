@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 useHead({
   title: "ROTO Works - Top - ",
 });
@@ -47,9 +47,9 @@ onMounted(() => {
 <template>
   <v-dialog v-model="dialog" width="auto">
     <v-card
-      class="text-h6"
+      class="text-h6 pa-2"
       rounded="lg"
-      min-width="400"
+      min-width="80%"
       prepend-icon="mdi-update"
     >
       <VScodeAnimation class="py-12" />
@@ -90,7 +90,9 @@ onMounted(() => {
   </section>
   <section class="works">
     <CenterTitle class="works-title" title="- Works -" />
-    <Card />
+    <div>
+      <Card />
+    </div>
   </section>
 </template>
 

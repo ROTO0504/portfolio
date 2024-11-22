@@ -1,8 +1,18 @@
 <script setup lang="ts">
 import { mdiSendVariantOutline } from "@mdi/js";
+import gsap from "gsap";
 
 useHead({
   title: "ROTO Works - Contact",
+});
+
+onBeforeMount(() => {
+  gsap.from(".mail", {
+    duration: 1,
+    opacity: 0,
+    y: 100,
+    ease: "power2.out",
+  });
 });
 </script>
 
@@ -11,15 +21,16 @@ useHead({
     <center-title title="- Contact -" />
     <v-row class="mail-btn" align="center" justify="center">
       <v-hover v-slot="{ isHovering, props }" close-delay="200">
-        <v-btn
+        <p
           class="mail"
           :append-icon="mdiSendVariantOutline"
           size="x-large"
           :elevation="isHovering ? 3 : 0"
           v-bind="props"
           href="mailto:rotoworks.contact@gmail.com"
-          >rotoworks.contact@gmail.com</v-btn
         >
+          contact@roto.work
+        </p>
       </v-hover>
     </v-row>
   </div>

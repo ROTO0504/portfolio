@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Blog } from "~~/types/blog";
+import gsap from "gsap";
 
 const { data } = await useMicroCMSGetList<Blog>({
   endpoint: "blogs",
@@ -10,7 +11,17 @@ const loading = ref(false);
 onMounted(() => {
   setTimeout(() => {
     loading.value = true;
-  }, 200);
+    gsap.from(".fade-in", {
+      duration: 1,
+      opacity: 0,
+      y: 100,
+      ease: "power2.out",
+      stagger: {
+        each: 0.1,
+        from: "random",
+      },
+    });
+  }, 1000); // 画像の読み込みを考慮
 });
 </script>
 
@@ -19,6 +30,8 @@ onMounted(() => {
     <v-row class="pt-16" align="center" justify="center">
       <v-col
         v-for="blog in data?.contents"
+        v-show="loading"
+        class="fade-in"
         :key="blog.id"
         cols="12"
         xl="4"
@@ -34,7 +47,7 @@ onMounted(() => {
             :rounded="isHovering ? 'xl' : 'xl'"
             v-bind="props"
           >
-            <NuxtLink :to="`/${blog.id}`" class="link">
+            <NuxtLink :to="`/works/${blog.id}`" class="link">
               <v-skeleton-loader
                 :loading="!loading"
                 type="image"
@@ -86,21 +99,6 @@ onMounted(() => {
 
 .link {
   text-decoration: none;
-}
-
-.card-enter-active {
-  transition: all 1s ease-out;
-}
-
-.card-enter-to {
-  opacity: 1;
-  transform: translateY(0px);
-}
-
-.card-enter-from {
-  opacity: 0;
-  transform: translateY(200px);
-  transition: all 4s ease-in-out;
 }
 
 .thumbnail {

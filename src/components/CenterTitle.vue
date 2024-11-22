@@ -1,9 +1,21 @@
 <script lang="ts" setup>
+import gsap from "gsap";
+
 defineProps({
   title: {
     type: String,
     required: true,
   },
+});
+
+onMounted(() => {
+  gsap.set(".title", { opacity: 0, y: 100 });
+  gsap.to(".title", {
+    duration: 2,
+    opacity: 1,
+    y: 0,
+    ease: "power2.out",
+  });
 });
 </script>
 
@@ -15,6 +27,7 @@ defineProps({
 
 <style scoped>
 .title {
+  opacity: 0;
   font-size: 3rem;
   padding-top: 5%;
   font-weight: bold;
