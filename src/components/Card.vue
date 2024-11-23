@@ -15,13 +15,13 @@ onMounted(() => {
       duration: 1,
       opacity: 0,
       y: 100,
-      ease: "power2.out",
+      ease: "back.inOut",
       stagger: {
         each: 0.1,
-        from: "random",
+        from: "start",
       },
     });
-  }, 1000); // 画像の読み込みを考慮
+  }, 10);
 });
 </script>
 
@@ -42,10 +42,11 @@ onMounted(() => {
           <v-card
             :key="blog.id"
             class="hover"
+            elevation="0"
+            rounded="none"
             :class="{ 'on-hover': isHovering }"
-            :elevation="isHovering ? 16 : 8"
-            :rounded="isHovering ? 'xl' : 'xl'"
             v-bind="props"
+            link
           >
             <NuxtLink :to="`/works/${blog.id}`" class="link">
               <v-skeleton-loader
@@ -62,12 +63,14 @@ onMounted(() => {
                 ></v-img>
               </v-skeleton-loader>
 
-              <v-list two-line>
+              <v-list two-line bg-color="#f4f4f4">
                 <v-list-item>
                   <v-list-item-title class="blog-title">{{
                     blog.title
                   }}</v-list-item-title>
-                  <v-chip class="category">{{ blog.category?.name }}</v-chip>
+                  <v-chip class="category mr-2">{{
+                    blog.category?.name
+                  }}</v-chip>
                   <p class="year mb-2">{{ blog.year }}</p>
                 </v-list-item>
               </v-list>
@@ -91,9 +94,15 @@ onMounted(() => {
 
 .hover {
   transition: 1s;
+  backdrop-filter: blur(3px);
   &:hover {
-    transform: translateY(-10px);
-    backdrop-filter: blur(3px);
+    transform: scale(1.05);
+    backdrop-filter: blur(0px);
+    .thumbnail {
+      transition: all 2s ease-in-out;
+      transform: scale(1.05);
+      filter: blur(0px);
+    }
   }
 }
 
@@ -102,11 +111,11 @@ onMounted(() => {
 }
 
 .thumbnail {
+  filter: blur(3px);
   &:hover {
     transition: all 2s ease-in-out;
-    &:hover {
-      transform: scale(1.05);
-    }
+    transform: scale(1.05);
+    filter: blur(0px);
   }
 }
 

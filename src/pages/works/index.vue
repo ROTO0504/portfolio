@@ -35,7 +35,7 @@ useSeoMeta({
 <template>
   <div class="pj-bg">
     <center-title title="- Works -" />
-    <card></card>
+    <card v-if="!isLoading" />
   </div>
 </template>
 

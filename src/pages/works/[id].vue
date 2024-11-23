@@ -170,7 +170,7 @@ img {
 
 .main-img-wrap {
   width: 100%;
-  height: 70vh;
+  height: 30vh;
   overflow: hidden;
   position: relative;
 }
