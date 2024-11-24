@@ -60,7 +60,15 @@ onMounted(() => {
                   :src="blog.eyecatch?.url"
                   width="100%"
                   height="100%"
-                ></v-img>
+                >
+                  <div
+                    class="d-flex flex-column fill-height justify-center align-center text-black hover-title"
+                  >
+                    <h1 class="text-h4 mb-4 text-white">
+                      {{ blog.title }}
+                    </h1>
+                  </div></v-img
+                >
               </v-skeleton-loader>
 
               <v-list two-line bg-color="#f4f4f4">
@@ -94,16 +102,25 @@ onMounted(() => {
 
 .hover {
   transition: 1s;
-  backdrop-filter: blur(3px);
   &:hover {
     transform: scale(1.05);
-    backdrop-filter: blur(0px);
     .thumbnail {
       transition: all 2s ease-in-out;
       transform: scale(1.05);
-      filter: blur(0px);
+    }
+    .hover-title {
+      transition: all 2s ease-in-out;
+      opacity: 1;
+      backdrop-filter: blur(3px);
     }
   }
+}
+
+.hover-title {
+  opacity: 0;
+  transition: all 2s ease-in-out;
+  color: #f4f4f4;
+  font-weight: bold;
 }
 
 .link {
@@ -111,11 +128,10 @@ onMounted(() => {
 }
 
 .thumbnail {
-  filter: blur(3px);
+  filter: blur(0px);
   &:hover {
     transition: all 2s ease-in-out;
     transform: scale(1.05);
-    filter: blur(0px);
   }
 }
 
