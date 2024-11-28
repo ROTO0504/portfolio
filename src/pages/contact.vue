@@ -18,7 +18,7 @@ onBeforeMount(() => {
 
 <template>
   <div class="bg">
-    <center-title title="- Contact -" />
+    <CenterTitle title="Contact" />
     <v-row class="mail-btn" align="center" justify="center">
       <v-hover v-slot="{ isHovering, props }" close-delay="200">
         <p

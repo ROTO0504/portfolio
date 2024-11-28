@@ -64,7 +64,7 @@ useHead({
         />
       </div>
       <div class="center">
-        <img class="sub-img" :src="data.eyecatch?.url" alt="" />
+        <ImgViewer class="sub-img" :src="data.eyecatch?.url" />
       </div>
 
       <!-- eslint-disable-next-line vue/no-v-html -->
@@ -78,6 +78,11 @@ useHead({
 <style scoped>
 img {
   width: 80%;
+}
+
+.imgA {
+  width: 80%;
+  margin: 0 auto;
 }
 
 .year {
@@ -126,7 +131,6 @@ img {
   object-position: center;
   margin-top: 5%;
   margin-bottom: 5%;
-  box-shadow: 0px 0px 20px black;
   background-color: #f4f4f4;
 }
 
