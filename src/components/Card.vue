@@ -64,7 +64,9 @@ onMounted(() => {
                   <div
                     class="d-flex flex-column fill-height justify-center align-center text-black hover-title"
                   >
-                    <h1 class="text-h4 mb-4 text-white">
+                    <h1
+                      class="text-body-1 mb-4 text-white font-weight-bold text-on-img"
+                    >
                       {{ blog.title }}
                     </h1>
                   </div></v-img
@@ -157,5 +159,9 @@ onMounted(() => {
 
   padding: 0.1em 1em;
   line-height: 2.8;
+}
+
+.text-on-img {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 </style>

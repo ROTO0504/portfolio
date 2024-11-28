@@ -1,0 +1,53 @@
+<script setup lang="ts">
+import BoothCard from "~/components/BoothCard.vue";
+
+const isLoading = ref(true);
+
+onMounted(() => (isLoading.value = false));
+useHead({
+  title: "ROTO Works - Works",
+  htmlAttrs: {
+    lang: "ja",
+  },
+  link: [
+    {
+      rel: "icon",
+      type: "image/png",
+      href: "../assets/img/icon.png",
+    },
+  ],
+});
+
+useSeoMeta({
+  title: "ROTO Works - Works",
+  description: "映像制作",
+  ogTitle: "ROTO Works - Works",
+  ogDescription: "映像制作",
+  ogImage:
+    "https://i.vimeocdn.com/video/1825184909-2bad0acdeb92c7b0ecd2b4a04750cdcea52bd0c71816efd11258c3537326b96c-d_1920x1080?r=pad",
+  ogUrl: "https://rotoworks.com/works",
+  twitterTitle: "ROTO Works - Works",
+  twitterDescription: "映像制作",
+  twitterImage:
+    "https://i.vimeocdn.com/video/1825184909-2bad0acdeb92c7b0ecd2b4a04750cdcea52bd0c71816efd11258c3537326b96c-d_1920x1080?r=pad",
+  twitterCard: "summary_large_image",
+});
+</script>
+
+<template>
+  <div class="pj-bg">
+    <center-title title="- Downloads -" />
+    <BoothCard v-if="!isLoading" />
+  </div>
+</template>
+
+<style scoped lang="scss">
+main {
+  max-width: 1600px;
+  margin: 0 auto;
+
+  @media screen and (max-width: 860px) {
+    padding: 0 20px;
+  }
+}
+</style>
