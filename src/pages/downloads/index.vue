@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import BoothCard from "~/components/BoothCard.vue";
+
 const isLoading = ref(true);
 
 onMounted(() => (isLoading.value = false));
@@ -34,8 +36,8 @@ useSeoMeta({
 
 <template>
   <div class="pj-bg">
-    <center-title title="- Works -" />
-    <card v-if="!isLoading" />
+    <center-title title="- Downloads -" />
+    <BoothCard v-if="!isLoading" />
   </div>
 </template>
 
@@ -46,73 +48,6 @@ main {
 
   @media screen and (max-width: 860px) {
     padding: 0 20px;
-  }
-}
-
-.hover {
-  transition: 0.3s;
-  &:hover {
-    transform: translateY(-10px);
-    backdrop-filter: blur(3px);
-  }
-}
-
-.link {
-  text-decoration: none;
-}
-
-.list-enter-active {
-  transition: all 1s ease-out;
-}
-
-.list-enter-to {
-  opacity: 10s;
-  transform: translateY(0px);
-}
-
-.list-enter-from {
-  opacity: 0;
-  transform: translateY(300px);
-}
-
-.thumbnail {
-  transition: all 2s ease-in-out;
-  transform: scale(1);
-  filter: blur(0px);
-  :hover {
-    transition: all 2s ease-in-out;
-    &:hover {
-      transform: scale(1.1);
-      filter: blur(5px);
-    }
-  }
-}
-
-.pj-bg {
-  background-color: #f4f4f4;
-  min-height: 100vh;
-}
-
-.title {
-  font-size: 3rem;
-  padding-top: 9%;
-  font-weight: bold;
-  color: #da2128;
-  background-color: #f4f4f4;
-  text-align: center;
-}
-
-@keyframes fadeUpAnime {
-  from {
-    filter: blur(10px);
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0px);
-    transform: translateX(0px);
   }
 }
 </style>

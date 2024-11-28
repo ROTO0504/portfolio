@@ -15,13 +15,13 @@ onMounted(() => {
       duration: 1,
       opacity: 0,
       y: 100,
-      ease: "power2.out",
+      ease: "back.inOut",
       stagger: {
         each: 0.1,
-        from: "random",
+        from: "start",
       },
     });
-  }, 1000); // 画像の読み込みを考慮
+  }, 10);
 });
 </script>
 
@@ -42,10 +42,11 @@ onMounted(() => {
           <v-card
             :key="blog.id"
             class="hover"
+            elevation="0"
+            rounded="none"
             :class="{ 'on-hover': isHovering }"
-            :elevation="isHovering ? 16 : 8"
-            :rounded="isHovering ? 'xl' : 'xl'"
             v-bind="props"
+            link
           >
             <NuxtLink :to="`/works/${blog.id}`" class="link">
               <v-skeleton-loader
@@ -59,15 +60,27 @@ onMounted(() => {
                   :src="blog.eyecatch?.url"
                   width="100%"
                   height="100%"
-                ></v-img>
+                >
+                  <div
+                    class="d-flex flex-column fill-height justify-center align-center text-black hover-title"
+                  >
+                    <h1
+                      class="text-body-1 mb-4 text-white font-weight-bold text-on-img"
+                    >
+                      {{ blog.title }}
+                    </h1>
+                  </div></v-img
+                >
               </v-skeleton-loader>
 
-              <v-list two-line>
+              <v-list two-line bg-color="#f4f4f4">
                 <v-list-item>
                   <v-list-item-title class="blog-title">{{
                     blog.title
                   }}</v-list-item-title>
-                  <v-chip class="category">{{ blog.category?.name }}</v-chip>
+                  <v-chip class="category mr-2">{{
+                    blog.category?.name
+                  }}</v-chip>
                   <p class="year mb-2">{{ blog.year }}</p>
                 </v-list-item>
               </v-list>
@@ -92,9 +105,24 @@ onMounted(() => {
 .hover {
   transition: 1s;
   &:hover {
-    transform: translateY(-10px);
-    backdrop-filter: blur(3px);
+    transform: scale(1.05);
+    .thumbnail {
+      transition: all 2s ease-in-out;
+      transform: scale(1.05);
+    }
+    .hover-title {
+      transition: all 2s ease-in-out;
+      opacity: 1;
+      backdrop-filter: blur(3px);
+    }
   }
+}
+
+.hover-title {
+  opacity: 0;
+  transition: all 2s ease-in-out;
+  color: #f4f4f4;
+  font-weight: bold;
 }
 
 .link {
@@ -102,11 +130,10 @@ onMounted(() => {
 }
 
 .thumbnail {
+  filter: blur(0px);
   &:hover {
     transition: all 2s ease-in-out;
-    &:hover {
-      transform: scale(1.05);
-    }
+    transform: scale(1.05);
   }
 }
 
@@ -132,5 +159,9 @@ onMounted(() => {
 
   padding: 0.1em 1em;
   line-height: 2.8;
+}
+
+.text-on-img {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 </style>
