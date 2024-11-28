@@ -9,34 +9,31 @@ const data = ref([
     imageURL:
       "https://booth.pximg.net/24c27eb2-29e1-477c-8b34-c80d68fd6d94/i/6176975/7d0b7739-1f7e-42d5-bbda-289385dbb8db_base_resized.jpg",
   },
-  {
-    id: 2,
-    title: "title2",
-    description: "description2",
-    imageURL: "bbbbbbbb",
-  },
-  {
-    id: 3,
-    title: "title3",
-    description: "description3",
-    imageURL: "cccccccc",
-  },
 ]);
 
+//製作中よう
+const developmentLoading = ref(true);
+
 // 個別でロード表示をするためのフラグ
-const isLoading = ref(data.value.map(() => true));
+const isLoading = ref<Record<number, boolean>>({
+  1: true,
+  2: true,
+  3: true,
+});
 
 const imageFetch = async () => {
-  for (let i = 0; i < data.value.length; i++) {
-    const res = await fetch(data.value[i].imageURL);
-    if (!res.ok) {
-      isLoading.value[i] = false;
-      return;
-    }
-    const blob = await res.blob();
-    const url = URL.createObjectURL(blob);
-    data.value[i].imageURL = url;
-  }
+  await Promise.all(
+    data.value.map(async (download) => {
+      const img = new Image();
+      img.src = download.imageURL;
+      await new Promise((resolve) => {
+        img.onload = () => {
+          isLoading.value = { ...isLoading.value, [download.id]: false };
+          resolve(null);
+        };
+      });
+    })
+  );
 };
 
 onMounted(async () => {
@@ -69,26 +66,68 @@ onMounted(async () => {
             :class="{ 'on-hover': isHovering }"
             v-bind="props"
             link
-            min-height="200"
           >
             <NuxtLink :to="`/downloads/${download.id}`" class="link">
-              <v-skeleton-loader
-                :loading="isLoading[download.id]"
-                type="image"
-                height="100%"
-              >
-                <v-img
-                  class="thumbnail"
-                  :src="download.imageURL"
-                  width="100%"
-                  height="100%"
-                />
-              </v-skeleton-loader>
-              <v-card-title class="title">{{ download.title }}</v-card-title>
-              <v-card-text class="description">{{
-                download.description
-              }}</v-card-text>
+              <v-row>
+                <v-col cols="3">
+                  <v-skeleton-loader
+                    :loading="isLoading[download.id]"
+                    type="image"
+                    height="100%"
+                  >
+                    <v-img
+                      class="thumbnail"
+                      :src="download.imageURL"
+                      width="100%"
+                      height="100%"
+                      aspect-ratio="16/9"
+                      cover
+                    />
+                  </v-skeleton-loader>
+                </v-col>
+                <v-col cols="9">
+                  <v-card-title class="title">{{
+                    download.title
+                  }}</v-card-title>
+                  <v-card-text class="description">{{
+                    download.description
+                  }}</v-card-text>
+                </v-col>
+              </v-row>
             </NuxtLink>
+          </v-card>
+        </v-hover>
+      </v-col>
+      <v-col cols="12">
+        <v-hover v-slot="{ isHovering, props }" close-delay="200">
+          <v-card
+            class="hover"
+            elevation="0"
+            rounded="none"
+            :class="{ 'on-hover': isHovering }"
+            v-bind="props"
+            link
+          >
+            <v-row>
+              <v-col cols="3">
+                <v-skeleton-loader :loading="true" type="image" height="100%">
+                  <v-img
+                    class="thumbnail"
+                    width="100%"
+                    height="100%"
+                    aspect-ratio="16/9"
+                    cover
+                  />
+                </v-skeleton-loader>
+              </v-col>
+              <v-col cols="9">
+                <v-card-title class="title">制作中</v-card-title>
+                <v-skeleton-loader
+                  :loading="true"
+                  type="paragraph"
+                ></v-skeleton-loader>
+              </v-col>
+            </v-row>
           </v-card>
         </v-hover>
       </v-col>
