@@ -89,7 +89,7 @@ onMounted(() => {
     >
   </section>
   <section class="works">
-    <CenterTitle class="works-title" title="- Works -" />
+    <CenterTitle class="works-title" title="Works" />
     <div>
       <Card />
     </div>

@@ -20,9 +20,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="title">
-    {{ title }}
-  </div>
+  <div class="title">- {{ title }} -</div>
 </template>
 
 <style scoped>

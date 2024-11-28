@@ -36,7 +36,7 @@ useSeoMeta({
 
 <template>
   <div class="pj-bg">
-    <center-title title="- Downloads -" />
+    <center-title title="Downloads" />
     <BoothCard v-if="!isLoading" />
   </div>
 </template>

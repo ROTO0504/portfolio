@@ -34,7 +34,7 @@ useSeoMeta({
 
 <template>
   <div class="pj-bg">
-    <center-title title="- Works -" />
+    <center-title title="Works" />
     <card />
   </div>
 </template>
