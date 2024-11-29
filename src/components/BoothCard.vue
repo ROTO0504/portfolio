@@ -4,8 +4,9 @@ import gsap from "gsap";
 const data = ref([
   {
     id: 1,
-    title: "title1",
-    description: "description1",
+    title: "FX Console - ローマ字対応",
+    description:
+      "After EffectsプラグインのFX Consoleをローマ字検索に対応させる設定ファイル(.fxs)",
     imageURL:
       "https://booth.pximg.net/24c27eb2-29e1-477c-8b34-c80d68fd6d94/i/6176975/7d0b7739-1f7e-42d5-bbda-289385dbb8db_base_resized.jpg",
   },
@@ -56,8 +57,40 @@ onMounted(async () => {
 
 <template>
   <v-container>
-    <v-row align="center" justify="center">
-      <v-col v-for="download in data" :key="download.id" cols="12">
+    <v-row align="center" justify="center" class="boothCard">
+      <v-col cols="12" md="12" class="fade-in fill-cols pb-12">
+        <v-hover v-slot="{ isHovering, props }" close-delay="200">
+          <v-card
+            class="hover"
+            elevation="0"
+            rounded="none"
+            :class="{ 'on-hover': isHovering }"
+            v-bind="props"
+            link
+          >
+            <v-row>
+              <v-col cols="12" sm="4" xs="12">
+                <v-skeleton-loader :loading="true" type="image">
+                </v-skeleton-loader>
+              </v-col>
+              <v-col sm="8" xs="12">
+                <v-card-title class="title pt-4">制作中</v-card-title>
+                <v-skeleton-loader
+                  class="skeleton"
+                  :loading="true"
+                  type="paragraph"
+                ></v-skeleton-loader>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-hover>
+      </v-col>
+      <v-col
+        v-for="download in data"
+        :key="download.id"
+        class="py-4 fade-in"
+        cols="12"
+      >
         <v-hover v-slot="{ isHovering, props }" close-delay="200">
           <v-card
             class="hover"
@@ -69,24 +102,17 @@ onMounted(async () => {
           >
             <NuxtLink :to="`/downloads/${download.id}`" class="link">
               <v-row>
-                <v-col cols="3">
+                <v-col cols="12" sm="4" xs="12">
                   <v-skeleton-loader
                     :loading="isLoading[download.id]"
                     type="image"
                     height="100%"
                   >
-                    <v-img
-                      class="thumbnail"
-                      :src="download.imageURL"
-                      width="100%"
-                      height="100%"
-                      aspect-ratio="16/9"
-                      cover
-                    />
+                    <v-img :src="download.imageURL" aspect-ratio="16/9" />
                   </v-skeleton-loader>
                 </v-col>
-                <v-col cols="9">
-                  <v-card-title class="title">{{
+                <v-col sm="8" xs="12">
+                  <v-card-title class="title pt-4">{{
                     download.title
                   }}</v-card-title>
                   <v-card-text class="description">{{
@@ -98,39 +124,6 @@ onMounted(async () => {
           </v-card>
         </v-hover>
       </v-col>
-      <v-col cols="12">
-        <v-hover v-slot="{ isHovering, props }" close-delay="200">
-          <v-card
-            class="hover"
-            elevation="0"
-            rounded="none"
-            :class="{ 'on-hover': isHovering }"
-            v-bind="props"
-            link
-          >
-            <v-row>
-              <v-col cols="3">
-                <v-skeleton-loader :loading="true" type="image" height="100%">
-                  <v-img
-                    class="thumbnail"
-                    width="100%"
-                    height="100%"
-                    aspect-ratio="16/9"
-                    cover
-                  />
-                </v-skeleton-loader>
-              </v-col>
-              <v-col cols="9">
-                <v-card-title class="title">制作中</v-card-title>
-                <v-skeleton-loader
-                  :loading="true"
-                  type="paragraph"
-                ></v-skeleton-loader>
-              </v-col>
-            </v-row>
-          </v-card>
-        </v-hover>
-      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -139,5 +132,21 @@ onMounted(async () => {
 .link {
   text-decoration: none;
   color: black;
+}
+
+.hover {
+  transition: 1s;
+  background-color: #f4f4f4;
+  &:hover {
+    transform: scale(1.01);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.skeleton {
+  background-color: #f4f4f4;
+}
+.description {
+  font-size: 0.8rem;
 }
 </style>
