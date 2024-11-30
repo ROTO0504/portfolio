@@ -4,15 +4,15 @@ useHead({
 });
 
 useSeoMeta({
-  title: "ROTO Works - Top",
-  description: "映像制作",
-  ogTitle: "ROTO Works - Top",
-  ogDescription: "映像制作",
+  title: "TOP | ROTO Works",
+  description: "ポートフォリオ",
+  ogTitle: "TOP | ROTO Works",
+  ogDescription: "ポートフォリオ",
   ogImage:
     "https://i.vimeocdn.com/video/1825184909-2bad0acdeb92c7b0ecd2b4a04750cdcea52bd0c71816efd11258c3537326b96c-d_1920x1080?r=pad",
   ogUrl: "https://rotoworks.com/",
-  twitterTitle: "ROTO Works - Top",
-  twitterDescription: "映像制作",
+  twitterTitle: "TOP | ROTO Works",
+  twitterDescription: "ポートフォリオ",
   twitterImage:
     "https://i.vimeocdn.com/video/1825184909-2bad0acdeb92c7b0ecd2b4a04750cdcea52bd0c71816efd11258c3537326b96c-d_1920x1080?r=pad",
   twitterCard: "summary_large_image",
@@ -60,20 +60,9 @@ onMounted(() => {
     </v-card>
   </v-dialog>
   <section class="top">
-    <v-row>
-      <v-col class="top-background" cols="12" md="6">
-        <Top />
-      </v-col>
-      <v-col
-        class="top-background d-flex flex-row justify-center"
-        cols="12"
-        md="6"
-      >
-      </v-col>
-    </v-row>
     <v-parallax
       class="parallax-img"
-      height="70vh"
+      height="100vh"
       src="https://i.vimeocdn.com/video/1825184909-2bad0acdeb92c7b0ecd2b4a04750cdcea52bd0c71816efd11258c3537326b96c-d_1920x1080?r=pad"
       ><v-btn
         rounded="0"

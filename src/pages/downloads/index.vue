@@ -35,9 +35,9 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="pj-bg">
-    <center-title title="Downloads" />
-    <BoothCard v-if="!isLoading" />
+  <div class="download">
+    <center-title class="pb-4" title="Downloads" />
+    <BoothCard class="pt-12" v-if="!isLoading" />
   </div>
 </template>
 
@@ -49,5 +49,9 @@ main {
   @media screen and (max-width: 860px) {
     padding: 0 20px;
   }
+}
+
+.download {
+  min-height: 100dvh;
 }
 </style>

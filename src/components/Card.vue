@@ -4,6 +4,10 @@ import gsap from "gsap";
 
 const { data } = await useMicroCMSGetList<Blog>({
   endpoint: "blogs",
+  queries: {
+    limit: 100,
+    orders: "-year",
+  },
 });
 
 const loading = ref(false);

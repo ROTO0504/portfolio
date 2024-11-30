@@ -6,12 +6,34 @@ useHead({
   title: "ROTO Works - Contact",
 });
 
+useSeoMeta({
+  title: "Contact | ROTO Works",
+  description: "ポートフォリオ",
+  ogTitle: "Contact | ROTO Works",
+  ogDescription: "ポートフォリオ",
+  ogImage:
+    "https://i.vimeocdn.com/video/1825184909-2bad0acdeb92c7b0ecd2b4a04750cdcea52bd0c71816efd11258c3537326b96c-d_1920x1080?r=pad",
+  ogUrl: "https://rotoworks.com/contact",
+  twitterTitle: "Contact | ROTO Works",
+  twitterDescription: "ポートフォリオ",
+  twitterImage:
+    "https://i.vimeocdn.com/video/1825184909-2bad0acdeb92c7b0ecd2b4a04750cdcea52bd0c71816efd11258c3537326b96c-d_1920x1080?r=pad",
+  twitterCard: "summary_large_image",
+});
+
 onBeforeMount(() => {
   gsap.from(".mail", {
     duration: 1,
     opacity: 0,
     y: 100,
-    ease: "power2.out",
+    ease: "bounce.out",
+  });
+
+  gsap.to(".mail-btn", {
+    delay: 0.5,
+    duration: 1,
+    opacity: 1,
+    ease: "power2.in",
   });
 });
 </script>
@@ -44,6 +66,7 @@ onBeforeMount(() => {
 
 .mail-btn {
   padding-top: 10%;
+  opacity: 1;
 }
 
 .mail {
