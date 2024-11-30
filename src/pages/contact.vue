@@ -26,7 +26,14 @@ onBeforeMount(() => {
     duration: 1,
     opacity: 0,
     y: 100,
-    ease: "power2.out",
+    ease: "bounce.out",
+  });
+
+  gsap.to(".mail-btn", {
+    delay: 0.5,
+    duration: 1,
+    opacity: 1,
+    ease: "power2.in",
   });
 });
 </script>
@@ -59,6 +66,7 @@ onBeforeMount(() => {
 
 .mail-btn {
   padding-top: 10%;
+  opacity: 1;
 }
 
 .mail {

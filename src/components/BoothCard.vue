@@ -115,7 +115,7 @@ onMounted(async () => {
                   <v-card-title class="title pt-4">{{
                     download.title
                   }}</v-card-title>
-                  <v-card-text class="description">{{
+                  <v-card-text class="description pt-4">{{
                     download.description
                   }}</v-card-text>
                 </v-col>
