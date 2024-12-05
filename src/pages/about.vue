@@ -8,7 +8,7 @@ useSeoMeta({
   ogDescription: "ポートフォリオ",
   ogImage:
     "https://i.vimeocdn.com/video/1825184909-2bad0acdeb92c7b0ecd2b4a04750cdcea52bd0c71816efd11258c3537326b96c-d_1920x1080?r=pad",
-  ogUrl: "https://rotoworks.com/about",
+  ogUrl: "https://roto.work/about",
   twitterTitle: "About | ROTO Works",
   twitterDescription: "ポートフォリオ",
   twitterImage:
@@ -19,10 +19,30 @@ useSeoMeta({
 const logs = await useMicroCMSGetList<Logs>({
   endpoint: "logs",
 });
+
+const dialog = ref(false);
+
+onMounted(() => {
+  dialog.value = true;
+});
 </script>
 <template>
   <v-app>
     <v-container>
+      <v-dialog v-model="dialog" width="auto">
+        <v-card
+          class="text-h6 pa-2"
+          rounded="lg"
+          min-width="80%"
+          prepend-icon="mdi-update"
+        >
+          <VScodeAnimation class="pb-8" />
+          <p class="text-center px-8 dialog-text">このページは鋭意制作中です</p>
+          <template v-slot:actions>
+            <v-btn class="ms-auto" text="Ok" @click="dialog = false"></v-btn>
+          </template>
+        </v-card>
+      </v-dialog>
       <v-row>
         <v-col cols="12">
           <v-card>
@@ -60,5 +80,9 @@ const logs = await useMicroCMSGetList<Logs>({
 :visited {
   color: #000000;
   text-decoration: none;
+}
+
+.dialog-text {
+  font-family: "LINE_Seed_Bd";
 }
 </style>

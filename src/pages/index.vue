@@ -1,8 +1,4 @@
 <script setup lang="ts">
-useHead({
-  title: "ROTO Works - Top - ",
-});
-
 useSeoMeta({
   title: "TOP | ROTO Works",
   description: "ポートフォリオ",
@@ -10,72 +6,63 @@ useSeoMeta({
   ogDescription: "ポートフォリオ",
   ogImage:
     "https://i.vimeocdn.com/video/1825184909-2bad0acdeb92c7b0ecd2b4a04750cdcea52bd0c71816efd11258c3537326b96c-d_1920x1080?r=pad",
-  ogUrl: "https://rotoworks.com/",
+  ogUrl: "https://roto.work",
   twitterTitle: "TOP | ROTO Works",
   twitterDescription: "ポートフォリオ",
   twitterImage:
     "https://i.vimeocdn.com/video/1825184909-2bad0acdeb92c7b0ecd2b4a04750cdcea52bd0c71816efd11258c3537326b96c-d_1920x1080?r=pad",
   twitterCard: "summary_large_image",
 });
-
-useHead({
-  meta: [
-    {
-      name: "google-site-verification",
-      content: "gKGNFUWZjLont0dAOgJxDCSUoSmdmxeSMhmduXgetHg",
-    },
-  ],
-  htmlAttrs: {
-    lang: "ja",
-  },
-  link: [
-    {
-      rel: "icon",
-      type: "image/png",
-      href: "/favicon.png",
-    },
-  ],
-});
-
-const dialog = ref(false);
-
-onMounted(() => {
-  dialog.value = true;
-});
 </script>
 
 <template>
-  <v-dialog v-model="dialog" width="auto">
-    <v-card
-      class="text-h6 pa-2"
-      rounded="lg"
-      min-width="80%"
-      prepend-icon="mdi-update"
-    >
-      <VScodeAnimation class="py-12" />
-      <p class="text-center">このポートフォリオは鋭意制作中です</p>
-      <template v-slot:actions>
-        <v-btn class="ms-auto" text="Ok" @click="dialog = false"></v-btn>
-      </template>
-    </v-card>
-  </v-dialog>
   <section class="top">
-    <v-parallax
-      class="parallax-img"
-      height="100vh"
-      src="https://i.vimeocdn.com/video/1825184909-2bad0acdeb92c7b0ecd2b4a04750cdcea52bd0c71816efd11258c3537326b96c-d_1920x1080?r=pad"
-      ><v-btn
-        rounded="0"
-        elevation="4"
-        class="reel-btn"
-        height="50"
-        width="300"
-        target="_blank"
-        rel="noopener noreferrer"
-        >REEL 2024
-        <p class="reel-btn-arrow">→</p></v-btn
-      ></v-parallax
+    <div
+      class="parallax-btn"
+      style="position: relative; width: 100%; overflow: hidden"
     >
+      <div style="max-width: 100%">
+        <div
+          style="
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+          "
+        >
+          <video
+            class="background-mov"
+            poster="https://images.microcms-assets.io/assets/72489c2727c44785a1b44ece4355d9bc/0660df1bb5ae4921b6f6cca57d14c3a2/OP-result%20-%20frame%20at%200m3s.jpg?auto=format,compress&h=1080"
+            autoplay
+            muted
+            loop
+            width="100%"
+          >
+            <source
+              src="https://5kjrwj-my.sharepoint.com/:v:/g/personal/roto_5kjrwj_onmicrosoft_com/EQukCaILQOBHhAZ2tBYb1ncB7TE78Ak3Y3IWtYPDqF8txg?download=1"
+            />
+          </video>
+          <v-btn
+            rounded="5"
+            class="reel-btn"
+            min-width="30%"
+            style="
+              position: absolute;
+              bottom: 50%;
+              left: 80%;
+              transform: translateX(-50%);
+            "
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.youtube.com/watch?v=10331qcWriU"
+            size="large"
+            variant="outlined"
+          >
+            REEL 2024 →
+          </v-btn>
+        </div>
+      </div>
+    </div>
   </section>
   <section class="works">
     <CenterTitle class="works-title" title="Works" />
@@ -98,6 +85,8 @@ onMounted(() => {
 
 .main-movie {
   margin-top: -64px;
+  pointer-events: none;
+  filter: blur(3px);
 }
 
 .center {
@@ -116,28 +105,13 @@ onMounted(() => {
 }
 
 .reel-btn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #f4f4f4;
-  color: #552f7f;
-  font-size: 1em;
+  color: #f4f4f4;
+  font-size: 100%;
   transition: 1s;
-}
-
-.reel-btn:hover {
-  transition: 1s;
-}
-
-.reel-btn-arrow {
-  transition: 1s;
-  margin-left: 10px;
-}
-
-.reel-btn:hover .reel-btn-arrow {
-  transition: 1s;
-  margin-left: 30px;
+  text-decoration: none;
+  &:hover {
+    background-color: none;
+  }
 }
 
 .works-title {
@@ -145,5 +119,15 @@ onMounted(() => {
   color: #f4f4f4;
 
   padding-bottom: 5%;
+}
+
+.background-mov {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.5);
 }
 </style>

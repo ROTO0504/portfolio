@@ -2,7 +2,7 @@
 import { mdiHome, mdiFileTree, mdiEmail } from "@mdi/js";
 
 const data = ref([
-  { text: "HOME", to: "/", icon: { mdiHome } },
+  { text: "TOP", to: "/", icon: { mdiHome } },
   { text: "WORKS", to: "/works", icon: { mdiFileTree } },
   { text: "DOWNLOADS", to: "/downloads", icon: { mdiFileTree } },
   { text: "ABOUT", to: "/about", icon: { mdiEmail } },
@@ -55,7 +55,7 @@ const drawer = ref(false);
         <template #append>
           <section class="d-none d-sm-block">
             <v-tabs color="rt_white">
-              <v-tab class="app-bar-link" to="/" color="rt_black">HOME</v-tab>
+              <v-tab class="app-bar-link" to="/" color="rt_black">TOP</v-tab>
               <v-tab class="app-bar-link" to="/works" color="rt_black"
                 >WORKS</v-tab
               >
