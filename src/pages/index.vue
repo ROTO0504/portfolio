@@ -1,8 +1,4 @@
 <script setup lang="ts">
-useHead({
-  title: "ROTO Works - Top - ",
-});
-
 useSeoMeta({
   title: "TOP | ROTO Works",
   description: "ポートフォリオ",
@@ -10,59 +6,16 @@ useSeoMeta({
   ogDescription: "ポートフォリオ",
   ogImage:
     "https://i.vimeocdn.com/video/1825184909-2bad0acdeb92c7b0ecd2b4a04750cdcea52bd0c71816efd11258c3537326b96c-d_1920x1080?r=pad",
-  ogUrl: "https://rotoworks.com/",
+  ogUrl: "https://roto.work",
   twitterTitle: "TOP | ROTO Works",
   twitterDescription: "ポートフォリオ",
   twitterImage:
     "https://i.vimeocdn.com/video/1825184909-2bad0acdeb92c7b0ecd2b4a04750cdcea52bd0c71816efd11258c3537326b96c-d_1920x1080?r=pad",
   twitterCard: "summary_large_image",
 });
-
-useHead({
-  meta: [
-    {
-      name: "google-site-verification",
-      content: "gKGNFUWZjLont0dAOgJxDCSUoSmdmxeSMhmduXgetHg",
-    },
-  ],
-  htmlAttrs: {
-    lang: "ja",
-  },
-  link: [
-    {
-      rel: "icon",
-      type: "image/png",
-      href: "/favicon.png",
-    },
-  ],
-});
-
-const dialog = ref(false);
-
-onMounted(() => {
-  dialog.value = true;
-});
-
-function reelClick() {
-  window.open("https://youtu.be/10331qcWriU", "_blank");
-}
 </script>
 
 <template>
-  <v-dialog v-model="dialog" width="auto">
-    <v-card
-      class="text-h6 pa-2"
-      rounded="lg"
-      min-width="80%"
-      prepend-icon="mdi-update"
-    >
-      <VScodeAnimation class="py-12" />
-      <p class="text-center">このポートフォリオは鋭意制作中です</p>
-      <template v-slot:actions>
-        <v-btn class="ms-auto" text="Ok" @click="dialog = false"></v-btn>
-      </template>
-    </v-card>
-  </v-dialog>
   <section class="top">
     <div
       class="parallax-btn"
@@ -79,33 +32,34 @@ function reelClick() {
         >
           <video
             class="background-mov"
+            poster="https://images.microcms-assets.io/assets/72489c2727c44785a1b44ece4355d9bc/0660df1bb5ae4921b6f6cca57d14c3a2/OP-result%20-%20frame%20at%200m3s.jpg?auto=format,compress&h=1080"
             autoplay
             muted
             loop
             width="100%"
-            @click="reelClick"
           >
             <source
-              src="https://5kjrwj-my.sharepoint.com/:v:/g/personal/roto_5kjrwj_onmicrosoft_com/EWySZ3-u329EvgcXOf20H34Bl_J1UXW34THNLvY3WP0unA?download=1"
+              src="https://5kjrwj-my.sharepoint.com/:v:/g/personal/roto_5kjrwj_onmicrosoft_com/EQukCaILQOBHhAZ2tBYb1ncB7TE78Ak3Y3IWtYPDqF8txg?download=1"
             />
           </video>
-          <a
-            rounded="0"
+          <v-btn
+            rounded="5"
             class="reel-btn"
+            min-width="30%"
             style="
               position: absolute;
               bottom: 50%;
               left: 80%;
               transform: translateX(-50%);
             "
-            height="60"
-            width="35%"
             target="_blank"
             rel="noopener noreferrer"
             href="https://www.youtube.com/watch?v=10331qcWriU"
+            size="large"
+            variant="outlined"
           >
             REEL 2024 →
-          </a>
+          </v-btn>
         </div>
       </div>
     </div>
@@ -151,13 +105,10 @@ function reelClick() {
 }
 
 .reel-btn {
-  position: absolute;
-  white-space: nowrap;
-  padding: 0px 20px 0px 20px;
-  background-color: #05091e;
-  color: #ffffff;
-  font-size: 3dvw;
+  color: #f4f4f4;
+  font-size: 100%;
   transition: 1s;
+  text-decoration: none;
   &:hover {
     background-color: none;
   }
@@ -177,6 +128,6 @@ function reelClick() {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.7);
+  filter: brightness(0.5);
 }
 </style>

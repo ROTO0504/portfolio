@@ -13,7 +13,7 @@ useSeoMeta({
   ogDescription: "ポートフォリオ",
   ogImage:
     "https://i.vimeocdn.com/video/1825184909-2bad0acdeb92c7b0ecd2b4a04750cdcea52bd0c71816efd11258c3537326b96c-d_1920x1080?r=pad",
-  ogUrl: "https://rotoworks.com/contact",
+  ogUrl: "https://roto.work/contact",
   twitterTitle: "Contact | ROTO Works",
   twitterDescription: "ポートフォリオ",
   twitterImage:
@@ -42,18 +42,15 @@ onBeforeMount(() => {
   <div class="bg">
     <CenterTitle title="Contact" />
     <v-row class="mail-btn" align="center" justify="center">
-      <v-hover v-slot="{ isHovering, props }" close-delay="200">
-        <p
-          class="mail"
-          :append-icon="mdiSendVariantOutline"
-          size="x-large"
-          :elevation="isHovering ? 3 : 0"
-          v-bind="props"
-          href="mailto:rotoworks.contact@gmail.com"
-        >
-          contact@roto.work
-        </p>
-      </v-hover>
+      <a
+        class="mail"
+        :append-icon="mdiSendVariantOutline"
+        size="x-large"
+        href="mailto:rotoworks.contact@gmail.com"
+        variant="text"
+      >
+        contact@roto.work
+      </a>
     </v-row>
   </div>
 </template>
@@ -62,11 +59,13 @@ onBeforeMount(() => {
 .bg {
   background-color: #f4f4f4;
   height: 85vh;
+  font-family: "LINE_Seed_Bd";
 }
 
 .mail-btn {
   padding-top: 10%;
   opacity: 1;
+  height: 50dvh;
 }
 
 .mail {
@@ -74,7 +73,7 @@ onBeforeMount(() => {
   color: black;
   font-size: 2vw;
   border-radius: 10px;
-  padding: 3%;
   height: 5em;
+  text-decoration: none;
 }
 </style>

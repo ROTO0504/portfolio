@@ -2,20 +2,6 @@
 const isLoading = ref(true);
 
 onMounted(() => (isLoading.value = false));
-useHead({
-  title: "ROTO Works - Works",
-  htmlAttrs: {
-    lang: "ja",
-  },
-  link: [
-    {
-      rel: "icon",
-      type: "image/png",
-      href: "../assets/img/icon.png",
-    },
-  ],
-});
-
 useSeoMeta({
   title: "Works | ROTO Works",
   description: "ポートフォリオ",
