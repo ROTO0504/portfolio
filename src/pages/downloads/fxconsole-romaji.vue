@@ -33,30 +33,26 @@ useHead({
     },
   ],
 });
-
-const dialog = ref(false);
-
-onMounted(() => {
-  dialog.value = true;
-});
 </script>
 
 <template>
-  <v-dialog v-model="dialog" width="auto">
-    <v-card
-      class="text-h6 pa-2"
-      rounded="lg"
-      min-width="80%"
-      prepend-icon="mdi-update"
-    >
-      <VScodeAnimation class="pb-8" />
-      <p class="text-center px-8 dialog-text">このページは鋭意制作中です</p>
-      <template v-slot:actions>
-        <v-btn class="ms-auto" text="Ok" @click="dialog = false"></v-btn>
-      </template>
-    </v-card>
-  </v-dialog>
   <div class="bg fade-in">
+    <div style="max-width: 70%; margin: 0 auto">
+      <div
+        style="
+          position: relative;
+          padding-bottom: 56.25%;
+          height: 0;
+          overflow: hidden;
+        "
+      >
+        <video class="background-mov" autoplay muted loop width="100%">
+          <source
+            src="https://5kjrwj-my.sharepoint.com/:v:/g/personal/roto_5kjrwj_onmicrosoft_com/EfxQUdaeEIlNoJ9HeXaxcU0ByE1hOKJzPeUtw0DfvfU5hA?download=1"
+          />
+        </video>
+      </div>
+    </div>
     <div class="main-img-wrap">
       <v-parallax class="main-img" :src="data?.eyecatch?.url" height="100%" />
     </div>
@@ -193,9 +189,5 @@ img {
   height: 20vh;
   overflow: hidden;
   position: relative;
-}
-
-.dialog-text {
-  font-family: "LINE_Seed_Bd";
 }
 </style>

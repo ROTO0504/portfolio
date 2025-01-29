@@ -4,6 +4,7 @@ import gsap from "gsap";
 const data = ref([
   {
     id: 1,
+    URL: "fxconsole-romaji",
     title: "FX Console - ローマ字対応",
     description:
       "After EffectsプラグインのFX Consoleをローマ字検索に対応させる設定ファイル(.fxs)",
@@ -100,7 +101,7 @@ onMounted(async () => {
             v-bind="props"
             link
           >
-            <NuxtLink :to="`/downloads/${download.id}`" class="link">
+            <NuxtLink :to="`/downloads/${download.URL}`" class="link">
               <v-row>
                 <v-col cols="12" sm="4" xs="12">
                   <v-skeleton-loader

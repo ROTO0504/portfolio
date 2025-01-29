@@ -41,11 +41,12 @@ onBeforeMount(() => {
 <template>
   <div class="bg">
     <CenterTitle title="Contact" />
-    <v-row class="mail-btn" align="center" justify="center">
+    <v-row class="mail-btn" align="center" justify="center" w="100%">
       <a
         class="mail"
         :append-icon="mdiSendVariantOutline"
         size="x-large"
+        width="100%"
         href="mailto:rotoworks.contact@gmail.com"
         variant="text"
       >
@@ -71,9 +72,10 @@ onBeforeMount(() => {
 .mail {
   background-color: #f4f4f4;
   color: black;
-  font-size: 2vw;
+  font-size: 32px;
   border-radius: 10px;
-  height: 5em;
+  min-width: 100%;
+  text-align: center;
   text-decoration: none;
 }
 </style>
