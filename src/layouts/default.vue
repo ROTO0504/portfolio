@@ -79,7 +79,7 @@ const drawer = ref(false);
           </section>
         </template>
       </v-app-bar>
-      <VMain class="v-main">
+      <VMain>
         <NuxtPage />
       </VMain>
       <v-footer>
@@ -121,7 +121,7 @@ const drawer = ref(false);
 
 .app-bar-link {
   font-size: 1em;
-  color: red;
+  color: #da2128;
   :hover {
     color: var(rt_red);
   }

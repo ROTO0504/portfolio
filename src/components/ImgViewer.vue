@@ -13,7 +13,7 @@ function imageClick() {
 }
 </script>
 <template>
-  <div>
+  <div class="viewer">
     <img class="viewer-img" :src="src" alt="image" @click="imageClick()" />
     <v-dialog v-model="dialog" width="auto">
       <v-img class="max-img" :src="src" alt="image" />
@@ -30,8 +30,7 @@ function imageClick() {
 }
 
 .max-img {
-  width: 80dvw;
+  width: 90dvw;
   height: auto;
-  backdrop-filter: blur(10px);
 }
 </style>

@@ -9,9 +9,9 @@ const { data } = await useMicroCMSGetListDetail<Blog>({
 });
 
 useSeoMeta({
-  title: `ROTO Works - ${data?.value?.title ?? ""}`,
+  title: `${data?.value?.title ?? ""}| ROTO Works`,
   description: data?.value?.description,
-  ogTitle: "ROTO Works - Blog",
+  ogTitle: "Works | ROTO Works",
   ogDescription: data?.value?.title,
   ogImage: data?.value?.eyecatch?.url,
   ogUrl: `https://rotoworks.com/blogs/${data?.value?.id}`,
@@ -131,7 +131,6 @@ img {
   object-position: center;
   margin-top: 5%;
   margin-bottom: 5%;
-  background-color: #f4f4f4;
 }
 
 .content {

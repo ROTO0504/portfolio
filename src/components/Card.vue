@@ -16,7 +16,8 @@ onMounted(() => {
   setTimeout(() => {
     loading.value = true;
     gsap.from(".fade-in", {
-      duration: 1,
+      filter: "blur(10px) grayscale(100%)",
+      duration: 3,
       opacity: 0,
       y: 100,
       ease: "back.inOut",
