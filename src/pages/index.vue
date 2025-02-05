@@ -65,7 +65,7 @@ useSeoMeta({
     </div>
   </section>
   <section class="works">
-    <CenterTitle class="works-title" title="Works" />
+    <CenterTitle title="Works" />
     <div>
       <Card />
     </div>
@@ -73,14 +73,12 @@ useSeoMeta({
 </template>
 
 <style scoped>
-.top-background {
-  background-color: #f4f4f4;
+.top {
+  background-color: #00030f;
 }
 
-.skill-card {
-  background-color: #f4f4f4;
-  height: 10vh;
-  width: 10vh;
+.works {
+  background-color: #00030f;
 }
 
 .main-movie {
@@ -112,13 +110,6 @@ useSeoMeta({
   &:hover {
     background-color: none;
   }
-}
-
-.works-title {
-  background-color: #da2128;
-  color: #f4f4f4;
-
-  padding-bottom: 5%;
 }
 
 .background-mov {

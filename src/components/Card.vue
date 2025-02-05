@@ -16,11 +16,11 @@ onMounted(() => {
   setTimeout(() => {
     loading.value = true;
     gsap.from(".fade-in", {
-      filter: "blur(10px) grayscale(100%)",
-      duration: 3,
+      filter: "blur(3px)",
+      duration: 2,
       opacity: 0,
       y: 100,
-      ease: "back.inOut",
+      ease: "expo.Out",
       stagger: {
         each: 0.1,
         from: "start",
@@ -32,7 +32,7 @@ onMounted(() => {
 
 <template>
   <v-container>
-    <v-row class="pt-16" align="center" justify="center">
+    <v-row class="py-16" align="center" justify="center">
       <v-col
         v-for="blog in data?.contents"
         v-show="loading"
@@ -78,7 +78,7 @@ onMounted(() => {
                 >
               </v-skeleton-loader>
 
-              <v-list two-line bg-color="#f4f4f4">
+              <v-list two-line class="card-list">
                 <v-list-item>
                   <v-list-item-title class="blog-title">{{
                     blog.title
@@ -108,9 +108,13 @@ onMounted(() => {
 }
 
 .hover {
+  background-color: #ffffff00;
   transition: 1s;
   &:hover {
     transform: scale(1.05);
+    background-color: #f4f4f4;
+    margin-top: 100px;
+    margin-bottom: 100px;
     .thumbnail {
       transition: all 2s ease-in-out;
       transform: scale(1.05);
@@ -123,6 +127,9 @@ onMounted(() => {
   }
 }
 
+.card-list {
+  background-color: #ffffff30;
+}
 .hover-title {
   opacity: 0;
   transition: all 2s ease-in-out;
@@ -143,19 +150,21 @@ onMounted(() => {
 }
 
 .blog-title {
-  font-size: 1.2em;
+  color: #f4f4f4;
+  mix-blend-mode: difference;
+  font-size: 1.5em;
   padding-top: 2%;
 }
 
 .category {
   color: #da2128;
-  font-size: 0.8em;
+  font-size: 1em;
 }
 
 .year {
   text-align: right;
   color: #f4f4f4;
-  font-size: 0.8em;
+  font-size: 1em;
   padding-top: 2%;
   display: inline;
   box-decoration-break: clone;

@@ -29,9 +29,9 @@ onBeforeMount(() => {
     ease: "bounce.out",
   });
 
-  gsap.to(".mail-btn", {
+  gsap.from(".mail-btn", {
     delay: 0.5,
-    duration: 1,
+    duration: 4,
     opacity: 1,
     ease: "power2.in",
   });
@@ -39,14 +39,13 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div class="bg">
+  <div class="bg contact pt-16">
     <CenterTitle title="Contact" />
     <v-row class="mail-btn" align="center" justify="center">
       <a
         class="mail"
         :append-icon="mdiSendVariantOutline"
-        size="x-large"
-        href="mailto:rotoworks.contact@gmail.com"
+        href="mailto:contact@roto.work"
         variant="text"
       >
         contact@roto.work
@@ -56,8 +55,11 @@ onBeforeMount(() => {
 </template>
 
 <style scoped>
+.contact {
+  min-height: 98dvh;
+}
 .bg {
-  background-color: #f4f4f4;
+  background-color: #00030f;
   height: 85vh;
   font-family: "LINE_Seed_Bd";
 }
@@ -69,11 +71,11 @@ onBeforeMount(() => {
 }
 
 .mail {
-  background-color: #f4f4f4;
-  color: black;
-  font-size: 2vw;
+  color: #f4f4f4;
+  font-size: 2em;
   border-radius: 10px;
   height: 5em;
   text-decoration: none;
+  font-kerning: 100;
 }
 </style>

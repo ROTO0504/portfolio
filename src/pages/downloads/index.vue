@@ -21,7 +21,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="download">
+  <div class="download pt-16">
     <center-title class="pb-4" title="Downloads" />
     <BoothCard class="pt-12" v-if="!isLoading" />
   </div>
@@ -39,5 +39,6 @@ main {
 
 .download {
   min-height: 100dvh;
+  background-color: #00030f;
 }
 </style>

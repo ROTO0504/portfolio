@@ -27,11 +27,11 @@ onMounted(() => {
 });
 </script>
 <template>
-  <v-app>
+  <v-app class="about">
     <v-container>
       <v-dialog v-model="dialog" width="auto">
         <v-card
-          class="text-h6 pa-2"
+          class="text-h6 pa-2 dialog-card"
           rounded="lg"
           min-width="80%"
           prepend-icon="mdi-update"
@@ -39,11 +39,13 @@ onMounted(() => {
           <VScodeAnimation class="pb-8" />
           <p class="text-center px-8 dialog-text">このページは鋭意制作中です</p>
           <template v-slot:actions>
-            <v-btn class="ms-auto" text="Ok" @click="dialog = false"></v-btn>
+            <v-btn class="ms-auto dialog-text" @click="dialog = false"
+              >OK</v-btn
+            >
           </template>
         </v-card>
       </v-dialog>
-      <v-row>
+      <v-row class="pt-16">
         <v-col cols="12">
           <v-card>
             <v-card-title>About Me</v-card-title>
@@ -84,5 +86,16 @@ onMounted(() => {
 
 .dialog-text {
   font-family: "LINE_Seed_Bd";
+  color: #f4f4f4;
+}
+
+.about {
+  min-height: 100vh;
+  background-color: #00030f;
+}
+
+.dialog-card {
+  backdrop-filter: blur(10px);
+  background-color: #ffffff30;
 }
 </style>

@@ -43,7 +43,7 @@ onMounted(async () => {
   }
 
   gsap.from(".fade-in", {
-    duration: 1,
+    duration: 3,
     opacity: 0,
     y: 100,
     ease: "back.inOut",
@@ -129,14 +129,16 @@ onMounted(async () => {
 </template>
 
 <style scoped lang="scss">
+.boothCard {
+  color: #f4f4f4;
+}
 .link {
   text-decoration: none;
-  color: black;
 }
 
 .hover {
   transition: 1s;
-  background-color: #f4f4f4;
+  background-color: #ffffff30;
   &:hover {
     transform: scale(1.01);
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
@@ -144,9 +146,15 @@ onMounted(async () => {
 }
 
 .skeleton {
-  background-color: #f4f4f4;
+  background-color: #ffffff00;
 }
 .description {
   font-size: 0.8rem;
+  color: #f4f4f4;
+}
+
+.title {
+  font-size: 1.2rem;
+  color: #f4f4f4;
 }
 </style>

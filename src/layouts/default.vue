@@ -16,13 +16,11 @@ const drawer = ref(false);
     <VApp>
       <v-navigation-drawer
         v-model="drawer"
-        class=".d-block .d-sm-none .d-md-none .d-lg-none rounded-s-xl"
+        class="d-md-none d-lg-none d-xl-none rounded-s-xl nav-bar"
         app
         parmament
         temporary
         location="right"
-        color="rt_white"
-        r
       >
         <v-list>
           <v-list-item
@@ -30,8 +28,8 @@ const drawer = ref(false);
             :key="item.text"
             :to="item.to"
             class="nav-bar-list rounded-s-xl"
-            color="rt_black"
-            base-color="rt_red"
+            color="rt_red"
+            base-color="rt_white"
           >
             <v-list-item-title class="nav-bar-link">{{
               item.text
@@ -40,13 +38,11 @@ const drawer = ref(false);
         </v-list>
         <template #append>
           <div class="pa-2">
-            <v-btn class="mb-16" color="rt_black" href="/contact" block>
-              CONTACT
-            </v-btn>
+            <v-btn class="mb-16" href="/contact" block> CONTACT </v-btn>
           </div>
         </template>
       </v-navigation-drawer>
-      <v-app-bar app class="app-bar" shrink-on-scroll>
+      <v-app-bar app class="app-bar">
         <template #prepend>
           <v-toolbar-title>
             <nuxt-link class="app-bar-name" to="/" tag="p">ROTO</nuxt-link>
@@ -55,18 +51,18 @@ const drawer = ref(false);
         <template #append>
           <section class="d-none d-sm-block">
             <v-tabs color="rt_white">
-              <v-tab class="app-bar-link" to="/" color="rt_black">TOP</v-tab>
-              <v-tab class="app-bar-link" to="/works" color="rt_black"
+              <v-tab class="app-bar-link" to="/" color="rt_red">TOP</v-tab>
+              <v-tab class="app-bar-link" to="/works" color="rt_red"
                 >WORKS</v-tab
               >
-              <v-tab class="app-bar-link" to="/downloads" color="rt_black"
+              <v-tab class="app-bar-link" to="/downloads" color="rt_red"
                 >downloads</v-tab
               >
 
-              <v-tab class="app-bar-link" to="/about" color="rt_black"
+              <v-tab class="app-bar-link" to="/about" color="rt_red"
                 >ABOUT</v-tab
               >
-              <v-tab class="app-bar-link" to="/contact" color="rt_black"
+              <v-tab class="app-bar-link" to="/contact" color="rt_red"
                 >CONTACT</v-tab
               >
             </v-tabs>
@@ -79,7 +75,7 @@ const drawer = ref(false);
           </section>
         </template>
       </v-app-bar>
-      <VMain>
+      <VMain style="padding-top: 0px">
         <NuxtPage />
       </VMain>
       <v-footer>
@@ -95,7 +91,7 @@ const drawer = ref(false);
 
 <style scoped lang="scss">
 .app-bar {
-  background-color: #f4f4f43d;
+  background-color: #ffffff0d;
   backdrop-filter: blur(10px);
 }
 
@@ -111,9 +107,10 @@ const drawer = ref(false);
 .app-bar-name {
   font-size: 1.6em;
   margin-left: 3vw;
-  color: #05091e;
+  color: #f4f4f4;
   text-decoration: none;
   transition: 0.3s;
+  mix-blend-mode: difference;
 }
 :hover {
   color: #da2128;
@@ -121,10 +118,19 @@ const drawer = ref(false);
 
 .app-bar-link {
   font-size: 1em;
-  color: #da2128;
+  mix-blend-mode: difference;
+  color: #f4f4f4;
   :hover {
     color: var(rt_red);
   }
+  :active {
+    color: var(rt_red);
+  }
+}
+
+.nav-bar {
+  background-color: #00000000;
+  backdrop-filter: blur(10px);
 }
 
 .nav-bar-list {

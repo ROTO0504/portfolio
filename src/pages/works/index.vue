@@ -19,7 +19,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="pj-bg">
+  <div class="pt-16 work">
     <center-title title="Works" />
     <card />
   </div>
@@ -35,8 +35,8 @@ main {
   }
 }
 
-.pj-bg {
-  background-color: #f4f4f4;
-  min-height: 100vh;
+.work {
+  min-height: 100dvh;
+  background-color: #00030f;
 }
 </style>
