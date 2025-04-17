@@ -113,8 +113,6 @@ onMounted(() => {
   &:hover {
     transform: scale(1.05);
     background-color: #f4f4f4;
-    margin-top: 100px;
-    margin-bottom: 100px;
     .thumbnail {
       transition: all 2s ease-in-out;
       transform: scale(1.05);
