@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(bun pm:*)"
+      "Bash(bun pm:*)",
+      "Read(//d d:/VSCode_pj/**)",
+      "Bash(rm d:/VSCode_pj/portfolio/.github/workflows/deploy.yml)",
+      "Bash(rmdir d:/VSCode_pj/portfolio/.github/workflows)",
+      "Bash(rmdir d:/VSCode_pj/portfolio/.github)"
     ]
   }
 }
