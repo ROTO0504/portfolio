@@ -1,10 +1,11 @@
 import { createClient } from "microcms-js-sdk"
 import type { MicroCMSImage, MicroCMSListContent } from "microcms-js-sdk"
 
-export const client = createClient({
-  serviceDomain: import.meta.env.MICROCMS_SERVICE_DOMAIN,
-  apiKey: import.meta.env.MICROCMS_API_KEY,
-})
+const getClient = () =>
+  createClient({
+    serviceDomain: import.meta.env.MICROCMS_SERVICE_DOMAIN,
+    apiKey: import.meta.env.MICROCMS_API_KEY,
+  })
 
 export type Category = {
   name: string
@@ -30,7 +31,7 @@ export type Logs = {
 } & MicroCMSListContent
 
 export const getWorks = async () => {
-  const res = await client.getList<Blog>({
+  const res = await getClient().getList<Blog>({
     endpoint: "blogs",
     queries: { orders: "-year", limit: 100 },
   })
@@ -38,14 +39,14 @@ export const getWorks = async () => {
 }
 
 export const getWorkDetail = async (id: string) => {
-  return await client.getListDetail<Blog>({
+  return await getClient().getListDetail<Blog>({
     endpoint: "blogs",
     contentId: id,
   })
 }
 
 export const getLogs = async () => {
-  const res = await client.getList<Logs>({
+  const res = await getClient().getList<Logs>({
     endpoint: "logs",
     queries: { orders: "-date", limit: 100 },
   })
