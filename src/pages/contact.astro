@@ -1,0 +1,24 @@
+---
+import Layout from "@/layouts/Layout.astro"
+import { SectionTitle } from "@/components/SectionTitle"
+import { ContactSection } from "@/components/ContactForm"
+---
+
+<Layout title="Contact" description="お問い合わせ - ROTO Works">
+  <div class="container">
+    <section class="section">
+      <SectionTitle client:visible title="Contact" />
+      <ContactSection client:visible />
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .section {
+    padding-top: 80px;
+    min-height: 60dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+</style>

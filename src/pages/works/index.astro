@@ -1,0 +1,40 @@
+---
+import Layout from "@/layouts/Layout.astro"
+import { WorkGrid } from "@/components/WorkCard"
+import { SectionTitle } from "@/components/SectionTitle"
+import { BoothSection } from "@/components/BoothSection"
+import { getWorks } from "@/lib/microcms"
+
+let works: Awaited<ReturnType<typeof getWorks>> = []
+try {
+  works = await getWorks()
+  console.log("works fetched:", works.length)
+} catch (e) {
+  console.error("works fetch error:", e)
+}
+---
+
+<Layout title="Works" description="ROTO Works - Portfolio">
+  <div class="container">
+    <section class="section">
+      <SectionTitle client:visible title="Works" sub="制作実績" />
+      <WorkGrid client:visible works={works} />
+    </section>
+
+    <section class="section booth-section">
+      <BoothSection client:visible />
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .section {
+    padding-top: 80px;
+  }
+
+  .booth-section {
+    margin-top: 80px;
+    padding-top: 64px;
+    border-top: 1px solid var(--color-border);
+  }
+</style>

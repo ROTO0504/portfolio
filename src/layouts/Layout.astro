@@ -1,0 +1,85 @@
+---
+import "@/styles/global.css"
+import { ClientRouter } from "astro:transitions"
+import { Header } from "@/components/Header"
+
+type Props = {
+  title?: string
+  description?: string
+  ogImage?: string
+}
+
+const {
+  title = "ROTO Works",
+  description = "Video / Motion Graphics / Web — Portfolio of ROTO",
+  ogImage,
+} = Astro.props
+
+const pageTitle = title === "ROTO Works" ? title : `${title} | ROTO Works`
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <ClientRouter />
+  </head>
+  <body>
+    <Header client:load pathname={Astro.url.pathname} />
+    <main>
+      <slot />
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-inner">
+          <p class="footer-copy">&copy; {new Date().getFullYear()} ROTO Works</p>
+          <p class="footer-contact">
+            <a href="mailto:contact@roto.work">contact@roto.work</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--color-border);
+    padding: 40px 0;
+    margin-top: 120px;
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--color-text-secondary);
+  }
+
+  .footer-contact a {
+    transition: color 0.2s;
+  }
+
+  .footer-contact a:hover {
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 768px) {
+    .footer-inner {
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;
+    }
+  }
+</style>

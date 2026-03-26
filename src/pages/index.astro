@@ -1,0 +1,49 @@
+---
+import Layout from "@/layouts/Layout.astro"
+import { HeroSection } from "@/components/HeroSection"
+import { WorkGrid } from "@/components/WorkCard"
+import { SectionTitle } from "@/components/SectionTitle"
+import { getWorks } from "@/lib/microcms"
+
+let works: Awaited<ReturnType<typeof getWorks>> = []
+try {
+  works = await getWorks()
+} catch {}
+const featured = works.slice(0, 6)
+---
+
+<Layout>
+  <HeroSection client:load />
+
+  <section class="container section">
+    <div class="section-header">
+      <SectionTitle client:visible title="Works" sub="Selected projects" />
+      <a href="/works" class="view-all">View All →</a>
+    </div>
+    <WorkGrid client:visible works={featured} />
+  </section>
+</Layout>
+
+<style>
+  .section {
+    padding: 80px 0;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .view-all {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    transition: color 0.2s;
+    margin-bottom: 52px;
+    white-space: nowrap;
+  }
+
+  .view-all:hover {
+    color: var(--color-text);
+  }
+</style>

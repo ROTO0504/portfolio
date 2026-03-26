@@ -1,0 +1,186 @@
+---
+import Layout from "@/layouts/Layout.astro"
+import { getWorkDetail, getWorks } from "@/lib/microcms"
+
+const { id } = Astro.params
+
+if (!id) {
+  return Astro.redirect("/works")
+}
+
+const work = await getWorkDetail(id)
+---
+
+<Layout
+  title={work.title}
+  description={work.description}
+  ogImage={work.eyecatch?.url}
+>
+  <article class="container">
+    <header class="hero">
+      {
+        work.eyecatch && (
+          <img
+            src={`${work.eyecatch.url}?w=1200&fm=webp`}
+            alt={work.title}
+            class="hero-image"
+            style={`view-transition-name: work-image-${id}`}
+          />
+        )
+      }
+    </header>
+
+    <div class="content-wrap">
+      <div class="meta">
+        {work.category && <span class="category">{work.category.name}</span>}
+        <span class="year">{work.year}</span>
+        {
+          work.soft && work.soft.length > 0 && (
+            <div class="soft-list">
+              {work.soft.map((s: string) => (
+                <span class="soft-tag">{s}</span>
+              ))}
+            </div>
+          )
+        }
+      </div>
+
+      <h1 class="title">{work.title}</h1>
+
+      {work.description && <p class="description">{work.description}</p>}
+
+      <div class="rich-content" set:html={work.content} />
+    </div>
+
+    <nav class="back-nav">
+      <a href="/works">← Back to Works</a>
+    </nav>
+  </article>
+</Layout>
+
+<style>
+  .hero {
+    margin-top: 40px;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: var(--color-bg-subtle);
+  }
+
+  .hero-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .content-wrap {
+    max-width: 720px;
+    margin: 48px auto 0;
+  }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .category {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-accent);
+    letter-spacing: 0.03em;
+  }
+
+  .year {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+  }
+
+  .soft-list {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .soft-tag {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background-color: var(--color-bg-subtle);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+  }
+
+  .title {
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+
+  .description {
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+    margin-bottom: 40px;
+  }
+
+  .rich-content {
+    line-height: 1.9;
+    font-size: 15px;
+  }
+
+  .rich-content :global(img) {
+    border-radius: 8px;
+    margin: 24px 0;
+  }
+
+  .rich-content :global(h2) {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 48px;
+    margin-bottom: 16px;
+  }
+
+  .rich-content :global(h3) {
+    font-size: 17px;
+    font-weight: 600;
+    margin-top: 32px;
+    margin-bottom: 12px;
+  }
+
+  .rich-content :global(p) {
+    margin-bottom: 16px;
+  }
+
+  .rich-content :global(a) {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .rich-content :global(iframe) {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    border-radius: 8px;
+    margin: 24px 0;
+  }
+
+  .back-nav {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .back-nav a {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    transition: color 0.2s;
+  }
+
+  .back-nav a:hover {
+    color: var(--color-text);
+  }
+</style>
