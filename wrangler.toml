@@ -1,5 +1,9 @@
-name = "roto-portfolio"
+name = "portfolio"
 compatibility_date = "2024-09-23"
+
+[[kv_namespaces]]
+binding = "SESSION"
+id = "17c105518050402aa4efcf7e34897ee2"
 
 [assets]
 directory = "dist"
