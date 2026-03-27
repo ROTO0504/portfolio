@@ -1,8 +1,4 @@
-import { useState } from "react"
-
-type Props = {
-  pathname: string
-}
+import { useState, useEffect } from "react"
 
 const navItems = [
   { href: "/", label: "Top" },
@@ -11,8 +7,20 @@ const navItems = [
   { href: "/contact", label: "Contact" },
 ]
 
-export const Header = ({ pathname }: Props) => {
+export const Header = () => {
+  const [pathname, setPathname] = useState(
+    typeof window !== "undefined" ? window.location.pathname : "/",
+  )
   const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+    const update = () => {
+      setPathname(window.location.pathname)
+      setIsOpen(false)
+    }
+    document.addEventListener("astro:after-swap", update)
+    return () => document.removeEventListener("astro:after-swap", update)
+  }, [])
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/"

@@ -7,9 +7,10 @@ gsap.registerPlugin(ScrollTrigger)
 
 type Props = {
   works: Blog[]
+  enableViewTransition?: boolean
 }
 
-const WorkCardItem = ({ work }: { work: Blog }) => {
+const WorkCardItem = ({ work, enableViewTransition = true }: { work: Blog; enableViewTransition?: boolean }) => {
   const [hovered, setHovered] = useState(false)
   const [videoReady, setVideoReady] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -43,7 +44,7 @@ const WorkCardItem = ({ work }: { work: Blog }) => {
             alt={work.title}
             style={{
               ...styles.image,
-              viewTransitionName: `work-image-${work.id}`,
+              ...(enableViewTransition ? { viewTransitionName: `work-image-${work.id}` } : {}),
               opacity: showVideo ? 0 : 1,
             }}
             loading="lazy"
@@ -78,7 +79,7 @@ const WorkCardItem = ({ work }: { work: Blog }) => {
   )
 }
 
-export const WorkGrid = ({ works }: Props) => {
+export const WorkGrid = ({ works, enableViewTransition = true }: Props) => {
   const gridRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -120,7 +121,7 @@ export const WorkGrid = ({ works }: Props) => {
   return (
     <div ref={gridRef} style={styles.grid}>
       {works.map((work) => (
-        <WorkCardItem key={work.id} work={work} />
+        <WorkCardItem key={work.id} work={work} enableViewTransition={enableViewTransition} />
       ))}
     </div>
   )

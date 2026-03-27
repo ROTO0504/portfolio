@@ -20,7 +20,7 @@ const featured = works.slice(0, 6)
       <SectionTitle client:visible title="Works" sub="Selected projects" />
       <a href="/works" class="view-all">View All →</a>
     </div>
-    <WorkGrid client:visible works={featured} />
+    <WorkGrid client:visible works={featured} enableViewTransition={false} />
   </section>
 </Layout>
 

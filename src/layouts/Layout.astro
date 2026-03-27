@@ -35,11 +35,13 @@ const pageTitle = title === "ROTO Works" ? title : `${title} | ROTO Works`
     <ClientRouter />
   </head>
   <body>
-    <Header client:load pathname={Astro.url.pathname} />
+    <div transition:persist transition:animate="none">
+      <Header client:load />
+    </div>
     <main>
       <slot />
     </main>
-    <footer class="footer">
+    <footer class="footer" transition:persist transition:animate="none">
       <div class="container">
         <div class="footer-inner">
           <p class="footer-copy">&copy; {new Date().getFullYear()} ROTO Works</p>

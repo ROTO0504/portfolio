@@ -64,7 +64,10 @@ export const BoothSection = () => {
                 <img
                   src={item.imageUrl}
                   alt={item.title}
-                  style={styles.image}
+                  style={{
+                    ...styles.image,
+                    viewTransitionName: `booth-image-${item.id}`,
+                  }}
                   loading="lazy"
                 />
               </div>
