@@ -1,30 +1,30 @@
 ---
 import Layout from "@/layouts/Layout.astro"
-import { getWorkDetail, getWorks } from "@/lib/microcms"
+import { getWorkDetail } from "@/lib/works"
 
-const { id } = Astro.params
+const { slug } = Astro.params
 
-if (!id) {
+if (!slug) {
   return Astro.redirect("/works")
 }
 
-const work = await getWorkDetail(id)
+const work = await getWorkDetail(slug)
 ---
 
 <Layout
   title={work.title}
   description={work.description}
-  ogImage={work.eyecatch?.url}
+  ogImage={work.eyecatch}
 >
   <article class="container">
     <header class="hero">
       {
         work.eyecatch && (
           <img
-            src={`${work.eyecatch.url}?w=1200&fm=webp`}
+            src={work.eyecatch}
             alt={work.title}
             class="hero-image"
-            style={`view-transition-name: work-image-${id}`}
+            style={`view-transition-name: work-image-${slug}`}
           />
         )
       }
@@ -32,7 +32,7 @@ const work = await getWorkDetail(id)
 
     <div class="content-wrap">
       <div class="meta">
-        {work.category && <span class="category">{work.category.name}</span>}
+        {work.category && <span class="category">{work.category}</span>}
         <span class="year">{work.year}</span>
         {
           work.soft && work.soft.length > 0 && (
@@ -49,7 +49,9 @@ const work = await getWorkDetail(id)
 
       {work.description && <p class="description">{work.description}</p>}
 
-      <div class="rich-content" set:html={work.content} />
+      <div class="rich-content">
+        <work.Content />
+      </div>
     </div>
 
     <nav class="back-nav">

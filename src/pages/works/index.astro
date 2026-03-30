@@ -3,7 +3,7 @@ import Layout from "@/layouts/Layout.astro"
 import { WorkGrid } from "@/components/WorkCard"
 import { SectionTitle } from "@/components/SectionTitle"
 import { BoothSection } from "@/components/BoothSection"
-import { getWorks } from "@/lib/microcms"
+import { getWorks } from "@/lib/works"
 
 let works: Awaited<ReturnType<typeof getWorks>> = []
 try {

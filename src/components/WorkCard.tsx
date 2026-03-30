@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import type { Blog } from "@/lib/microcms"
+import type { Work } from "@/lib/works"
 
 gsap.registerPlugin(ScrollTrigger)
 
 type Props = {
-  works: Blog[]
+  works: Work[]
   enableViewTransition?: boolean
 }
 
-const WorkCardItem = ({ work, enableViewTransition = true }: { work: Blog; enableViewTransition?: boolean }) => {
+const WorkCardItem = ({ work, enableViewTransition = true }: { work: Work; enableViewTransition?: boolean }) => {
   const [hovered, setHovered] = useState(false)
   const [videoReady, setVideoReady] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -31,7 +31,7 @@ const WorkCardItem = ({ work, enableViewTransition = true }: { work: Blog; enabl
 
   return (
     <a
-      href={`/works/${work.id}`}
+      href={`/works/${work.slug}`}
       className="work-card"
       style={styles.card}
       onMouseEnter={() => setHovered(true)}
@@ -40,11 +40,11 @@ const WorkCardItem = ({ work, enableViewTransition = true }: { work: Blog; enabl
       <div style={styles.imageWrap}>
         {work.eyecatch && (
           <img
-            src={`${work.eyecatch.url}?w=600&fm=webp`}
+            src={work.eyecatch}
             alt={work.title}
             style={{
               ...styles.image,
-              ...(enableViewTransition ? { viewTransitionName: `work-image-${work.id}` } : {}),
+              ...(enableViewTransition ? { viewTransitionName: `work-image-${work.slug}` } : {}),
               opacity: showVideo ? 0 : 1,
             }}
             loading="lazy"
@@ -69,7 +69,7 @@ const WorkCardItem = ({ work, enableViewTransition = true }: { work: Blog; enabl
       <div style={styles.info}>
         <div style={styles.meta}>
           {work.category && (
-            <span style={styles.category}>{work.category.name}</span>
+            <span style={styles.category}>{work.category}</span>
           )}
           <span style={styles.year}>{work.year}</span>
         </div>
@@ -121,7 +121,7 @@ export const WorkGrid = ({ works, enableViewTransition = true }: Props) => {
   return (
     <div ref={gridRef} style={styles.grid}>
       {works.map((work) => (
-        <WorkCardItem key={work.id} work={work} enableViewTransition={enableViewTransition} />
+        <WorkCardItem key={work.slug} work={work} enableViewTransition={enableViewTransition} />
       ))}
     </div>
   )

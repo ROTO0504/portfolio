@@ -1,12 +1,9 @@
 ---
 import Layout from "@/layouts/Layout.astro"
 import { SectionTitle } from "@/components/SectionTitle"
-import { getLogs } from "@/lib/microcms"
+import logsData from "@/data/logs.json"
 
-let logs: Awaited<ReturnType<typeof getLogs>> = []
-try {
-  logs = await getLogs()
-} catch {}
+const logs = logsData
 ---
 
 <Layout title="About" description="ROTO - Video / Motion Graphics / Web">

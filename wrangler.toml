@@ -5,5 +5,9 @@ compatibility_date = "2026-03-26"
 binding = "SESSION"
 id = "17c105518050402aa4efcf7e34897ee2"
 
+[[r2_buckets]]
+binding = "R2"
+bucket_name = "portfolio"
+
 [assets]
 directory = "dist"
