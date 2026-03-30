@@ -1,6 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro"
-import { getWorkDetail } from "@/lib/works"
+import { getWorkDetail, getWorks } from "@/lib/works"
 
 const { slug } = Astro.params
 
@@ -9,6 +9,10 @@ if (!slug) {
 }
 
 const work = await getWorkDetail(slug)
+const allWorks = await getWorks()
+const currentIndex = allWorks.findIndex((w) => w.slug === slug)
+const prevWork = currentIndex > 0 ? allWorks[currentIndex - 1] : null
+const nextWork = currentIndex < allWorks.length - 1 ? allWorks[currentIndex + 1] : null
 ---
 
 <Layout
@@ -54,8 +58,26 @@ const work = await getWorkDetail(slug)
       </div>
     </div>
 
-    <nav class="back-nav">
-      <a href="/works">← Back to Works</a>
+    <nav class="work-nav">
+      <div class="work-nav-item">
+        {prevWork && (
+          <a href={`/works/${prevWork.slug}`} class="work-nav-link prev">
+            <span class="work-nav-label">← Prev</span>
+            <span class="work-nav-title">{prevWork.title}</span>
+          </a>
+        )}
+      </div>
+      <div class="work-nav-center">
+        <a href="/works" class="work-nav-back">All Works</a>
+      </div>
+      <div class="work-nav-item">
+        {nextWork && (
+          <a href={`/works/${nextWork.slug}`} class="work-nav-link next">
+            <span class="work-nav-label">Next →</span>
+            <span class="work-nav-title">{nextWork.title}</span>
+          </a>
+        )}
+      </div>
     </nav>
   </article>
 </Layout>
@@ -170,19 +192,98 @@ const work = await getWorkDetail(slug)
     margin: 24px 0;
   }
 
-  .back-nav {
+  .work-nav {
     margin-top: 64px;
     padding-top: 32px;
     border-top: 1px solid var(--color-border);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 16px;
+    align-items: start;
   }
 
-  .back-nav a {
-    font-size: 14px;
+  .work-nav-item {
+    min-width: 0;
+  }
+
+  .work-nav-item:last-child {
+    text-align: right;
+  }
+
+  .work-nav-link {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 4px;
+    text-decoration: none;
+    color: inherit;
+    padding: 8px 0;
+    transition: color 0.2s;
+  }
+
+  .work-nav-link:hover {
+    color: var(--color-accent);
+  }
+
+  .work-nav-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
     color: var(--color-text-secondary);
     transition: color 0.2s;
   }
 
-  .back-nav a:hover {
+  .work-nav-link:hover .work-nav-label {
+    color: var(--color-accent);
+  }
+
+  .work-nav-title {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 280px;
+  }
+
+  .work-nav-center {
+    display: flex;
+    align-items: center;
+    padding-top: 8px;
+  }
+
+  .work-nav-back {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    padding: 6px 16px;
+    border-radius: 100px;
+    border: 1px solid var(--color-border);
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .work-nav-back:hover {
+    border-color: var(--color-text);
     color: var(--color-text);
+  }
+
+  @media (max-width: 640px) {
+    .work-nav {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+    }
+
+    .work-nav-center {
+      grid-column: 1 / -1;
+      justify-content: center;
+      order: -1;
+      padding-bottom: 16px;
+      border-bottom: none;
+    }
+
+    .work-nav-title {
+      max-width: 140px;
+    }
   }
 </style>

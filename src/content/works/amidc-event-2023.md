@@ -1,22 +1,13 @@
 ---
 title: "AMIDC EVENT 2023"
-description: ""
+description: "AMIDC制作 - イベント映像"
 eyecatch: "https://pub-cc5a3f2a83ec4ac48898b31a8e6bd165.r2.dev/images/7f2j-pbsy8h.jpg"
-category: "自主制作"
+type: "video"
+category: "AMIDC"
 year: 2023
-soft: ["After Effects"]
+soft: ["After Effects", "DaVinci Resolve"]
 ---
 
-## TEST
+## 概要
 
-### TEST
-
-TEST
-
-`TEST`
-
-TEST
-
----
-
-> TEST
+AMIDC での制作。AMIDC EVENT 2023 のイベント映像を After Effects と DaVinci Resolve で制作。

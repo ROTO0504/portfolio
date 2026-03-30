@@ -1,7 +1,14 @@
 [
   {
-    "date": "2024-09-23T15:00:00.000Z",
-    "title": "Hack Aichi +2024",
-    "content": "test"
+    "date": "2025-05-01T00:00:00.000Z",
+    "title": "PALETTE 結成",
+    "content": "チームを結成。現在サイト構築中。",
+    "url": "https://palette-sync.com/"
+  },
+  {
+    "date": "2024-09-24T00:00:00.000Z",
+    "title": "Hack Aichi+ 2024 最優秀賞・日本ガイシ賞",
+    "content": "愛知県大学対抗ハッカソン「Hack Aichi+ 2024」にて、地域の声と企業をつなぐプラットフォーム「WAKABA」を開発。最優秀賞（愛知県知事賞）および日本ガイシ賞をダブル受賞。",
+    "url": "https://www.pref.aichi.jp/soshiki/kikaku/hackaichi2024.html"
   }
 ]

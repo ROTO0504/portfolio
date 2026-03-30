@@ -5,6 +5,7 @@ export type Work = {
   title: string
   description: string
   eyecatch: string
+  type: "web" | "video"
   category: string | null
   year: number
   soft: string[]
@@ -20,6 +21,7 @@ export async function getWorks(): Promise<Work[]> {
       title: entry.data.title,
       description: entry.data.description,
       eyecatch: entry.data.eyecatch,
+      type: entry.data.type,
       category: entry.data.category,
       year: entry.data.year,
       soft: entry.data.soft,

@@ -8,20 +8,54 @@ import { getWorks } from "@/lib/works"
 let works: Awaited<ReturnType<typeof getWorks>> = []
 try {
   works = await getWorks()
-  console.log("works fetched:", works.length)
-} catch (e) {
-  console.error("works fetch error:", e)
-}
+} catch {}
+
+const webWorks = works.filter((w) => w.type === "web")
+const videoWorks = works.filter((w) => w.type === "video")
+const downloadCount = 1
 ---
 
 <Layout title="Works" description="ROTO Works - Portfolio">
   <div class="container">
     <section class="section">
-      <SectionTitle client:visible title="Works" sub="制作実績" />
-      <WorkGrid client:visible works={works} />
+      <div class="section-header">
+        <SectionTitle client:visible title="Works" sub="制作実績" />
+        <nav class="section-nav">
+        {webWorks.length > 0 && (
+          <a href="#web" class="section-nav-item">
+            <span class="section-nav-label">Web</span>
+            <span class="section-nav-count">{webWorks.length}</span>
+          </a>
+        )}
+        {videoWorks.length > 0 && (
+          <a href="#video" class="section-nav-item">
+            <span class="section-nav-label">Video / Motion</span>
+            <span class="section-nav-count">{videoWorks.length}</span>
+          </a>
+        )}
+        <a href="#downloads" class="section-nav-item">
+          <span class="section-nav-label">Downloads</span>
+          <span class="section-nav-count">{downloadCount}</span>
+        </a>
+        </nav>
+      </div>
+
+      {webWorks.length > 0 && (
+        <div id="web" class="works-section">
+          <h3 class="works-section-title">Web</h3>
+          <WorkGrid client:visible works={webWorks} />
+        </div>
+      )}
+
+      {videoWorks.length > 0 && (
+        <div id="video" class="works-section">
+          <h3 class="works-section-title">Video / Motion</h3>
+          <WorkGrid client:visible works={videoWorks} enableViewTransition={webWorks.length === 0} />
+        </div>
+      )}
     </section>
 
-    <section class="section booth-section">
+    <section id="downloads" class="section booth-section">
       <BoothSection client:visible />
     </section>
   </div>
@@ -32,9 +66,84 @@ try {
     padding-top: 80px;
   }
 
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 48px;
+  }
+
+  .section-nav {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 52px;
+  }
+
+  .section-nav-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 100px;
+    border: 1px solid var(--color-border);
+    text-decoration: none;
+    color: var(--color-text);
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+    scroll-behavior: smooth;
+  }
+
+  .section-nav-item:hover {
+    border-color: var(--color-text);
+    background-color: var(--color-text);
+    color: var(--color-white);
+  }
+
+  .section-nav-item:hover .section-nav-count {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--color-white);
+  }
+
+  .section-nav-count {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 100px;
+    background-color: var(--color-bg-subtle);
+    color: var(--color-text-secondary);
+    transition: all 0.2s;
+  }
+
+  .works-section {
+    margin-bottom: 64px;
+    scroll-margin-top: 80px;
+  }
+
+  .works-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .works-section-title {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--color-border);
+  }
+
   .booth-section {
     margin-top: 80px;
     padding-top: 64px;
     border-top: 1px solid var(--color-border);
+    scroll-margin-top: 80px;
   }
 </style>
+
+<script>
+  document.documentElement.style.scrollBehavior = 'smooth'
+</script>

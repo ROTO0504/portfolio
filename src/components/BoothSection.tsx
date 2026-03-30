@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
@@ -10,6 +10,7 @@ type BoothItem = {
   description: string
   imageUrl: string
   boothUrl: string
+  backgroundMovie?: string
 }
 
 const boothItems: BoothItem[] = [
@@ -20,8 +21,87 @@ const boothItems: BoothItem[] = [
       "After Effectsの「FX Console」プラグインの設定ファイル。ローマ字でエフェクトを検索できるようになります。",
     imageUrl: "/booth-fxconsole.jpg",
     boothUrl: "https://booth.pm/ja/items/6176975",
+    backgroundMovie: "https://pub-cc5a3f2a83ec4ac48898b31a8e6bd165.r2.dev/videos/FXConsole.webm",
   },
 ]
+
+const BoothCardItem = ({ item }: { item: BoothItem }) => {
+  const [hovered, setHovered] = useState(false)
+  const [videoReady, setVideoReady] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  const showVideo = hovered && videoReady
+
+  useEffect(() => {
+    const el = videoRef.current
+    if (!el) return
+    if (hovered) {
+      el.play().catch(() => {})
+    } else {
+      el.pause()
+      el.currentTime = 0
+      setVideoReady(false)
+    }
+  }, [hovered])
+
+  return (
+    <div
+      className="booth-card"
+      style={styles.card}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <a href={`/downloads/${item.id}`} style={styles.cardLink}>
+        <div style={{ ...styles.imageWrap, position: "relative" as const }}>
+          <img
+            src={item.imageUrl}
+            alt={item.title}
+            style={{
+              ...styles.image,
+              viewTransitionName: `booth-image-${item.id}`,
+              opacity: showVideo ? 0 : 1,
+            }}
+            loading="lazy"
+          />
+          {item.backgroundMovie && (
+            <video
+              ref={videoRef}
+              src={item.backgroundMovie}
+              muted
+              loop
+              playsInline
+              preload="none"
+              onCanPlayThrough={() => setVideoReady(true)}
+              style={{
+                position: "absolute" as const,
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover" as const,
+                transition: "opacity 0.3s ease",
+                opacity: showVideo ? 1 : 0,
+              }}
+            />
+          )}
+        </div>
+        <div style={styles.info}>
+          <h3 style={styles.title}>{item.title}</h3>
+          <p style={styles.desc}>{item.description}</p>
+          <a
+            href={item.boothUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={styles.boothButton}
+            onClick={(e) => e.stopPropagation()}
+          >
+            BOOTH で入手 →
+          </a>
+        </div>
+      </a>
+    </div>
+  )
+}
 
 export const BoothSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null)
@@ -58,34 +138,7 @@ export const BoothSection = () => {
       </div>
       <div style={styles.list}>
         {boothItems.map((item) => (
-          <div key={item.id} className="booth-card" style={styles.card}>
-            <a href={`/downloads/${item.id}`} style={styles.cardLink}>
-              <div style={styles.imageWrap}>
-                <img
-                  src={item.imageUrl}
-                  alt={item.title}
-                  style={{
-                    ...styles.image,
-                    viewTransitionName: `booth-image-${item.id}`,
-                  }}
-                  loading="lazy"
-                />
-              </div>
-              <div style={styles.info}>
-                <h3 style={styles.title}>{item.title}</h3>
-                <p style={styles.desc}>{item.description}</p>
-                <a
-                  href={item.boothUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={styles.boothButton}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  BOOTH で入手 →
-                </a>
-              </div>
-            </a>
-          </div>
+          <BoothCardItem key={item.id} item={item} />
         ))}
       </div>
     </div>

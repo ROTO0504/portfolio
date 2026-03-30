@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro"
 import { SectionTitle } from "@/components/SectionTitle"
+import { ShowreelCard } from "@/components/ShowreelCard"
 import logsData from "@/data/logs.json"
 
 const logs = logsData
@@ -14,45 +15,36 @@ const logs = logsData
       <div class="about-grid">
         <div class="about-main">
           <p class="about-text">
-            映像・モーショングラフィックス・Web制作を行っています。
+            Web制作をしています。フロントエンドからバックエンド、インフラまで一貫した開発が得意です。
           </p>
           <p class="about-text">
-            視覚的なストーリーテリングを通じて、アイデアを形にすることを大切にしています。
+            以前はモーショングラフィックス・映像制作にも取り組んでおり、映像で培った視覚的な表現力をWebにも活かしています。
           </p>
 
           <div class="skills">
             <h3 class="skills-title">Skills</h3>
+
+            <h4 class="skills-category">Web</h4>
+            <div class="skill-tags">
+              <span class="skill-tag">TypeScript</span>
+              <span class="skill-tag">React</span>
+              <span class="skill-tag">Nuxt / Vue</span>
+              <span class="skill-tag">Astro</span>
+            </div>
+
+            <h4 class="skills-category">Video / Motion</h4>
             <div class="skill-tags">
               <span class="skill-tag">After Effects</span>
               <span class="skill-tag">Blender</span>
               <span class="skill-tag">DaVinci Resolve</span>
               <span class="skill-tag">Illustrator</span>
-              <span class="skill-tag">TypeScript</span>
-              <span class="skill-tag">React</span>
-              <span class="skill-tag">Nuxt / Vue</span>
-              <span class="skill-tag">Astro</span>
             </div>
           </div>
         </div>
 
         <div class="about-side">
           <div class="showreel">
-            <a
-              href="https://www.youtube.com/watch?v=10331qcWriU"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="reel-link"
-            >
-              <div class="reel-thumb">
-                <img src="https://img.youtube.com/vi/10331qcWriU/maxresdefault.jpg" alt="Showreel 2024" class="reel-img" />
-                <div class="reel-play">
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="white">
-                    <path d="M8 5v14l11-7z"></path>
-                  </svg>
-                </div>
-              </div>
-              <span class="reel-label">Showreel 2024</span>
-            </a>
+            <ShowreelCard client:visible />
           </div>
         </div>
       </div>
@@ -75,6 +67,11 @@ const logs = logsData
                   <h3 class="timeline-item-title">{log.title}</h3>
                   {log.content && (
                     <p class="timeline-desc">{log.content}</p>
+                  )}
+                  {log.url && (
+                    <a href={log.url} target="_blank" rel="noopener noreferrer" class="timeline-link">
+                      詳細を見る →
+                    </a>
                   )}
                 </div>
               </div>
@@ -115,7 +112,21 @@ const logs = logsData
     letter-spacing: 0.05em;
     text-transform: uppercase;
     color: var(--color-text-secondary);
-    margin-bottom: 16px;
+    margin-bottom: 20px;
+  }
+
+  .skills-category {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    margin-bottom: 10px;
+    margin-top: 16px;
+  }
+
+  .skills-category:first-of-type {
+    margin-top: 0;
   }
 
   .skill-tags {
@@ -242,6 +253,20 @@ const logs = logsData
     color: var(--color-text-secondary);
     margin-top: 4px;
     line-height: 1.6;
+  }
+
+  .timeline-link {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 13px;
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+
+  .timeline-link:hover {
+    opacity: 0.7;
   }
 
   @media (max-width: 768px) {

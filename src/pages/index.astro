@@ -9,7 +9,10 @@ let works: Awaited<ReturnType<typeof getWorks>> = []
 try {
   works = await getWorks()
 } catch {}
-const featured = works.slice(0, 6)
+// Web works first, then video
+const webWorks = works.filter((w) => w.type === "web")
+const videoWorks = works.filter((w) => w.type === "video")
+const featured = [...webWorks, ...videoWorks].slice(0, 6)
 ---
 
 <Layout>
