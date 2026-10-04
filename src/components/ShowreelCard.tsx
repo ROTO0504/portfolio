@@ -11,6 +11,8 @@ export const ShowreelCard = () => {
     const el = videoRef.current
     if (!el) return
     if (hovered) {
+      // ClientRouter で差し替えられた <video> はエラー状態になっているので読み込み直す
+      if (el.error) el.load()
       el.play().catch(() => {})
     } else {
       el.pause()

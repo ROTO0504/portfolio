@@ -88,3 +88,12 @@ button {
     padding: 0 5%;
   }
 }
+
+.work-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.work-card:hover img {
+  transform: scale(1.03);
+}

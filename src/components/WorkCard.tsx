@@ -21,6 +21,8 @@ const WorkCardItem = ({ work, enableViewTransition = true }: { work: Work; enabl
     const el = videoRef.current
     if (!el) return
     if (hovered) {
+      // ClientRouter で差し替えられた <video> はエラー状態になっているので読み込み直す
+      if (el.error) el.load()
       el.play().catch(() => {})
     } else {
       el.pause()
@@ -94,7 +96,7 @@ export const WorkGrid = ({ works, enableViewTransition = true }: Props) => {
     const cards = gridRef.current.querySelectorAll(".work-card")
 
     if (isBack || sessionStorage.getItem("works-visited")) {
-      gsap.set(cards, { y: 0, opacity: 1 })
+      gsap.set(cards, { opacity: 1, clearProps: "transform" })
     } else {
       gsap.fromTo(
         cards,
@@ -105,6 +107,7 @@ export const WorkGrid = ({ works, enableViewTransition = true }: Props) => {
           duration: 0.6,
           stagger: 0.08,
           ease: "power2.out",
+          clearProps: "transform",
           scrollTrigger: {
             trigger: gridRef.current,
             start: "top 85%",
@@ -187,13 +190,4 @@ const styles: Record<string, React.CSSProperties> = {
     fontWeight: 600,
     lineHeight: 1.5,
   },
-}
-
-if (typeof document !== "undefined") {
-  const style = document.createElement("style")
-  style.textContent = `
-    .work-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
-    .work-card:hover img { transform: scale(1.03); }
-  `
-  document.head.appendChild(style)
 }
