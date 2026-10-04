@@ -16,9 +16,11 @@ import { ContactSection } from "@/components/ContactForm"
 <style>
   .section {
     padding-top: 80px;
-    min-height: 60dvh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  }
+
+  @media (max-width: 768px) {
+    .section {
+      padding-top: 48px;
+    }
   }
 </style>
