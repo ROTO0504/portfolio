@@ -36,7 +36,7 @@ const pageTitle = title === "ROTO Works" ? title : `${title} | ROTO Works`
   </head>
   <body>
     <div transition:persist transition:animate="none">
-      <Header client:load />
+      <Header client:load pathname={Astro.url.pathname} />
     </div>
     <main>
       <slot />

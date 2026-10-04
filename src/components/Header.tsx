@@ -7,10 +7,12 @@ const navItems = [
   { href: "/contact", label: "Contact" },
 ]
 
-export const Header = () => {
-  const [pathname, setPathname] = useState(
-    typeof window !== "undefined" ? window.location.pathname : "/",
-  )
+type Props = {
+  pathname: string
+}
+
+export const Header = ({ pathname: initialPathname }: Props) => {
+  const [pathname, setPathname] = useState(initialPathname)
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
