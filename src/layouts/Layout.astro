@@ -33,6 +33,11 @@ const pageTitle = title === "ROTO Works" ? title : `${title} | ROTO Works`
     {ogImage && <meta property="og:image" content={ogImage} />}
     <meta name="twitter:card" content="summary_large_image" />
     <ClientRouter />
+    <script is:inline>
+      // 作品カードの登場アニメーションを出すかどうかの判定に使う（戻る・進むなら "traverse"）
+      document.documentElement.dataset.nav =
+        performance.getEntriesByType("navigation")[0]?.type === "back_forward" ? "traverse" : "push"
+    </script>
   </head>
   <body>
     <div transition:persist transition:animate="none">
@@ -53,6 +58,17 @@ const pageTitle = title === "ROTO Works" ? title : `${title} | ROTO Works`
     </footer>
   </body>
 </html>
+
+<script>
+  // ClientRouter での移動では html の属性が新しいページのものに差し替わるので、描画前に付け直す
+  let navigationType = "push"
+  document.addEventListener("astro:before-preparation", (e) => {
+    navigationType = e.navigationType
+  })
+  document.addEventListener("astro:after-swap", () => {
+    document.documentElement.dataset.nav = navigationType === "traverse" ? "traverse" : "push"
+  })
+</script>
 
 <style>
   .footer {

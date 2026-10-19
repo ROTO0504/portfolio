@@ -23,7 +23,7 @@ const featured = [...webWorks, ...videoWorks].slice(0, 6)
       <SectionTitle client:visible title="Works" sub="Selected projects" />
       <a href="/works" class="view-all">View All →</a>
     </div>
-    <WorkGrid client:visible works={featured} enableViewTransition={false} />
+    <WorkGrid client:visible works={featured} enableViewTransition={false} alwaysReveal />
   </section>
 
   <section class="container">

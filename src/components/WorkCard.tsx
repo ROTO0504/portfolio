@@ -8,9 +8,17 @@ gsap.registerPlugin(ScrollTrigger)
 type Props = {
   works: Work[]
   enableViewTransition?: boolean
+  // true のときは、ブラウザの戻る・進むで来たときもカードを登場させる
+  alwaysReveal?: boolean
 }
 
-const WorkCardItem = ({ work, enableViewTransition = true }: { work: Work; enableViewTransition?: boolean }) => {
+const WorkCardItem = ({
+  work,
+  enableViewTransition = true,
+}: {
+  work: Work
+  enableViewTransition?: boolean
+}) => {
   const [hovered, setHovered] = useState(false)
   const [videoReady, setVideoReady] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -81,33 +89,33 @@ const WorkCardItem = ({ work, enableViewTransition = true }: { work: Work; enabl
   )
 }
 
-export const WorkGrid = ({ works, enableViewTransition = true }: Props) => {
+export const WorkGrid = ({ works, enableViewTransition = true, alwaysReveal = false }: Props) => {
   const gridRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (!gridRef.current) return
 
-    const isBack =
-      performance.getEntriesByType("navigation").length === 0 ||
-      (window.navigation && window.navigation.currentEntry?.index !== undefined
-        ? document.referrer !== ""
-        : false)
-
     const cards = gridRef.current.querySelectorAll(".work-card")
 
-    if (isBack || sessionStorage.getItem("works-visited")) {
-      gsap.set(cards, { opacity: 1, clearProps: "transform" })
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    // 詳細ページから戻ってきたときは、画像が元のカードへ戻る View Transition を優先して登場させない
+    const skip = !alwaysReveal && document.documentElement.dataset.nav === "traverse"
+
+    if (reduceMotion || skip) {
+      gsap.set(cards, { opacity: 1, clearProps: "transform,filter" })
     } else {
+      // ヒーローの文字と同じく、ブラーが晴れながら下から浮かび上がる
       gsap.fromTo(
         cards,
-        { y: 40, opacity: 0 },
+        { y: 24, opacity: 0, filter: "blur(10px)" },
         {
           y: 0,
           opacity: 1,
-          duration: 0.6,
-          stagger: 0.08,
-          ease: "power2.out",
-          clearProps: "transform",
+          filter: "blur(0px)",
+          duration: 1,
+          stagger: 0.12,
+          ease: "power3.out",
+          clearProps: "transform,filter",
           scrollTrigger: {
             trigger: gridRef.current,
             start: "top 85%",
@@ -116,15 +124,17 @@ export const WorkGrid = ({ works, enableViewTransition = true }: Props) => {
       )
     }
 
-    sessionStorage.setItem("works-visited", "1")
-
     return () => ScrollTrigger.getAll().forEach((t) => t.kill())
-  }, [works])
+  }, [works, alwaysReveal])
 
   return (
-    <div ref={gridRef} style={styles.grid}>
+    <div ref={gridRef} className="work-grid" data-always-reveal={alwaysReveal || undefined} style={styles.grid}>
       {works.map((work) => (
-        <WorkCardItem key={work.slug} work={work} enableViewTransition={enableViewTransition} />
+        <WorkCardItem
+          key={work.slug}
+          work={work}
+          enableViewTransition={enableViewTransition}
+        />
       ))}
     </div>
   )
