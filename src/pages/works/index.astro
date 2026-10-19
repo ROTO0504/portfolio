@@ -50,7 +50,7 @@ const downloadCount = 1
       {videoWorks.length > 0 && (
         <div id="video" class="works-section">
           <h3 class="works-section-title">Video / Motion</h3>
-          <WorkGrid client:visible works={videoWorks} enableViewTransition={webWorks.length === 0} />
+          <WorkGrid client:visible works={videoWorks} />
         </div>
       )}
     </section>
@@ -172,5 +172,18 @@ const downloadCount = 1
 </style>
 
 <script>
-  document.documentElement.style.scrollBehavior = 'smooth'
+  // html 全体に scroll-behavior: smooth を付けると、ClientRouter が戻るときの
+  // スクロール位置の復元までスムーズスクロールになり、ページトップから動いてしまう。
+  // そのため、ページ内リンクのときだけスムーズスクロールさせる
+  document.addEventListener("astro:page-load", () => {
+    document.querySelectorAll<HTMLAnchorElement>(".section-nav-item").forEach((link) => {
+      link.addEventListener("click", (e) => {
+        const target = document.querySelector(link.hash)
+        if (!target) return
+        e.preventDefault()
+        target.scrollIntoView({ behavior: "smooth" })
+        history.replaceState(history.state, "", link.hash)
+      })
+    })
+  })
 </script>
