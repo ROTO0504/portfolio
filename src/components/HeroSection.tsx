@@ -2,43 +2,48 @@ import { useEffect, useRef } from "react"
 import gsap from "gsap"
 
 export const HeroSection = () => {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const titleRef = useRef<HTMLHeadingElement>(null)
-  const subtitleRef = useRef<HTMLParagraphElement>(null)
-  const lineRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    const tl = gsap.timeline({ defaults: { ease: "power3.out" } })
+    const root = containerRef.current
+    if (!root) return
+    const lines = root.querySelectorAll("[data-hero-line]")
 
-    tl.fromTo(
-      lineRef.current,
-      { scaleX: 0 },
-      { scaleX: 1, duration: 1.2 },
-    )
-      .fromTo(
-        titleRef.current,
-        { y: 40, opacity: 0, filter: "blur(8px)" },
-        { y: 0, opacity: 1, filter: "blur(0px)", duration: 1 },
-        "-=0.6",
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      gsap.set(lines, { opacity: 1 })
+      return
+    }
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        lines,
+        { y: 24, opacity: 0, filter: "blur(10px)" },
+        {
+          y: 0,
+          opacity: 1,
+          filter: "blur(0px)",
+          duration: 1,
+          stagger: 0.12,
+          ease: "power3.out",
+          clearProps: "transform,filter",
+        },
       )
-      .fromTo(
-        subtitleRef.current,
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8 },
-        "-=0.4",
-      )
+    }, root)
+
+    return () => ctx.revert()
   }, [])
 
   return (
-    <section ref={containerRef} style={styles.hero}>
-      <div style={styles.content}>
-        <div ref={lineRef} style={styles.line} />
-        <h1 ref={titleRef} style={styles.title}>
-          ROTO
-        </h1>
-        <p ref={subtitleRef} style={styles.subtitle}>
-          Video / Motion Graphics / Web
+    <section ref={containerRef} className="container" style={styles.hero}>
+      <h1 style={styles.title} aria-label="映像で培った表現力を、Webに。">
+        <span data-hero-line style={styles.line} aria-hidden="true">映像で培った表現力を、</span>
+        <span data-hero-line style={styles.line} aria-hidden="true">Webに。</span>
+      </h1>
+      <div style={styles.side}>
+        <p data-hero-line style={styles.lead}>
+          フロントエンドからバックエンド、インフラまで。モーショングラフィックス・映像制作の経験を活かして、Webをつくっています。
         </p>
+        <p data-hero-line style={styles.fields}>Web / Motion Graphics / Video</p>
       </div>
     </section>
   )
@@ -46,38 +51,41 @@ export const HeroSection = () => {
 
 const styles: Record<string, React.CSSProperties> = {
   hero: {
-    minHeight: "80dvh",
     display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    position: "relative",
-  },
-  content: {
-    textAlign: "center",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    gap: 16,
-  },
-  line: {
-    width: 48,
-    height: 1,
-    backgroundColor: "#1a1a1a",
-    transformOrigin: "center",
-    marginBottom: 8,
+    flexWrap: "wrap",
+    alignItems: "flex-end",
+    justifyContent: "space-between",
+    gap: "24px 64px",
+    paddingTop: "clamp(64px, 12vw, 160px)",
+    paddingBottom: "clamp(16px, 4vw, 48px)",
   },
   title: {
-    fontSize: "clamp(48px, 10vw, 96px)",
+    fontSize: "clamp(30px, 5.2vw, 60px)",
     fontWeight: 700,
-    letterSpacing: "0.15em",
-    lineHeight: 1,
+    lineHeight: 1.35,
+    letterSpacing: "0.02em",
+  },
+  line: {
+    display: "block",
     opacity: 0,
   },
-  subtitle: {
-    fontSize: "clamp(13px, 2vw, 16px)",
-    color: "#6b6b6b",
+  side: {
+    flex: "0 1 360px",
+    display: "flex",
+    flexDirection: "column",
+    gap: 16,
+  },
+  lead: {
+    fontSize: 14,
+    lineHeight: 1.9,
+    color: "var(--color-text-secondary)",
+    opacity: 0,
+  },
+  fields: {
+    fontSize: 12,
+    fontWeight: 500,
     letterSpacing: "0.1em",
-    fontWeight: 400,
+    color: "var(--color-text)",
     opacity: 0,
   },
 }

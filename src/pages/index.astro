@@ -25,6 +25,14 @@ const featured = [...webWorks, ...videoWorks].slice(0, 6)
     </div>
     <WorkGrid client:visible works={featured} enableViewTransition={false} />
   </section>
+
+  <section class="container">
+    <a href="/contact" class="contact-link">
+      <span class="contact-label">Contact</span>
+      <span class="contact-text">お仕事のご相談・ご依頼はこちらから</span>
+      <span class="contact-arrow" aria-hidden="true">→</span>
+    </a>
+  </section>
 </Layout>
 
 <style>
@@ -51,6 +59,40 @@ const featured = [...webWorks, ...videoWorks].slice(0, 6)
     color: var(--color-text);
   }
 
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 40px 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text);
+  }
+
+  .contact-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--color-text-secondary);
+    width: 96px;
+    flex-shrink: 0;
+  }
+
+  .contact-text {
+    flex: 1;
+    font-size: clamp(16px, 2.4vw, 24px);
+    font-weight: 700;
+  }
+
+  .contact-arrow {
+    font-size: 20px;
+    transition: transform 0.3s var(--ease-out-expo);
+  }
+
+  .contact-link:hover .contact-arrow {
+    transform: translateX(6px);
+  }
+
   @media (max-width: 768px) {
     .section {
       padding-top: 48px;
@@ -66,6 +108,16 @@ const featured = [...webWorks, ...videoWorks].slice(0, 6)
 
     .view-all {
       margin-bottom: 24px;
+    }
+
+    .contact-link {
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      padding: 32px 0;
+    }
+
+    .contact-label {
+      width: 100%;
     }
   }
 </style>
