@@ -2,7 +2,7 @@
 title: "Monolog"
 description: "時間と気持ちを記録し、端末内の AI で振り返る iOS / Android アプリ"
 eyecatch: "/images/monolog/eyecatch.png"
-type: "web"
+type: "mobile"
 category: "アプリ開発"
 year: 2026
 soft: ["Flutter", "Dart", "Riverpod", "Supabase", "Gemma 4", "Swift", "iOS", "Android"]

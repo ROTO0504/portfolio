@@ -7,7 +7,7 @@ const works = defineCollection({
     title: z.string(),
     description: z.string().default(""),
     eyecatch: z.string(),
-    type: z.enum(["web", "video"]).default("video"),
+    type: z.enum(["web", "mobile", "video"]).default("video"),
     category: z.string().nullable().default(null),
     year: z.number(),
     soft: z.array(z.string()).default([]),

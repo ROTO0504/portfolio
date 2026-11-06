@@ -11,6 +11,7 @@ try {
 } catch {}
 
 const webWorks = works.filter((w) => w.type === "web")
+const mobileWorks = works.filter((w) => w.type === "mobile")
 const videoWorks = works.filter((w) => w.type === "video")
 const downloadCount = 1
 ---
@@ -25,6 +26,12 @@ const downloadCount = 1
           <a href="#web" class="section-nav-item">
             <span class="section-nav-label">Web</span>
             <span class="section-nav-count">{webWorks.length}</span>
+          </a>
+        )}
+        {mobileWorks.length > 0 && (
+          <a href="#mobile" class="section-nav-item">
+            <span class="section-nav-label">Mobile</span>
+            <span class="section-nav-count">{mobileWorks.length}</span>
           </a>
         )}
         {videoWorks.length > 0 && (
@@ -44,6 +51,13 @@ const downloadCount = 1
         <div id="web" class="works-section">
           <h3 class="works-section-title">Web</h3>
           <WorkGrid client:visible works={webWorks} />
+        </div>
+      )}
+
+      {mobileWorks.length > 0 && (
+        <div id="mobile" class="works-section">
+          <h3 class="works-section-title">Mobile</h3>
+          <WorkGrid client:visible works={mobileWorks} />
         </div>
       )}
 

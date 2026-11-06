@@ -5,7 +5,7 @@ export type Work = {
   title: string
   description: string
   eyecatch: string
-  type: "web" | "video"
+  type: "web" | "mobile" | "video"
   category: string | null
   year: number
   soft: string[]
