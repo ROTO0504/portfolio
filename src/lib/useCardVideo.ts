@@ -43,6 +43,21 @@ export function useCardVideo<T extends HTMLElement>(hasVideo: boolean) {
     }
   }, [active])
 
+  // 画像を動画に差し替えるのは、実際に再生が始まってフレームが描かれてから。
+  // iOS では自動再生を止められたとき（低電力モードなど）も canplaythrough は来るが、
+  // 再生されていない動画は何も描かれないため、その時点で差し替えると画像が白く抜ける
+  const handlePlaying = () => {
+    const el = videoRef.current
+    if (!el) return
+    if ("requestVideoFrameCallback" in el) {
+      el.requestVideoFrameCallback(() => {
+        if (!el.paused) setVideoReady(true)
+      })
+    } else {
+      setVideoReady(true)
+    }
+  }
+
   return {
     cardRef,
     videoRef,
@@ -52,8 +67,7 @@ export function useCardVideo<T extends HTMLElement>(hasVideo: boolean) {
       onMouseLeave: () => setActive(false),
     },
     videoProps: {
-      onCanPlayThrough: () => setVideoReady(true),
-      onPlaying: () => setVideoReady(true),
+      onPlaying: handlePlaying,
     },
   }
 }
