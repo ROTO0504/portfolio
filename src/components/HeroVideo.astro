@@ -17,18 +17,21 @@ const { webm, mp4, title } = Astro.props
   </video>
 
   <div class="controls">
-    <button type="button" class="control" data-action="toggle" aria-label="再生">
-      <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"></path></svg>
-      <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="currentColor"></path></svg>
+    <button type="button" class="control control-play" data-action="toggle" aria-label="再生">
+      <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 5.5v13l10.5-6.5z" fill="currentColor"></path></svg>
+      <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="7" y="5.5" width="3.5" height="13" rx="1.2" fill="currentColor"></rect>
+        <rect x="13.5" y="5.5" width="3.5" height="13" rx="1.2" fill="currentColor"></rect>
+      </svg>
     </button>
     <input type="range" class="seek" min="0" max="1000" step="1" value="0" aria-label="再生位置" />
-    <span class="time"><span data-current>0:00</span> / <span data-duration>0:00</span></span>
+    <span class="time"><span data-current>0:00</span><span class="time-sep">/</span><span data-duration>0:00</span></span>
     <button type="button" class="control" data-action="fullscreen" aria-label="全画面で見る">
       <svg class="icon-enter" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="2"></path>
+        <path d="M4.5 9V4.5H9M15 4.5h4.5V9M19.5 15v4.5H15M9 19.5H4.5V15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
       <svg class="icon-exit" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M9 4v5H4M20 9h-5V4M15 20v-5h5M4 15h5v5" fill="none" stroke="currentColor" stroke-width="2"></path>
+        <path d="M9 4.5V9H4.5M19.5 9H15V4.5M15 19.5V15h4.5M4.5 15H9v4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
       </svg>
     </button>
   </div>
@@ -45,6 +48,9 @@ const { webm, mp4, title } = Astro.props
 
   const doc = document as WebKitDocument
 
+  // 操作が止まってからバーを隠すまでの時間
+  const HIDE_DELAY = 2500
+
   const formatTime = (seconds: number) => {
     if (!Number.isFinite(seconds)) return "0:00"
     const s = Math.floor(seconds)
@@ -60,13 +66,17 @@ const { webm, mp4, title } = Astro.props
     const duration = root.querySelector("[data-duration]")!
     const toggleButton = root.querySelector<HTMLButtonElement>('[data-action="toggle"]')!
     const fullscreenButton = root.querySelector<HTMLButtonElement>('[data-action="fullscreen"]')!
+    const isTouch = window.matchMedia("(hover: none)").matches
 
     let dragging = false
+    let hideTimer: ReturnType<typeof setTimeout> | undefined
 
     const render = () => {
       if (!dragging && video.duration) seek.value = String((video.currentTime / video.duration) * 1000)
       seek.style.setProperty("--progress", `${Number(seek.value) / 10}%`)
       current.textContent = formatTime(video.currentTime)
+      // WebM は読み込みの途中まで長さが分からないことがあるので、毎回更新する
+      duration.textContent = formatTime(video.duration)
     }
 
     // 再生中はシークバーを毎フレーム進めて、timeupdate の間隔（約 0.25 秒）でカクつかないようにする
@@ -75,6 +85,20 @@ const { webm, mp4, title } = Astro.props
       render()
       requestAnimationFrame(tick)
     }
+
+    // バーは触ったときだけ出し、再生中は操作が止まったら隠す。一時停止中は出したままにする
+    const hideControls = () => {
+      clearTimeout(hideTimer)
+      // キーボードで操作しているあいだは隠さない（クリックで付いたフォーカスでは隠す）
+      if (video.paused || dragging || root.querySelector(":focus-visible")) return
+      root.removeAttribute("data-controls")
+    }
+    const showControls = () => {
+      root.setAttribute("data-controls", "")
+      clearTimeout(hideTimer)
+      hideTimer = setTimeout(hideControls, HIDE_DELAY)
+    }
+    signal.addEventListener("abort", () => clearTimeout(hideTimer))
 
     const syncPaused = () => {
       root.toggleAttribute("data-paused", video.paused)
@@ -103,6 +127,7 @@ const { webm, mp4, title } = Astro.props
       const active = fullscreenElement() === root
       root.toggleAttribute("data-fullscreen", active)
       fullscreenButton.setAttribute("aria-label", active ? "全画面を終了" : "全画面で見る")
+      showControls()
     }
 
     video.addEventListener(
@@ -115,6 +140,7 @@ const { webm, mp4, title } = Astro.props
         } else {
           root.setAttribute("data-ready", "")
         }
+        if (root.hasAttribute("data-controls")) showControls()
         requestAnimationFrame(tick)
       },
       { signal },
@@ -123,19 +149,41 @@ const { webm, mp4, title } = Astro.props
       syncPaused()
       render()
     }, { signal })
-    video.addEventListener("loadedmetadata", () => {
-      duration.textContent = formatTime(video.duration)
-      render()
-    }, { signal })
+    video.addEventListener("durationchange", render, { signal })
     video.addEventListener("timeupdate", render, { signal })
 
-    // 通常時は動画のタップで全画面にし、全画面のときは再生・一時停止にする
+    // マウスでは、動画のクリックで全画面にする（全画面のときは再生・一時停止）。
+    // タッチでは、バーが出ていなければ 1 回目のタップでバーを出し、出ているときのタップで全画面にする
     video.addEventListener("click", () => {
-      if (fullscreenElement() === root) togglePlay()
-      else enterFullscreen()
+      if (isTouch && !root.hasAttribute("data-controls")) {
+        showControls()
+        return
+      }
+      if (fullscreenElement() === root) {
+        togglePlay()
+        showControls()
+      } else {
+        enterFullscreen()
+      }
     }, { signal })
 
-    toggleButton.addEventListener("click", togglePlay, { signal })
+    root.addEventListener("pointermove", (e) => {
+      if (e.pointerType === "mouse") showControls()
+    }, { signal })
+    root.addEventListener("pointerleave", (e) => {
+      if (e.pointerType === "mouse") hideControls()
+    }, { signal })
+    root.addEventListener("focusin", (e) => {
+      if ((e.target as HTMLElement).matches(":focus-visible")) showControls()
+    }, { signal })
+    root.addEventListener("focusout", () => {
+      hideTimer = setTimeout(hideControls, HIDE_DELAY)
+    }, { signal })
+
+    toggleButton.addEventListener("click", () => {
+      togglePlay()
+      showControls()
+    }, { signal })
     fullscreenButton.addEventListener("click", () => {
       if (fullscreenElement() === root) exitFullscreen()
       else enterFullscreen()
@@ -143,11 +191,13 @@ const { webm, mp4, title } = Astro.props
 
     seek.addEventListener("input", () => {
       dragging = true
+      showControls()
       if (video.duration) video.currentTime = (Number(seek.value) / 1000) * video.duration
       render()
     }, { signal })
     seek.addEventListener("change", () => {
       dragging = false
+      showControls()
     }, { signal })
 
     document.addEventListener("fullscreenchange", syncFullscreen, { signal })
@@ -204,43 +254,108 @@ const { webm, mp4, title } = Astro.props
     object-fit: contain;
   }
 
-  .controls {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 32px 16px 12px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
-    color: #fff;
-    transition: opacity 0.3s ease;
+  /* 全画面でバーが隠れているときは、カーソルも隠す */
+  .hero-video[data-fullscreen]:not([data-controls]) .video {
+    cursor: none;
   }
 
-  /* マウスで操作できる端末では、再生中はホバーしたときだけ出す */
-  @media (hover: hover) {
-    .hero-video:not([data-paused]):not(:hover):not(:focus-within) .controls {
-      opacity: 0;
-    }
+  /* リキッドガラス風の浮いたバー。触ったときだけ出す */
+  .controls {
+    position: absolute;
+    left: 50%;
+    bottom: 16px;
+    width: min(560px, calc(100% - 32px));
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 8px 6px 6px;
+    border-radius: 999px;
+    color: #fff;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.26) 0%, rgba(255, 255, 255, 0.08) 55%, rgba(255, 255, 255, 0.14) 100%),
+      rgba(20, 20, 24, 0.18);
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.6),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.15),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+      0 10px 30px rgba(0, 0, 0, 0.22);
+    opacity: 0;
+    transform: translate(-50%, 12px) scale(0.96);
+    pointer-events: none;
+    transition:
+      opacity 0.35s ease,
+      transform 0.6s var(--ease-out-expo);
+  }
+
+  /* 上の縁に乗る光の映り込み */
+  .controls::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(120% 140% at 20% -40%, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0) 55%);
+    pointer-events: none;
+  }
+
+  .hero-video[data-controls] .controls {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+    pointer-events: auto;
+  }
+
+  .hero-video:fullscreen .controls {
+    bottom: 32px;
+  }
+
+  .hero-video:-webkit-full-screen .controls {
+    bottom: 32px;
   }
 
   .control {
+    position: relative;
     flex-shrink: 0;
     display: grid;
     place-items: center;
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     padding: 0;
     border: none;
+    border-radius: 50%;
     background: none;
     color: inherit;
     cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      transform 0.2s var(--ease-out-expo);
+  }
+
+  .control:hover {
+    background-color: rgba(255, 255, 255, 0.16);
+  }
+
+  .control:active {
+    transform: scale(0.9);
+  }
+
+  /* 再生ボタンだけ、ガラスの中にもう一枚ガラスを重ねた丸にする */
+  .control-play {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.14));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.7),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+      0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .control-play:hover {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.2));
   }
 
   .control svg {
     width: 20px;
     height: 20px;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
   }
 
   .hero-video[data-paused] .icon-pause,
@@ -252,9 +367,10 @@ const { webm, mp4, title } = Astro.props
 
   .seek {
     --progress: 0%;
+    position: relative;
     flex: 1;
     min-width: 0;
-    height: 20px;
+    height: 24px;
     margin: 0;
     background: transparent;
     cursor: pointer;
@@ -263,38 +379,72 @@ const { webm, mp4, title } = Astro.props
   }
 
   .seek::-webkit-slider-runnable-track {
-    height: 3px;
-    border-radius: 3px;
-    background: linear-gradient(to right, #fff var(--progress), rgba(255, 255, 255, 0.35) var(--progress));
+    height: 4px;
+    border-radius: 4px;
+    background: linear-gradient(to right, #fff var(--progress), rgba(255, 255, 255, 0.28) var(--progress));
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.12);
   }
 
   .seek::-moz-range-track {
-    height: 3px;
-    border-radius: 3px;
-    background: linear-gradient(to right, #fff var(--progress), rgba(255, 255, 255, 0.35) var(--progress));
+    height: 4px;
+    border-radius: 4px;
+    background: linear-gradient(to right, #fff var(--progress), rgba(255, 255, 255, 0.28) var(--progress));
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.12);
   }
 
   .seek::-webkit-slider-thumb {
-    width: 12px;
-    height: 12px;
-    margin-top: -4.5px;
+    width: 14px;
+    height: 14px;
+    margin-top: -5px;
     border-radius: 50%;
     background: #fff;
+    box-shadow:
+      0 1px 4px rgba(0, 0, 0, 0.3),
+      0 0 0 4px rgba(255, 255, 255, 0.18);
+    transition: transform 0.2s var(--ease-out-expo);
     -webkit-appearance: none;
   }
 
   .seek::-moz-range-thumb {
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
     border: none;
     border-radius: 50%;
     background: #fff;
+    box-shadow:
+      0 1px 4px rgba(0, 0, 0, 0.3),
+      0 0 0 4px rgba(255, 255, 255, 0.18);
+  }
+
+  .seek:active::-webkit-slider-thumb {
+    transform: scale(1.25);
   }
 
   .time {
+    position: relative;
     flex-shrink: 0;
+    display: flex;
+    gap: 4px;
     font-size: 12px;
+    font-weight: 500;
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .time-sep {
+    opacity: 0.6;
+  }
+
+  @media (max-width: 480px) {
+    .controls {
+      bottom: 10px;
+      width: calc(100% - 20px);
+      gap: 6px;
+    }
+
+    .time {
+      font-size: 11px;
+    }
   }
 </style>
