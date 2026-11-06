@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro"
 import { getWorkDetail, getWorks } from "@/lib/works"
+import { WEBM_AV1_TYPE } from "@/lib/video"
 
 const { slug } = Astro.params
 
@@ -35,7 +36,6 @@ const nextWork = currentIndex < allWorks.length - 1 ? allWorks[currentIndex + 1]
       {
         work.backgroundMovie && (
           <video
-            src={work.backgroundMovie}
             class="hero-video"
             muted
             loop
@@ -43,7 +43,10 @@ const nextWork = currentIndex < allWorks.length - 1 ? allWorks[currentIndex + 1]
             autoplay
             preload="auto"
             aria-hidden="true"
-          />
+          >
+            <source src={work.backgroundMovie} type={WEBM_AV1_TYPE} />
+            {work.backgroundMovieMp4 && <source src={work.backgroundMovieMp4} type="video/mp4" />}
+          </video>
         )
       }
     </header>

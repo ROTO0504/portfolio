@@ -7,6 +7,7 @@ category: "自主制作"
 year: 2023
 soft: ["After Effects", "DaVinci Resolve"]
 backgroundMovie: "https://pub-cc5a3f2a83ec4ac48898b31a8e6bd165.r2.dev/videos/DAYBREAK%20FRONTLINE.webm"
+backgroundMovieMp4: "https://pub-cc5a3f2a83ec4ac48898b31a8e6bd165.r2.dev/videos/daybreak-frontline.mp4"
 ---
 
 ## 概要

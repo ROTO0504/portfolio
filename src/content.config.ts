@@ -12,6 +12,8 @@ const works = defineCollection({
     year: z.number(),
     soft: z.array(z.string()).default([]),
     backgroundMovie: z.string().optional(),
+    // backgroundMovie（AV1 の WebM）を再生できない端末向けの H.264 の MP4
+    backgroundMovieMp4: z.string().optional(),
     youtube: z.string().optional(),
   }),
 })

@@ -7,6 +7,7 @@ category: "AMIDC"
 year: 2023
 soft: ["Blender", "After Effects"]
 backgroundMovie: "https://pub-cc5a3f2a83ec4ac48898b31a8e6bd165.r2.dev/videos/XRCity.webm"
+backgroundMovieMp4: "https://pub-cc5a3f2a83ec4ac48898b31a8e6bd165.r2.dev/videos/xr-city.mp4"
 ---
 
 ## 概要

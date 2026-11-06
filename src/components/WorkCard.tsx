@@ -1,7 +1,9 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import type { Work } from "@/lib/works"
+import { useCardVideo } from "@/lib/useCardVideo"
+import { WEBM_AV1_TYPE } from "@/lib/video"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -19,33 +21,17 @@ const WorkCardItem = ({
   work: Work
   enableViewTransition?: boolean
 }) => {
-  const [hovered, setHovered] = useState(false)
-  const [videoReady, setVideoReady] = useState(false)
-  const videoRef = useRef<HTMLVideoElement>(null)
-
-  const showVideo = hovered && videoReady
-
-  useEffect(() => {
-    const el = videoRef.current
-    if (!el) return
-    if (hovered) {
-      // ClientRouter で差し替えられた <video> はエラー状態になっているので読み込み直す
-      if (el.error) el.load()
-      el.play().catch(() => {})
-    } else {
-      el.pause()
-      el.currentTime = 0
-      setVideoReady(false)
-    }
-  }, [hovered])
+  const { cardRef, videoRef, showVideo, hoverProps, videoProps } = useCardVideo<HTMLAnchorElement>(
+    Boolean(work.backgroundMovie),
+  )
 
   return (
     <a
+      ref={cardRef}
       href={`/works/${work.slug}`}
       className="work-card"
       style={styles.card}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      {...hoverProps}
     >
       <div style={styles.imageWrap}>
         {work.eyecatch && (
@@ -63,17 +49,19 @@ const WorkCardItem = ({
         {work.backgroundMovie && (
           <video
             ref={videoRef}
-            src={work.backgroundMovie}
             muted
             loop
             playsInline
             preload="none"
-            onCanPlayThrough={() => setVideoReady(true)}
+            {...videoProps}
             style={{
               ...styles.video,
               opacity: showVideo ? 1 : 0,
             }}
-          />
+          >
+            <source src={work.backgroundMovie} type={WEBM_AV1_TYPE} />
+            {work.backgroundMovieMp4 && <source src={work.backgroundMovieMp4} type="video/mp4" />}
+          </video>
         )}
       </div>
       <div style={styles.info}>

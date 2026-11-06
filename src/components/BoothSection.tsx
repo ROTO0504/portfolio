@@ -1,6 +1,8 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useCardVideo } from "@/lib/useCardVideo"
+import { WEBM_AV1_TYPE } from "@/lib/video"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -11,6 +13,7 @@ type BoothItem = {
   imageUrl: string
   boothUrl: string
   backgroundMovie?: string
+  backgroundMovieMp4?: string
 }
 
 const boothItems: BoothItem[] = [
@@ -22,37 +25,17 @@ const boothItems: BoothItem[] = [
     imageUrl: "/booth-fxconsole.jpg",
     boothUrl: "https://booth.pm/ja/items/6176975",
     backgroundMovie: "https://pub-cc5a3f2a83ec4ac48898b31a8e6bd165.r2.dev/videos/FXConsole.webm",
+    backgroundMovieMp4: "https://pub-cc5a3f2a83ec4ac48898b31a8e6bd165.r2.dev/videos/FXConsole.mp4",
   },
 ]
 
 const BoothCardItem = ({ item }: { item: BoothItem }) => {
-  const [hovered, setHovered] = useState(false)
-  const [videoReady, setVideoReady] = useState(false)
-  const videoRef = useRef<HTMLVideoElement>(null)
-
-  const showVideo = hovered && videoReady
-
-  useEffect(() => {
-    const el = videoRef.current
-    if (!el) return
-    if (hovered) {
-      // ClientRouter で差し替えられた <video> はエラー状態になっているので読み込み直す
-      if (el.error) el.load()
-      el.play().catch(() => {})
-    } else {
-      el.pause()
-      el.currentTime = 0
-      setVideoReady(false)
-    }
-  }, [hovered])
+  const { cardRef, videoRef, showVideo, hoverProps, videoProps } = useCardVideo<HTMLDivElement>(
+    Boolean(item.backgroundMovie),
+  )
 
   return (
-    <div
-      className="booth-card"
-      style={styles.card}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
+    <div ref={cardRef} className="booth-card" style={styles.card} {...hoverProps}>
       <a href={`/downloads/${item.id}`} style={styles.cardLink}>
         <div style={{ ...styles.imageWrap, position: "relative" as const }}>
           <img
@@ -68,12 +51,11 @@ const BoothCardItem = ({ item }: { item: BoothItem }) => {
           {item.backgroundMovie && (
             <video
               ref={videoRef}
-              src={item.backgroundMovie}
               muted
               loop
               playsInline
               preload="none"
-              onCanPlayThrough={() => setVideoReady(true)}
+              {...videoProps}
               style={{
                 position: "absolute" as const,
                 top: 0,
@@ -84,7 +66,10 @@ const BoothCardItem = ({ item }: { item: BoothItem }) => {
                 transition: "opacity 0.3s ease",
                 opacity: showVideo ? 1 : 0,
               }}
-            />
+            >
+              <source src={item.backgroundMovie} type={WEBM_AV1_TYPE} />
+              {item.backgroundMovieMp4 && <source src={item.backgroundMovieMp4} type="video/mp4" />}
+            </video>
           )}
         </div>
         <div style={styles.info}>

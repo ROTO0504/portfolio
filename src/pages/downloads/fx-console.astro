@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro"
+import { WEBM_AV1_TYPE } from "@/lib/video"
 ---
 
 <Layout title="FX Console - ローマ字対応" description="After EffectsのFX Consoleでエフェクトをローマ字検索できるようにする設定ファイル">
@@ -12,7 +13,6 @@ import Layout from "@/layouts/Layout.astro"
         style="view-transition-name: booth-image-fx-console"
       />
       <video
-        src="https://pub-cc5a3f2a83ec4ac48898b31a8e6bd165.r2.dev/videos/FXConsole.webm"
         class="hero-video"
         muted
         loop
@@ -20,7 +20,13 @@ import Layout from "@/layouts/Layout.astro"
         autoplay
         preload="auto"
         aria-hidden="true"
-      />
+      >
+        <source
+          src="https://pub-cc5a3f2a83ec4ac48898b31a8e6bd165.r2.dev/videos/FXConsole.webm"
+          type={WEBM_AV1_TYPE}
+        />
+        <source src="https://pub-cc5a3f2a83ec4ac48898b31a8e6bd165.r2.dev/videos/FXConsole.mp4" type="video/mp4" />
+      </video>
     </header>
 
     <div class="content-wrap">

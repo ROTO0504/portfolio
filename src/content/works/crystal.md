@@ -7,6 +7,7 @@ category: "自主制作"
 year: 2023
 soft: ["Blender", "DaVinci Resolve"]
 backgroundMovie: "https://pub-cc5a3f2a83ec4ac48898b31a8e6bd165.r2.dev/videos/Crystal.webm"
+backgroundMovieMp4: "https://pub-cc5a3f2a83ec4ac48898b31a8e6bd165.r2.dev/videos/crystal.mp4"
 ---
 
 ## 概要

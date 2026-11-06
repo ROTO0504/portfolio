@@ -7,6 +7,7 @@ category: "AMIDC"
 year: 2024
 soft: ["Blender", "DaVinci Resolve", "After Effects"]
 backgroundMovie: "https://pub-cc5a3f2a83ec4ac48898b31a8e6bd165.r2.dev/videos/%E3%83%AD%E3%83%9C%E3%83%83%E3%83%88%E4%BA%A4%E6%B5%81%E4%BC%9A_final.webm"
+backgroundMovieMp4: "https://pub-cc5a3f2a83ec4ac48898b31a8e6bd165.r2.dev/videos/robot-koryu.mp4"
 ---
 
 ## 概要

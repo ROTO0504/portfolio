@@ -10,6 +10,7 @@ export type Work = {
   year: number
   soft: string[]
   backgroundMovie?: string
+  backgroundMovieMp4?: string
   youtube?: string
 }
 
@@ -26,6 +27,7 @@ export async function getWorks(): Promise<Work[]> {
       year: entry.data.year,
       soft: entry.data.soft,
       backgroundMovie: entry.data.backgroundMovie,
+      backgroundMovieMp4: entry.data.backgroundMovieMp4,
       youtube: entry.data.youtube,
     }))
     .sort((a, b) => b.year - a.year)

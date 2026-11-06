@@ -7,6 +7,7 @@ category: "自主制作"
 year: 2024
 soft: ["Blender", "DaVinci Resolve"]
 backgroundMovie: "https://pub-cc5a3f2a83ec4ac48898b31a8e6bd165.r2.dev/videos/1%E6%9C%88%E5%90%88%E4%BD%9C.webm"
+backgroundMovieMp4: "https://pub-cc5a3f2a83ec4ac48898b31a8e6bd165.r2.dev/videos/january-collab.mp4"
 ---
 
 ## 概要
