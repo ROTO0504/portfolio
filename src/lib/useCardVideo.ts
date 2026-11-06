@@ -12,6 +12,7 @@ export function useCardVideo<T extends HTMLElement>(hasVideo: boolean) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [active, setActive] = useState(false)
   const [videoReady, setVideoReady] = useState(false)
+  const loadedRef = useRef(false)
 
   useEffect(() => {
     const card = cardRef.current
@@ -31,8 +32,12 @@ export function useCardVideo<T extends HTMLElement>(hasVideo: boolean) {
     const el = videoRef.current
     if (!el) return
     if (active) {
-      // ClientRouter で差し替えられた <video> は読み込みに失敗した状態になっているので読み込み直す
-      if (el.error || el.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) el.load()
+      // ClientRouter で差し替えられた <video> は読み込みに失敗した状態になっていることがある。
+      // error や networkState に表れない場合もあるので、状態を見ずに最初の再生の前に必ず読み込み直す
+      if (!loadedRef.current || el.error) {
+        el.load()
+        loadedRef.current = true
+      }
       // iOS は消音でないと自動で再生させない。属性の反映漏れに備えてここでも消音にする
       el.muted = true
       el.play().catch(() => {})
