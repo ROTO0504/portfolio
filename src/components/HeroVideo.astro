@@ -1,0 +1,300 @@
+---
+import { WEBM_AV1_TYPE } from "@/lib/video"
+
+type Props = {
+  webm: string
+  mp4?: string
+  title: string
+}
+
+const { webm, mp4, title } = Astro.props
+---
+
+<div class="hero-video" data-hero-video data-paused>
+  <video class="video" muted loop playsinline autoplay preload="auto" aria-label={`${title} の動画`}>
+    <source src={webm} type={WEBM_AV1_TYPE} />
+    {mp4 && <source src={mp4} type="video/mp4" />}
+  </video>
+
+  <div class="controls">
+    <button type="button" class="control" data-action="toggle" aria-label="再生">
+      <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"></path></svg>
+      <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" fill="currentColor"></path></svg>
+    </button>
+    <input type="range" class="seek" min="0" max="1000" step="1" value="0" aria-label="再生位置" />
+    <span class="time"><span data-current>0:00</span> / <span data-duration>0:00</span></span>
+    <button type="button" class="control" data-action="fullscreen" aria-label="全画面で見る">
+      <svg class="icon-enter" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="2"></path>
+      </svg>
+      <svg class="icon-exit" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M9 4v5H4M20 9h-5V4M15 20v-5h5M4 15h5v5" fill="none" stroke="currentColor" stroke-width="2"></path>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  type WebKitDocument = Document & {
+    webkitFullscreenEnabled?: boolean
+    webkitFullscreenElement?: Element | null
+    webkitExitFullscreen?: () => void
+  }
+  type WebKitElement = HTMLElement & { webkitRequestFullscreen?: () => void }
+  type WebKitVideo = HTMLVideoElement & { webkitEnterFullscreen?: () => void }
+
+  const doc = document as WebKitDocument
+
+  const formatTime = (seconds: number) => {
+    if (!Number.isFinite(seconds)) return "0:00"
+    const s = Math.floor(seconds)
+    return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`
+  }
+
+  const fullscreenElement = () => doc.fullscreenElement ?? doc.webkitFullscreenElement ?? null
+
+  const setup = (root: HTMLElement, signal: AbortSignal) => {
+    const video = root.querySelector("video") as WebKitVideo
+    const seek = root.querySelector<HTMLInputElement>(".seek")!
+    const current = root.querySelector("[data-current]")!
+    const duration = root.querySelector("[data-duration]")!
+    const toggleButton = root.querySelector<HTMLButtonElement>('[data-action="toggle"]')!
+    const fullscreenButton = root.querySelector<HTMLButtonElement>('[data-action="fullscreen"]')!
+
+    let dragging = false
+
+    const render = () => {
+      if (!dragging && video.duration) seek.value = String((video.currentTime / video.duration) * 1000)
+      seek.style.setProperty("--progress", `${Number(seek.value) / 10}%`)
+      current.textContent = formatTime(video.currentTime)
+    }
+
+    // 再生中はシークバーを毎フレーム進めて、timeupdate の間隔（約 0.25 秒）でカクつかないようにする
+    const tick = () => {
+      if (signal.aborted || video.paused) return
+      render()
+      requestAnimationFrame(tick)
+    }
+
+    const syncPaused = () => {
+      root.toggleAttribute("data-paused", video.paused)
+      toggleButton.setAttribute("aria-label", video.paused ? "再生" : "一時停止")
+    }
+
+    const togglePlay = () => {
+      if (video.paused) video.play().catch(() => {})
+      else video.pause()
+    }
+
+    const enterFullscreen = () => {
+      const el = root as WebKitElement
+      if (doc.fullscreenEnabled && el.requestFullscreen) el.requestFullscreen().catch(() => {})
+      else if (doc.webkitFullscreenEnabled && el.webkitRequestFullscreen) el.webkitRequestFullscreen()
+      // iPhone は要素の全画面表示に対応していないので、動画だけを標準のプレーヤーで全画面にする
+      else video.webkitEnterFullscreen?.()
+    }
+
+    const exitFullscreen = () => {
+      if (doc.exitFullscreen) doc.exitFullscreen().catch(() => {})
+      else doc.webkitExitFullscreen?.()
+    }
+
+    const syncFullscreen = () => {
+      const active = fullscreenElement() === root
+      root.toggleAttribute("data-fullscreen", active)
+      fullscreenButton.setAttribute("aria-label", active ? "全画面を終了" : "全画面で見る")
+    }
+
+    video.addEventListener(
+      "playing",
+      () => {
+        syncPaused()
+        // 画像を動画に差し替えるのは、フレームが描かれてから（自動再生を止められたときに白く抜けないように）
+        if ("requestVideoFrameCallback" in video) {
+          video.requestVideoFrameCallback(() => root.setAttribute("data-ready", ""))
+        } else {
+          root.setAttribute("data-ready", "")
+        }
+        requestAnimationFrame(tick)
+      },
+      { signal },
+    )
+    video.addEventListener("pause", () => {
+      syncPaused()
+      render()
+    }, { signal })
+    video.addEventListener("loadedmetadata", () => {
+      duration.textContent = formatTime(video.duration)
+      render()
+    }, { signal })
+    video.addEventListener("timeupdate", render, { signal })
+
+    // 通常時は動画のタップで全画面にし、全画面のときは再生・一時停止にする
+    video.addEventListener("click", () => {
+      if (fullscreenElement() === root) togglePlay()
+      else enterFullscreen()
+    }, { signal })
+
+    toggleButton.addEventListener("click", togglePlay, { signal })
+    fullscreenButton.addEventListener("click", () => {
+      if (fullscreenElement() === root) exitFullscreen()
+      else enterFullscreen()
+    }, { signal })
+
+    seek.addEventListener("input", () => {
+      dragging = true
+      if (video.duration) video.currentTime = (Number(seek.value) / 1000) * video.duration
+      render()
+    }, { signal })
+    seek.addEventListener("change", () => {
+      dragging = false
+    }, { signal })
+
+    document.addEventListener("fullscreenchange", syncFullscreen, { signal })
+    document.addEventListener("webkitfullscreenchange", syncFullscreen, { signal })
+
+    // ClientRouter で差し替えられた <video> はエラー状態になっているので読み込み直す
+    video.load()
+    video.play().catch(() => {})
+  }
+
+  let controller: AbortController | null = null
+
+  document.addEventListener("astro:page-load", () => {
+    // 前のページで付けた document へのリスナーを外す
+    controller?.abort()
+    controller = new AbortController()
+    const { signal } = controller
+    document.querySelectorAll<HTMLElement>("[data-hero-video]").forEach((root) => setup(root, signal))
+  })
+</script>
+
+<style>
+  .hero-video {
+    position: absolute;
+    inset: 0;
+  }
+
+  .video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  .hero-video[data-ready] .video {
+    opacity: 1;
+  }
+
+  .hero-video:fullscreen {
+    background-color: #000;
+  }
+
+  .hero-video:-webkit-full-screen {
+    background-color: #000;
+  }
+
+  .hero-video:fullscreen .video {
+    object-fit: contain;
+  }
+
+  .hero-video:-webkit-full-screen .video {
+    object-fit: contain;
+  }
+
+  .controls {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 32px 16px 12px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+    color: #fff;
+    transition: opacity 0.3s ease;
+  }
+
+  /* マウスで操作できる端末では、再生中はホバーしたときだけ出す */
+  @media (hover: hover) {
+    .hero-video:not([data-paused]):not(:hover):not(:focus-within) .controls {
+      opacity: 0;
+    }
+  }
+
+  .control {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .control svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .hero-video[data-paused] .icon-pause,
+  .hero-video:not([data-paused]) .icon-play,
+  .hero-video[data-fullscreen] .icon-enter,
+  .hero-video:not([data-fullscreen]) .icon-exit {
+    display: none;
+  }
+
+  .seek {
+    --progress: 0%;
+    flex: 1;
+    min-width: 0;
+    height: 20px;
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .seek::-webkit-slider-runnable-track {
+    height: 3px;
+    border-radius: 3px;
+    background: linear-gradient(to right, #fff var(--progress), rgba(255, 255, 255, 0.35) var(--progress));
+  }
+
+  .seek::-moz-range-track {
+    height: 3px;
+    border-radius: 3px;
+    background: linear-gradient(to right, #fff var(--progress), rgba(255, 255, 255, 0.35) var(--progress));
+  }
+
+  .seek::-webkit-slider-thumb {
+    width: 12px;
+    height: 12px;
+    margin-top: -4.5px;
+    border-radius: 50%;
+    background: #fff;
+    -webkit-appearance: none;
+  }
+
+  .seek::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border: none;
+    border-radius: 50%;
+    background: #fff;
+  }
+
+  .time {
+    flex-shrink: 0;
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+</style>
